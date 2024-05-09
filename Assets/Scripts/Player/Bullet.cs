@@ -32,7 +32,8 @@ public class Bullet : NetworkBehaviour//, IPredictedSpawnBehaviour
     public override void FixedUpdateNetwork()
     {
         Vector2 mouseVector = mousePosition.normalized;
-        networkRigidbody.Rigidbody.velocity = mouseVector * bulletSpeed;
+
+        networkRigidbody.Rigidbody.velocity = mouseVector * bulletSpeed; //mouseVector * bulletSpeed;
 
         if (life.Expired(Runner))
         {

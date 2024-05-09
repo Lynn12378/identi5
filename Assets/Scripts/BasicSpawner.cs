@@ -64,7 +64,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
         
-        Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);//取得鼠標位置
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);//取得鼠標位置
 
         data.movementInput = new Vector2(xInput, yInput);
         data.mousePosition = mousePosition;
