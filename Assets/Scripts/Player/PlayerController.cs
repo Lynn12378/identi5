@@ -52,6 +52,7 @@ public class PlayerController : NetworkBehaviour
         buttonsPrevious = buttons;
 
         movementHandler.Move(data);
+        movementHandler.SetRotation(data.mousePosition);
 
         if (pressed.IsSet(InputButtons.FIRE))
         {
