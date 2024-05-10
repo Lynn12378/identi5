@@ -9,7 +9,7 @@ public class Bullet : NetworkBehaviour//, IPredictedSpawnBehaviour
 {
     [SerializeField] private NetworkRigidbody2D networkRigidbody = null;
 
-    [SerializeField] private float bulletSpeed = 20f;
+    [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float bulletTime = 0.5f;
     [SerializeField] private int damage = 10;
 

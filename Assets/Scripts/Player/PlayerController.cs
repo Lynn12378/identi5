@@ -11,7 +11,6 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private PlayerMovementHandler movementHandler = null;
     [SerializeField] private PlayerAttackHandler attackHandler = null;
 
-    [SerializeField] private float moveSpeed = 5f;
     //[SerializeField] private Image hpBar = null;
 
     [Networked] public int Hp { get; set; } //(OnChanged = nameof(OnHpChanged)),Networked, OnChangedRender(nameof(OnColorChanged))
