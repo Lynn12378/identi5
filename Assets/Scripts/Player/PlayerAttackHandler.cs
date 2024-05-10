@@ -33,6 +33,7 @@ public class PlayerAttackHandler : NetworkBehaviour
             bulletPrefab.mousePosition = mousePosition - new Vector2(transform.position.x, transform.position.y);
             Quaternion rotation = Quaternion.Euler(shootPoint.rotation.eulerAngles - Vector3.forward * 90);
             Runner.Spawn(bulletPrefab, shootPoint.position, rotation, Object.InputAuthority);
+
             currentBullet -= 1;
             playerStatsUI.UpdateBulletAmount(currentBullet);
         }

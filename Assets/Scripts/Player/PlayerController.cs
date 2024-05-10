@@ -32,13 +32,13 @@ public class PlayerController : NetworkBehaviour
         buttonsPrevious = buttons;
 
         movementHandler.Move(data);
-        movementHandler.SetRotation(data.rotation);
+        movementHandler.SetRotation(data.mousePosition);
 
         if (pressed.IsSet(InputButtons.FIRE))
         {
             if(!EventSystem.current.IsPointerOverGameObject())
             {
-                attackHandler.Shoot(Input.mousePosition);
+                attackHandler.Shoot(data.mousePosition);
             }
         }
     }

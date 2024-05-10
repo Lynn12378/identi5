@@ -671,10 +671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ac81dc35e11a24286e9006c80d3df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNetworkRigidbody: {fileID: 397606304458726309}
   movementHandler: {fileID: 1797281051025650655}
   attackHandler: {fileID: 4119776355522196519}
-  playerStats: {fileID: 237223312784963901}
 --- !u!114 &1797281051025650655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4280969757316509552, guid: c6818a84a16b03f44998b3a5c4e6ef2c, type: 3}
   shootPoint: {fileID: 6831657814407364924}
+  maxBullet: 30
 --- !u!114 &1475834049703138947
 MonoBehaviour:
   m_ObjectHideFlags: 0

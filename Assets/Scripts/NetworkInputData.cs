@@ -10,10 +10,9 @@ public enum InputButtons//�ۭq�q���s
 }
 
 public struct NetworkInputData : INetworkInput
-{
+{    
     public NetworkButtons buttons;
 
     public Vector2 movementInput;
-
     public Vector2 mousePosition;
 }

@@ -9,27 +9,28 @@ public class Bullet : NetworkBehaviour
 {
     [SerializeField] private NetworkRigidbody2D networkRigidbody = null;
 
-    [SerializeField] private float bulletSpeed = 15f;
+    [SerializeField] private float bulletSpeed = 20f;
     [SerializeField] private float bulletTime = 0.5f;
     [SerializeField] private int damage = 10;
 
     [Networked] private TickTimer life { get; set; }
 
-    public Vector3 mousePosition;
+    public Vector2 mousePosition;
 
     public override void Spawned()
     {
         life = TickTimer.CreateFromSeconds(Runner, bulletTime);
 
         networkRigidbody.InterpolationTarget.gameObject.SetActive(true);
-
+        
         networkRigidbody.Rigidbody.velocity = Vector2.zero;
     }
 
     public override void FixedUpdateNetwork()
     {
-       Vector2 mouseVector = mousePosition.normalized;
-        networkRigidbody.Rigidbody.velocity = mouseVector * bulletSpeed; //mouseVector * bulletSpeed;
+        Vector2 mouseVector = mousePosition.normalized;
+        Debug.Log(mouseVector);
+        networkRigidbody.Rigidbody.velocity = mouseVector * bulletSpeed;
 
         if (life.Expired(Runner))
         {
