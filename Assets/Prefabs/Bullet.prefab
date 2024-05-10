@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   networkRigidbody: {fileID: 1834830856782735943}
-  bulletSpeed: 20
-  bulletTime: 0.5
+  bulletSpeed: 5
+  bulletTime: 1
   damage: 10
-  mousePosition: {x: 4.390353, y: -2.6580653, z: -10}
+  mousePosition: {x: 127.19999, y: 382.69998}
 --- !u!50 &1581886057022738642
 Rigidbody2D:
   serializedVersion: 4
