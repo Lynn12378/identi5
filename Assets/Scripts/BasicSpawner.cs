@@ -63,30 +63,34 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
-        
-        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);//¨ú±o¹«¼Ð¦ì¸m
+
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); // æ»‘é¼ è¼¸å…¥
+        float angle = Vector2.SignedAngle(Vector2.up, mouseToWorldPoint - new Vector2(transform.position.x, transform.position.y));
+        data.rotation = angle;
 
         data.movementInput = new Vector2(xInput, yInput);
         data.mousePosition = mousePosition;
-        data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0));//´£¨ÑNetworkButtonªº¿é¤J
+        data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0)); // æŽ¥æ”¶NetworkButtonè¼¸å…¥
  
         input.Set(data);
     }
 
-    public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-    public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
-    public void OnConnectedToServer(NetworkRunner runner) { }
-    public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
-    public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-    public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
-    public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
-    public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
-    public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
-    public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
-    public void OnSceneLoadDone(NetworkRunner runner) { }
-    public void OnSceneLoadStart(NetworkRunner runner) { }
-    public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-    public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-    public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
-    public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
+    #region /-- Unused Function --/
+        public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
+        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
+        public void OnConnectedToServer(NetworkRunner runner) { }
+        public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
+        public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
+        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+        public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
+        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
+        public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
+        public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
+        public void OnSceneLoadDone(NetworkRunner runner) { }
+        public void OnSceneLoadStart(NetworkRunner runner) { }
+        public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+        public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+        public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
+        public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
+    #endregion
 }

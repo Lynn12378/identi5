@@ -1,46 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using Fusion;
 using Fusion.Addons.Physics;
 
 public class PlayerController : NetworkBehaviour
 {
-    [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
+    //[SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
     [SerializeField] private PlayerMovementHandler movementHandler = null;
     [SerializeField] private PlayerAttackHandler attackHandler = null;
+    //[SerializeField] private PlayerStats playerStats = null;
 
-    //[SerializeField] private Image hpBar = null;
 
-    [Networked] public int Hp { get; set; } //(OnChanged = nameof(OnHpChanged)),Networked, OnChangedRender(nameof(OnColorChanged))
     [Networked] private NetworkButtons buttonsPrevious { get; set; }
-
-    private int maxHp = 100;
-
-    public override void Spawned()//初始化
-    {
-        if (Object.HasStateAuthority)
-        {
-            Hp = maxHp;
-        }
-    }
-    private void Respawn()//重生
-    {
-        playerNetworkRigidbody.transform.position = Vector3.zero;
-        Hp = maxHp;
-    }
 
     public override void FixedUpdateNetwork()
     {
         if (GetInput(out NetworkInputData data))
         {
             ApplyInput(data);
-        }
-
-        if (Hp <= 0)
-        {
-            Respawn();
         }
     }
 
@@ -51,25 +32,15 @@ public class PlayerController : NetworkBehaviour
         buttonsPrevious = buttons;
 
         movementHandler.Move(data);
-        movementHandler.SetRotation(data.mousePosition);
+        movementHandler.SetRotation(data.rotation);
 
         if (pressed.IsSet(InputButtons.FIRE))
         {
-            attackHandler.Shoot(data.mousePosition);
+            if(!EventSystem.current.IsPointerOverGameObject())
+            {
+                attackHandler.Shoot(Input.mousePosition);
+            }
         }
     }
-
-    public void TakeDamage(int damage)
-    {
-        if (Object.HasStateAuthority)
-        {
-            Hp -= damage;
-        }
-    }
-    
-    /*private static void OnHpChanged(Changed<PlayerController> changed)
-    {
-        changed.Behaviour.hpBar.fillAmount = (float)changed.Behaviour.Hp / changed.Behaviour.maxHp;
-    }*/
 }
 
