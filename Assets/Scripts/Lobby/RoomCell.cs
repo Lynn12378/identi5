@@ -16,7 +16,7 @@ namespace DEMO.Lobby
         private LobbyManager lobbyManager = null;
 
         [SerializeField] private TMP_Text roomNameTxt = null;
-        [SerializeField] private Button joinBtn = null;
+        //[SerializeField] private Button joinBtn = null;
 
         public void SetInfo(LobbyManager lobbyManager, string roomName)
         {

@@ -39,16 +39,6 @@ namespace DEMO.Player
             currentHealth = maxHealth;
         }
 
-        private void Update() //////////////////////////////////// Test
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                TakeDamage(20);
-            }
-
-            //healthPoint.ShowNetworkHealthBar();
-        }
-
         // Initialize healthPoint
         public override void Spawned() 
         {
@@ -79,7 +69,7 @@ namespace DEMO.Player
 
         public void TakeDamage(int damage)
         {
-            if (Object.HasStateAuthority)
+            if (Object.HasInputAuthority)
             {
                 currentHealth -= damage;
                 healthBar.setHealth(currentHealth);
