@@ -2,20 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Fusion;
 
-public class ItemWorld : MonoBehaviour
+using DEMO;
+
+public class ItemWorld : NetworkBehaviour
 {
     public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
     {
-        Transform transform = Instantiate(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
-    
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        itemWorld.SetItem(item);
+        var obj = GameManager.Instance.Runner.Spawn(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
 
-        /*
-        NetworkObject networkObject = NetworkManager.Singleton.Spawn(ItemAssets.Instance.pfItemWorld, position, Quaternion.identity);
-        GameObject gameObject = networkObject.gameObject;
-        ItemWorld itemWorld = gameObject.GetComponent<ItemWorld>();*/
+        ItemWorld itemWorld = obj.GetComponent<ItemWorld>();
+        itemWorld.SetItem(item);
 
         return itemWorld;
     }
@@ -23,6 +21,7 @@ public class ItemWorld : MonoBehaviour
     private Item item;
     private SpriteRenderer spriteRenderer;
     private TextMeshPro textMeshPro;
+
 
     private void Awake()
     {
@@ -47,10 +46,5 @@ public class ItemWorld : MonoBehaviour
     public Item GetItem()
     {
         return item;
-    }
-
-    public void DestroySelf()
-    {
-        Destroy(gameObject);
     }
 }

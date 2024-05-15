@@ -12,9 +12,9 @@ public class ItemAssets : MonoBehaviour
         Instance = this;
     }
 
-    public Transform pfItemWorld;
+    public GameObject pfItemWorld;
 
-    public Sprite healthPillSprite;
+    public Sprite healthSprite;
     public Sprite foodSprite;
     public Sprite coinSprite;
     public Sprite woodSprite;
