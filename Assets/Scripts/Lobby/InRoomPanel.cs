@@ -26,13 +26,12 @@ namespace DEMO.Lobby
 
         private void Start()
         {
-            gameManager = lobbyManager.getGameManager();//GameManager.Instance;
-            gameManager.OnPlayerListUpdated += UpdatePlayerList;
+            GameManager.Instance.OnPlayerListUpdated += UpdatePlayerList;
         }
 
         private void OnDestroy()
         {
-            gameManager.OnPlayerListUpdated -= UpdatePlayerList;
+            GameManager.Instance.OnPlayerListUpdated -= UpdatePlayerList;
         }
 
         public void UpdatePlayerList()
@@ -44,7 +43,7 @@ namespace DEMO.Lobby
 
             playerCells.Clear();
 
-            foreach(var player in gameManager.playerList)
+            foreach(var player in GameManager.Instance.playerList)
             {
                 var cell = Instantiate(playerCellPrefab, contentTrans);
                 var playerData = player.Value;
@@ -61,15 +60,15 @@ namespace DEMO.Lobby
             canvasGroup.interactable = value;
             canvasGroup.blocksRaycasts = value;
 
-            //var runner = gameManager.Runner;
-            roomNameTxt.text = "test";//runner.SessionInfo.Name;
+            var runner = GameManager.Instance.Runner;
+            roomNameTxt.text = runner.SessionInfo.Name;
         }
 
         public void OnReadyBtnClicked()
         {
-            var runner = gameManager.Runner;
+            var runner = GameManager.Instance.Runner;
 
-            if (gameManager.playerList.TryGetValue(runner.LocalPlayer, out PlayerNetworkData playerNetworkData))
+            if (GameManager.Instance.playerList.TryGetValue(runner.LocalPlayer, out PlayerNetworkData playerNetworkData))
             {
                 playerNetworkData.SetReady_RPC(true);
             }
