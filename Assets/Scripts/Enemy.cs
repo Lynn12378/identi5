@@ -6,25 +6,27 @@ using UnityEngine.UI;
 using Fusion;
 using Fusion.Addons.Physics;
 
-public class Enemy : NetworkBehaviour
+namespace DEMO
 {
-    private int maxHp = 50;
-    private HealthPoint healthPoint = null;
-
-    // Initialize
-    public override void Spawned() 
+    public class Enemy : NetworkBehaviour
     {
-        healthPoint = GetComponentInChildren<HealthPoint>();
-        healthPoint.Hp = maxHp;
-    }
+        private int maxHp = 50;
+        private HealthPoint healthPoint = null;
 
-    public void TakeDamage(int damage)
-    {
-        healthPoint.Hp -= damage;
-        if (healthPoint.Hp <= 0)
+        // Initialize
+        public override void Spawned() 
         {
-            Runner.Despawn(Object);
+            healthPoint = GetComponentInChildren<HealthPoint>();
+            healthPoint.Hp = maxHp;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            healthPoint.Hp -= damage;
+            if (healthPoint.Hp <= 0)
+            {
+                Runner.Despawn(Object);
+            }
         }
     }
 }
-
