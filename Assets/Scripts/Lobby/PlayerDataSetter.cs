@@ -5,21 +5,23 @@ using UnityEngine.UI;
 
 using TMPro;
 
-using DEMO;
+using DEMO.Lobby;
 
 namespace DEMO.Lobby
 {
     public class PlayerDataSetter : MonoBehaviour
     {
         private GameManager gameManager = null;
+        [SerializeField] private TMP_InputField inputField = null;
+        [SerializeField] private LobbyManager lobbyManager = null;
+
         private void Start()
         {
-            gameManager = GameManager.Instance;
+            gameManager = lobbyManager.getGameManager();
         }
-        public void OnPlayerNameInputFieldChange(string value)
+        public void OnPlayerNameInputFieldChange()
         {
-            gameManager.PlayerName = value;
-
+            gameManager.PlayerName = inputField.text;
             gameManager.SetPlayerNetworkData();
         }
     }

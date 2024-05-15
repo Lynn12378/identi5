@@ -9,6 +9,7 @@ using Fusion;
 using Fusion.Sockets;
 
 using DEMO;
+using DEMO.Player;
 using FusionHelpers;
 
 namespace DEMO.Lobby
@@ -35,6 +36,7 @@ namespace DEMO.Lobby
         {
             return gameManager;
         }
+
         private async void Start()
         {
             SetPairState(PairState.Lobby);

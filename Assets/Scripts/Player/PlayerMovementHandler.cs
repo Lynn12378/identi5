@@ -5,7 +5,7 @@ using UnityEngine;
 using Fusion;
 using Fusion.Addons.Physics;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerMovementHandler : MonoBehaviour
     {

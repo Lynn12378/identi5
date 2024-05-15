@@ -7,10 +7,9 @@ using UnityEngine;
 using Fusion;
 using Fusion.Sockets;
 
-using DEMO;
 using FusionHelpers;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {

@@ -9,7 +9,7 @@ using Fusion.Sockets;
 using UnityEngine.UI;
 using TMPro;
 
-using DEMO;
+using DEMO.Player;
 
 namespace DEMO.Lobby
 {
@@ -62,7 +62,7 @@ namespace DEMO.Lobby
             canvasGroup.blocksRaycasts = value;
 
             //var runner = gameManager.Runner;
-            roomNameTxt.text = "Test";//runner.SessionInfo.Name;
+            roomNameTxt.text = "test";//runner.SessionInfo.Name;
         }
 
         public void OnReadyBtnClicked()

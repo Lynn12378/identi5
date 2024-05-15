@@ -3,7 +3,7 @@ using UnityEngine;
 
 using Fusion;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerNetworkData : NetworkBehaviour
     {

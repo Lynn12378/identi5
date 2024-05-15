@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using Fusion;
 using Fusion.Addons.Physics;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerController : NetworkBehaviour
     {

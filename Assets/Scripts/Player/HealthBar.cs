@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class HealthBar : MonoBehaviour
     {

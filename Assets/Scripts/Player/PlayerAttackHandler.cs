@@ -4,7 +4,7 @@ using TMPro;
 
 using Fusion;
 
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerAttackHandler : NetworkBehaviour
     {

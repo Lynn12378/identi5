@@ -4,6 +4,9 @@ using System;
 
 using Fusion;
 
+using DEMO.Lobby;
+using DEMO.Player;
+
 namespace DEMO
 {
     public class GameManager : MonoBehaviour

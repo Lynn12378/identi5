@@ -9,7 +9,7 @@ using Fusion.Addons.Physics;
 
 // Handles stats 
 // of a player character
-namespace DEMO
+namespace DEMO.Player
 {
     public class PlayerStats : NetworkBehaviour
     {
