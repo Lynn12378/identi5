@@ -9,6 +9,7 @@ using Fusion;
 using Fusion.Sockets;
 
 using FusionHelpers;
+using Unity.VisualScripting;
 
 namespace DEMO.Player
 {
@@ -19,6 +20,7 @@ namespace DEMO.Player
 
         [SerializeField] private NetworkPrefabRef playerPrefab;
         [SerializeField] private Camera mainCamera = null;
+        [SerializeField] private Inventory playerInventoryPrefab = null;
 
         private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
 
@@ -41,6 +43,12 @@ namespace DEMO.Player
                 NetworkObject networkPlayerObject = await networkRunner.SpawnAsync(playerPrefab, spawnPosition, Quaternion.identity, player);
 
                 networkRunner.SetPlayerObject(player, networkPlayerObject);
+
+                Inventory playerInventory = Instantiate(playerInventoryPrefab);
+                PlayerInventoryManager.instance.SetPlayerInventory(player, playerInventory);
+                Debug.Log("Inventory for player "+ player +" created.");
+                PlayerInventoryManager.instance.InitializeInventory();
+                Debug.Log("Inventory slot and UI initialized.");
 
                 playerList.Add(player, networkPlayerObject);
             }

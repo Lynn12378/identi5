@@ -11,7 +11,6 @@ namespace DEMO.Player
         private ChangeDetector changes;
 
 		[Networked] public string PlayerName { get; set; }
-        // [Networked] public string HP { get; set; }
 		[Networked] public NetworkBool IsReady { get; set; }
 	
         public override void Spawned()
@@ -26,8 +25,7 @@ namespace DEMO.Player
 
 			if (Object.HasInputAuthority)
 			{
-                SetPlayerName_RPC(gameManager.PlayerName);
-				// SetHP_RPC(gameManager.HP);
+				SetPlayerName_RPC(gameManager.PlayerName);
 			}
 		}
 
@@ -38,11 +36,6 @@ namespace DEMO.Player
         {
 			PlayerName = name;
 		}
-
-        // public void SetHP_RPC(int newHP)
-        // {
-		// 	HP = newHP;
-		// }
 
 		[Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
 		public void SetReady_RPC(bool isReady)
@@ -62,9 +55,6 @@ namespace DEMO.Player
                     case nameof(PlayerName):
                         GameManager.Instance.UpdatePlayerList();
                         break;
-                    // case nameof(HP):
-                    //     GameManager.Instance.UpdatePlayerList();
-                    //     break;
                     case nameof(IsReady):
                         GameManager.Instance.UpdatePlayerList();
                         break;
