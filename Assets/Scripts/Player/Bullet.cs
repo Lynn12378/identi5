@@ -31,9 +31,8 @@ namespace DEMO.Player
         public override void FixedUpdateNetwork()
         {
             Vector2 mouseVector = mousePosition.normalized;
-            Debug.Log(mouseVector);
             networkRigidbody.Rigidbody.velocity = mouseVector * bulletSpeed;
-
+    
             if (life.Expired(Runner))
             {
                 Runner.Despawn(Object);

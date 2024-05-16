@@ -30,6 +30,7 @@ namespace DEMO
         }
     
         public string PlayerName = null;
+        //public int HP = 0;
         public Dictionary<PlayerRef, PlayerNetworkData> playerList = new Dictionary<PlayerRef, PlayerNetworkData>();
 
         public event Action OnPlayerListUpdated = null;
@@ -83,5 +84,13 @@ namespace DEMO
                 playerNetworkData.SetPlayerName_RPC(PlayerName);
             }
         }
+
+        // public SetPlayerHPNetworkData()
+        // {
+        //     if (playerList.TryGetValue(runner.LocalPlayer, out PlayerNetworkData playerNetworkData))
+        //     {
+        //         playerNetworkData.SetPlayerHP_RPC(HP);
+        //     }
+        // }
     }
 }
