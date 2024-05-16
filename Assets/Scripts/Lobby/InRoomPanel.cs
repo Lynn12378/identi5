@@ -15,7 +15,6 @@ namespace DEMO.Lobby
 {
     public class InRoomPanel : MonoBehaviour, IPanel
     {
-        private GameManager gameManager = null;
         [SerializeField] private LobbyManager lobbyManager = null;
         [SerializeField] private CanvasGroup canvasGroup = null;
         [SerializeField] private TMP_Text roomNameTxt = null;
