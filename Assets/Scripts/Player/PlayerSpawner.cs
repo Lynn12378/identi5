@@ -18,8 +18,10 @@ namespace DEMO.Player
         private GameManager gameManager = null;
         private NetworkRunner networkRunner = null;
 
+        [SerializeField] public GameObject cameraPrefab; //prefab of the camera you want to instance
+        private Camera playerCam; //this is gonna be a reference to the camera that looks at the player
+
         [SerializeField] private NetworkPrefabRef playerPrefab;
-        [SerializeField] private Camera mainCamera = null;
         [SerializeField] private Inventory playerInventoryPrefab = null;
 
         private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
@@ -39,6 +41,11 @@ namespace DEMO.Player
         {
             foreach(var player in gameManager.playerList.Keys)
             {
+                if (player == networkRunner.LocalPlayer){
+                    playerCam = Instantiate(cameraPrefab).GetComponent<Camera>(); 
+                    playerCam.transform.position = Vector3.back * 10;//transform.LookAt((Vector3.back * 10));
+                }
+
                 Vector3 spawnPosition = Vector3.zero;
                 NetworkObject networkPlayerObject = await networkRunner.SpawnAsync(playerPrefab, spawnPosition, Quaternion.identity, player);
 
@@ -80,7 +87,8 @@ namespace DEMO.Player
             float xInput = Input.GetAxisRaw("Horizontal");
             float yInput = Input.GetAxisRaw("Vertical");
 
-            Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); // mouseInput
+            Vector2 mousePosition = playerCam.ScreenToWorldPoint(Input.mousePosition); // mouseInput
+            mousePosition = mousePosition - new Vector2(playerCam.transform.position.x, playerCam.transform.position.y);
 
             data.movementInput = new Vector2(xInput, yInput);
             data.mousePosition = mousePosition;

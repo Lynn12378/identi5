@@ -11,18 +11,17 @@ namespace DEMO.Player
     {
         [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
         [SerializeField] private Transform Weapon = null;
-
         [SerializeField] private float moveSpeed = 5f;
 
-        public void Move(NetworkInputData data)
+        public void Move(Vector2 movementInput)
         {
-            Vector2 moveVector = data.movementInput.normalized;
+            Vector2 moveVector = movementInput.normalized;
             playerNetworkRigidbody.Rigidbody.velocity = moveVector * moveSpeed;
         }
 
         public void SetRotation(Vector2 mousePosition)
         {
-            float rotation = Vector2.SignedAngle(Vector2.up, mousePosition - new Vector2(transform.position.x, transform.position.y));
+            float rotation = Vector2.SignedAngle(Vector2.up, mousePosition);
             Weapon.rotation = Quaternion.Euler(Vector3.forward * (rotation + 90));
         }
     }

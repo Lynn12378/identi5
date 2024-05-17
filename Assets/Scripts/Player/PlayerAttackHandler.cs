@@ -32,7 +32,7 @@ namespace DEMO.Player
         {
             if(currentBullet > 0)
             {
-                mousePosition = mousePosition - new Vector2(transform.position.x, transform.position.y);  
+                mousePosition = mousePosition;// - new Vector2(transform.position.x, transform.position.y);  
                 Quaternion rotation = Quaternion.Euler(shootPoint.rotation.eulerAngles - Vector3.forward * 90);
                 Runner.Spawn(bulletPrefab, shootPoint.position, rotation, Object.InputAuthority,
                     (Runner, NO) => NO.GetComponent<Bullet>().Init(mousePosition));
