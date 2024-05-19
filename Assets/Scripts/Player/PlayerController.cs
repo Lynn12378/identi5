@@ -17,19 +17,21 @@ namespace DEMO.Player
         [SerializeField] private float cameraSpeed = 0.3f;
         private bool isPickupKeyPressed = false;
 
-        private GameObject camera;
-        private Camera playerCamera;
+        // private GameObject camera;
+        // private Camera playerCamera;
 
         [Networked] private NetworkButtons buttonsPrevious { get; set; }
 
-        public override void Spawned()
-        {
-            camera = GameObject.Find("playerCamera(Clone)");
-            if(camera==null){
-                Debug.Log("CAMERA Null");
-            }
-            playerCamera = camera.GetComponent<Camera>();
-        }
+        // public override void Spawned()
+        // {
+        //     camera = GameObject.Find("playerCamera(Clone)");
+            
+        //     if(camera==null){
+        //         Debug.Log("CAMERA Null");
+        //     }
+            
+        //     playerCamera = camera.GetComponent<Camera>();
+        // }
 
         public override void FixedUpdateNetwork()
         {
@@ -47,8 +49,7 @@ namespace DEMO.Player
 
             movementHandler.Move(data.movementInput);
             movementHandler.SetRotation(data.mousePosition);
-            moveCam(data.movementInput);
-
+            
             if (pressed.IsSet(InputButtons.FIRE))
             {
                 if(!EventSystem.current.IsPointerOverGameObject())
@@ -73,10 +74,10 @@ namespace DEMO.Player
             }
         }
 
-        private void moveCam(Vector2 movementInput)
-        {
-            playerCamera.transform.position = transform.position + Vector3.back * 10;
-        }
+        // private void moveCam()
+        // {
+        //     playerCamera.transform.position = transform.position + Vector3.back * 10;
+        // }
 
         private void OnTriggerStay2D(Collider2D collider)
         {

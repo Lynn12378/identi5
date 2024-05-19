@@ -41,13 +41,18 @@ namespace DEMO.Player
         {
             foreach(var player in gameManager.playerList.Keys)
             {
-                if (player == networkRunner.LocalPlayer){
+                if (player == networkRunner.LocalPlayer)
+                {
                     playerCam = Instantiate(cameraPrefab).GetComponent<Camera>(); 
-                    playerCam.transform.position = Vector3.back * 10;//transform.LookAt((Vector3.back * 10));
+                    playerCam.transform.position = Vector3.back * 10;
                 }
 
                 Vector3 spawnPosition = Vector3.zero;
                 NetworkObject networkPlayerObject = await networkRunner.SpawnAsync(playerPrefab, spawnPosition, Quaternion.identity, player);
+                if (player == networkRunner.LocalPlayer)
+                {
+                    networkPlayerObject.name = "localPlayer";
+                }
 
                 networkRunner.SetPlayerObject(player, networkPlayerObject);
 
