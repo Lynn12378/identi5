@@ -15,6 +15,7 @@ namespace Utils.Sender
     {
         [SerializeField] private TMP_Text playerNameTxt = null;
         [SerializeField] private TMP_Text playerPasswordTxt = null;
+        
         private string action;
 
         public PlayerData playerData;
@@ -66,13 +67,10 @@ namespace Utils.Sender
                 Debug.Log(responseText);
                 if (status == "Success")
                 {
-                    Debug.Log("Login successful!");
+                    //todo
                 }
-                else
-                {
-                    var message = jsonResponse["message"].ToString();
-                    Debug.Log(message);
-                }
+                var message = jsonResponse["message"].ToString();
+                Debug.Log(message);
             }
             else
             {
