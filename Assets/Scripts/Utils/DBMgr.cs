@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Utils
+namespace DEMO.Utils
 {
-    public class DataSender : MonoBehaviour
+    public class DBMgr : MonoBehaviour
     {
         protected List<IMultipartFormSection> formData;
         protected string table;

@@ -6,19 +6,29 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using TMPro;
 
-using Utils;
-using Utils.Data;
+using DEMO;
 
-namespace Utils.Sender
+namespace DEMO.Utils
 {
-    public class PlayerDBSender : DataSender
+    public struct PlayerData
     {
+        public int Player_id;
+        public string Player_name;
+        public string Player_password;
+    }
+
+    public class PlayerDBHandler : DBMgr
+    {
+        private GameManager gameManager = null;
+        public PlayerData playerData;
+        
         [SerializeField] private TMP_Text playerNameTxt = null;
         [SerializeField] private TMP_Text playerPasswordTxt = null;
         
-        private string action;
-
-        public PlayerData playerData;
+        private void Start()
+        {
+            gameManager = GameManager.Instance;
+        }
 
         public void Login()
         {
@@ -67,7 +77,8 @@ namespace Utils.Sender
                 Debug.Log(responseText);
                 if (status == "Success")
                 {
-                    //todo
+                    // playerData.Player_id = (int)jsonResponse["Player_id"];
+                    // playerData.Player_name = jsonResponse["Player_name"].ToString();
                 }
                 var message = jsonResponse["message"].ToString();
                 Debug.Log(message);
