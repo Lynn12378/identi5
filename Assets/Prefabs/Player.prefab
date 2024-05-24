@@ -545,8 +545,6 @@ GameObject:
   - component: {fileID: 5423383696020471926}
   - component: {fileID: 1797281051025650655}
   - component: {fileID: 4119776355522196519}
-  - component: {fileID: 1475834049703138947}
-  - component: {fileID: 237223312784963901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -582,16 +580,14 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 175864686
+  SortKey: 3495555399
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 397606304458726309}
   - {fileID: 5423383696020471926}
   - {fileID: 4119776355522196519}
-  - {fileID: 1475834049703138947}
-  - {fileID: 237223312784963901}
   - {fileID: 8096924791940873676}
 --- !u!50 &4199331920531775570
 Rigidbody2D:
@@ -686,12 +682,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8630666624398672265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ac81dc35e11a24286e9006c80d3df7, type: 3}
+  m_Script: {fileID: 11500000, guid: ad98775f5e48eda48b7b29d701d99eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 1797281051025650655}
   attackHandler: {fileID: 4119776355522196519}
-  playerStats: {fileID: 237223312784963901}
   cameraSpeed: 0.3
 --- !u!114 &1797281051025650655
 MonoBehaviour:
@@ -702,7 +697,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8630666624398672265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb4bdbd5f5138a498d5849d4cee34a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 27cda567a570d5f489b6d7fd311cdaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerNetworkRigidbody: {fileID: 397606304458726309}
@@ -717,41 +712,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8630666624398672265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 139ae690532be124aafa3133889964ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc34eeba14052e47b788a4e532b83ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4280969757316509552, guid: c6818a84a16b03f44998b3a5c4e6ef2c, type: 3}
+  bulletPrefab: {fileID: 4280969757316509552, guid: 7db9264ef8aae2b419c55b73048bbfe6, type: 3}
   shootPoint: {fileID: 6831657814407364924}
   maxBullet: 30
---- !u!114 &1475834049703138947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8630666624398672265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f5a728cd223f045824d110764a5821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkHealthSlider: {fileID: 1422947231120268285}
-  _Hp: 0
---- !u!114 &237223312784963901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8630666624398672265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e934ac0c2f49d4aa42cc43acf5d9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNetworkRigidbody: {fileID: 397606304458726309}
-  maxHealth: 100
-  currentHealth: 0
 --- !u!1 &8943649637524690950
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,123 +4,136 @@ using System.Threading.Tasks;
 using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-
 using Fusion;
 using Fusion.Sockets;
 
-using FusionHelpers;
-using Unity.VisualScripting;
-
 namespace DEMO.Player
 {
-    public class PlayerSpawner : MonoBehaviour, INetworkRunnerCallbacks
+    public class PlayerSpawner : NetworkBehaviour
     {
-        private GameManager gameManager = null;
-        private NetworkRunner networkRunner = null;
+        [SerializeField] public GameObject cameraPrefab;
+        [SerializeField] public GameObject PlayerPrefab;
+        private Camera playerCam;
 
-        [SerializeField] public GameObject cameraPrefab; //prefab of the camera you want to instance
-        private Camera playerCam; //this is gonna be a reference to the camera that looks at the player
+        // public void PlayerJoined(PlayerRef player)
+        // {
+        //     Debug.Log("PlayerJoined");
+        //     if (player == Runner.LocalPlayer)
+        //     {
+        //         // Runner.Spawn(cameraPrefab, new Vector3(0, 0, -10), Quaternion.identity);
+        //         Runner.Spawn(PlayerPrefab, Vector3.zero, Quaternion.identity);
+        //     }
+        // }
 
         [SerializeField] private NetworkPrefabRef playerPrefab;
-        [SerializeField] private Inventory playerInventoryPrefab = null;
+        // [SerializeField] private Inventory playerInventoryPrefab = null;
 
-        private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
+        // private Dictionary<PlayerRef, NetworkObject> playerList = new Dictionary<PlayerRef, NetworkObject>();
 
-        private async void Start()
+        public override void Spawned()
         {
-            gameManager = GameManager.Instance;
-
-            networkRunner = gameManager.Runner;
-
-            networkRunner.AddCallbacks(this);
-
-            await SpawnAllPlayers();
+            SpawnPlayer(Runner.LocalPlayer);
         }
 
-        private async Task SpawnAllPlayers()
+        private void SpawnPlayer(PlayerRef player)
         {
-            foreach(var player in gameManager.playerList.Keys)
-            {
-                if (player == networkRunner.LocalPlayer)
-                {
-                    playerCam = Instantiate(cameraPrefab).GetComponent<Camera>(); 
-                    playerCam.transform.position = Vector3.back * 10;
-                }
+            playerCam = Instantiate(cameraPrefab).GetComponent<Camera>(); 
+            playerCam.transform.position = Vector3.back * 10;
 
-                Vector3 spawnPosition = Vector3.zero;
-                NetworkObject networkPlayerObject = await networkRunner.SpawnAsync(playerPrefab, spawnPosition, Quaternion.identity, player);
-                if (player == networkRunner.LocalPlayer)
-                {
-                    networkPlayerObject.name = "localPlayer";
-                }
-
-                networkRunner.SetPlayerObject(player, networkPlayerObject);
-
-                Inventory playerInventory = Instantiate(playerInventoryPrefab);
-                PlayerInventoryManager.instance.SetPlayerInventory(player, playerInventory);
-                Debug.Log("Inventory for player "+ player +" created.");
-                PlayerInventoryManager.instance.InitializeInventory();
-                Debug.Log("Inventory slot and UI initialized.");
-
-                playerList.Add(player, networkPlayerObject);
-            }
+            var playerObject = Runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
+            // playerList.Add(player, playerObject);
         }
 
-        public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+        // private async Task SpawnAllPlayers()
+        // {
+        //     foreach(var player in gameManager.playerList.Keys)
+        //     {
+        //         if (player == networkRunner.LocalPlayer)
+        //         {
+        //             playerCam = Instantiate(cameraPrefab).GetComponent<Camera>(); 
+        //             playerCam.transform.position = Vector3.back * 10;
+        //         }
+
+        //         Vector3 spawnPosition = Vector3.zero;
+        //         NetworkObject networkPlayerObject = await networkRunner.SpawnAsync(playerPrefab, spawnPosition, Quaternion.identity, player);
+        //         if (player == networkRunner.LocalPlayer)
+        //         {
+        //             networkPlayerObject.name = "localPlayer";
+        //         }
+
+        //         networkRunner.SetPlayerObject(player, networkPlayerObject);
+
+        //         Inventory playerInventory = Instantiate(playerInventoryPrefab);
+        //         PlayerInventoryManager.instance.SetPlayerInventory(player, playerInventory);
+        //         Debug.Log("Inventory for player "+ player +" created.");
+        //         PlayerInventoryManager.instance.InitializeInventory();
+        //         Debug.Log("Inventory slot and UI initialized.");
+
+        //         playerList.Add(player, networkPlayerObject);
+        //     }
+        // }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void RpcInitialSpaceshipSpawn()
         {
-            Vector3 spawnPosition = Vector3.zero;
-            NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
-
-            runner.SetPlayerObject(player, networkPlayerObject);
-
-            playerList.Add(player, networkPlayerObject);
+            SpawnPlayer(Runner.LocalPlayer);
         }
 
-        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-        {
-            if (playerList.TryGetValue(player, out NetworkObject networkObject))
-            {
-                runner.Despawn(networkObject);
-                playerList.Remove(player);
-            }
-        }
+        // public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
+        // {
+        //     Vector3 spawnPosition = Vector3.zero;
+        //     NetworkObject networkPlayerObject = runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
 
-        public void OnInput(NetworkRunner runner, NetworkInput input)
-        {
-            var data = new NetworkInputData();
+        //     runner.SetPlayerObject(player, networkPlayerObject);
 
-            float xInput = Input.GetAxisRaw("Horizontal");
-            float yInput = Input.GetAxisRaw("Vertical");
+        //     playerList.Add(player, networkPlayerObject);
+        // }
 
-            Vector2 mousePosition = playerCam.ScreenToWorldPoint(Input.mousePosition); // mouseInput
-            mousePosition = mousePosition - new Vector2(playerCam.transform.position.x, playerCam.transform.position.y);
+        // public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+        // {
+        //     if (playerList.TryGetValue(player, out NetworkObject networkObject))
+        //     {
+        //         runner.Despawn(networkObject);
+        //         playerList.Remove(player);
+        //     }
+        // }
 
-            data.movementInput = new Vector2(xInput, yInput);
-            data.mousePosition = mousePosition;
-            data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0)); //Set NetworkButton
-            data.buttons.Set(InputButtons.PICKUP, Input.GetKey(KeyCode.Mouse1)); // Set NetworkButton
-            data.buttons.Set(InputButtons.TESTDAMAGE, Input.GetKey(KeyCode.Space)); // Set NetworkButton
+        // public void OnInput(NetworkRunner runner, NetworkInput input)
+        // {
+        //     var data = new NetworkInputData();
+
+        //     float xInput = Input.GetAxisRaw("Horizontal");
+        //     float yInput = Input.GetAxisRaw("Vertical");
+
+        //     Vector2 mousePosition = playerCam.ScreenToWorldPoint(Input.mousePosition); // mouseInput
+        //     mousePosition = mousePosition - new Vector2(playerCam.transform.position.x, playerCam.transform.position.y);
+
+        //     data.movementInput = new Vector2(xInput, yInput);
+        //     data.mousePosition = mousePosition;
+        //     data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0)); //Set NetworkButton
+        //     data.buttons.Set(InputButtons.PICKUP, Input.GetKey(KeyCode.Mouse1)); // Set NetworkButton
+        //     data.buttons.Set(InputButtons.TESTDAMAGE, Input.GetKey(KeyCode.Space)); // Set NetworkButton
     
-            input.Set(data);
-        }
+        //     input.Set(data);
+        // }
 
-        #region /-- Unused Function --/
-            public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
-            public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
-            public void OnConnectedToServer(NetworkRunner runner) { }
-            public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
-            public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
-            public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
-            public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
-            public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
-            public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
-            public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
-            public void OnSceneLoadDone(NetworkRunner runner) { }
-            public void OnSceneLoadStart(NetworkRunner runner) { }
-            public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-            public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
-            public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
-            public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
-        #endregion
+        // #region /-- Unused Function --/
+        //     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
+        //     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
+        //     public void OnConnectedToServer(NetworkRunner runner) { }
+        //     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) { }
+        //     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
+        //     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+        //     public void OnUserSimulationMessage(NetworkRunner runner, SimulationMessagePtr message) { }
+        //     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
+        //     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
+        //     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
+        //     public void OnSceneLoadDone(NetworkRunner runner) { }
+        //     public void OnSceneLoadStart(NetworkRunner runner) { }
+        //     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+        //     public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
+        //     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
+        //     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
+        // #endregion
     }
 }

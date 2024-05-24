@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3407318664746749556}
   - component: {fileID: 1859671512760549969}
   - component: {fileID: 3169411152934392771}
+  - component: {fileID: -4351214010643274903}
   m_Layer: 0
   m_Name: playerCamera
   m_TagString: Untagged
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7009609037067417182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c21742c8eaa6cb14788cdc0a19790467, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bbb0e2f08476904dba9a7528030e7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!20 &3407318664746749556
@@ -150,3 +151,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &-4351214010643274903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009609037067417182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1144917376
+  ObjectInterest: 1
+  Flags: 786433
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: -1387345358297580919}

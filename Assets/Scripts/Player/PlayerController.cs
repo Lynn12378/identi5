@@ -13,8 +13,7 @@ namespace DEMO.Player
     {
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
-        [SerializeField] private PlayerStats playerStats = null;
-        [SerializeField] private float cameraSpeed = 0.3f;
+        // [SerializeField] private PlayerStats playerStats = null;
         private bool isPickupKeyPressed = false;
 
         // private GameObject camera;
@@ -35,13 +34,13 @@ namespace DEMO.Player
 
         public override void FixedUpdateNetwork()
         {
-            if (GetInput(out NetworkInputData data))
+            if (GetInput(out PlayerInputData data))
             {
                 ApplyInput(data);
             }
         }
 
-        private void ApplyInput(NetworkInputData data)
+        private void ApplyInput(PlayerInputData data)
         {
             NetworkButtons buttons = data.buttons;
             var pressed = buttons.GetPressed(buttonsPrevious);
@@ -52,26 +51,26 @@ namespace DEMO.Player
             
             if (pressed.IsSet(InputButtons.FIRE))
             {
-                if(!EventSystem.current.IsPointerOverGameObject())
-                {
+                // if(!EventSystem.current.IsPointerOverGameObject())
+                // {
                     attackHandler.Shoot(data.mousePosition);
-                }
+                // }
             }
 
-            if (pressed.IsSet(InputButtons.TESTDAMAGE))
-            {
-                playerStats.TakeDamage(20);
-            }
+            // if (pressed.IsSet(InputButtons.TESTDAMAGE))
+            // {
+            //     playerStats.TakeDamage(20);
+            // }
 
-            if (pressed.IsSet(InputButtons.PICKUP))
-            {
-                isPickupKeyPressed = true;
-            }
-            else
-            {
-                // Reset state
-                isPickupKeyPressed = false;
-            }
+            // if (pressed.IsSet(InputButtons.PICKUP))
+            // {
+            //     isPickupKeyPressed = true;
+            // }
+            // else
+            // {
+            //     // Reset state
+            //     isPickupKeyPressed = false;
+            // }
         }
 
         // private void moveCam()
@@ -79,21 +78,21 @@ namespace DEMO.Player
         //     playerCamera.transform.position = transform.position + Vector3.back * 10;
         // }
 
-        private void OnTriggerStay2D(Collider2D collider)
-        {
-            if (collider.CompareTag("ItemsInteractable") && isPickupKeyPressed)
-            {
-                ItemPickup itemPickup = collider.GetComponent<ItemPickup>();
-                ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-                Item item = itemWorld.GetItem();
+        // private void OnTriggerStay2D(Collider2D collider)
+        // {
+        //     if (collider.CompareTag("ItemsInteractable") && isPickupKeyPressed)
+        //     {
+        //         ItemPickup itemPickup = collider.GetComponent<ItemPickup>();
+        //         ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+        //         Item item = itemWorld.GetItem();
 
-                if (itemPickup != null)
-                {
-                    Debug.Log(GameManager.Instance.Runner.LocalPlayer);
-                    itemPickup.PickUp(GameManager.Instance.Runner.LocalPlayer, item);
-                }
-            }
-        }
+        //         if (itemPickup != null)
+        //         {
+        //             Debug.Log(GameManager.Instance.Runner.LocalPlayer);
+        //             itemPickup.PickUp(GameManager.Instance.Runner.LocalPlayer, item);
+        //         }
+        //     }
+        // }
     }
 }
 

@@ -1,17 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerCamera : MonoBehaviour
+using Fusion;
+public class PlayerCamera : NetworkBehaviour
 {
     private GameObject playerObject;
-    private Transform player;    
+    private Transform player;
     // private GameObject camera;
     // private Camera playerCamera;
 
-    void Update()
+    public override void FixedUpdateNetwork()
     {
-        playerObject = GameObject.Find("localPlayer");
+        playerObject = GameObject.Find("Player(clone)");
         
         if(playerObject==null){
             return;

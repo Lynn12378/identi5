@@ -49,13 +49,14 @@ MonoBehaviour:
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SortKey: 1521825746
+  SortKey: 2030757959
   ObjectInterest: 1
   Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1834830856782735943}
   - {fileID: 4280969757316509552}
+  - {fileID: 4440346093896132029}
 --- !u!114 &1834830856782735943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SyncScale: 0
   SyncParent: 1
-  _interpolationTarget: {fileID: 3712590623639366649}
+  _interpolationTarget: {fileID: 0}
   UsePreciseRotation: 0
   UseRenderSleepThresholds: 1
   RenderThresholds:
@@ -87,14 +88,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1511358415232668666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c116a45f8b8d545aad5f5d9778c21c, type: 3}
+  m_Script: {fileID: 11500000, guid: 345a68f7cb5337b4bb041e26ff525f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkRigidbody: {fileID: 1834830856782735943}
-  bulletSpeed: 5
-  bulletTime: 1
+  networkRigidbody: {fileID: 0}
+  bulletSpeed: 15
+  bulletTime: 0.5
   damage: 10
-  mousePosition: {x: 4.825773, y: -0.54902107}
+  mousePosition: {x: 0, y: 0}
 --- !u!50 &1581886057022738642
 Rigidbody2D:
   serializedVersion: 4
@@ -167,6 +168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3712590623639366649}
   - component: {fileID: 3997304194186263097}
+  - component: {fileID: 4440346093896132029}
   m_Layer: 0
   m_Name: Bullet 3
   m_TagString: Untagged
@@ -241,3 +243,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4440346093896132029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656218194118173633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
