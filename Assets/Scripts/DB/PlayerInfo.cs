@@ -28,7 +28,7 @@ namespace DEMO.DB
                 transform.SetParent(GameManager.Instance.transform);
                 if (Object.HasStateAuthority)
                 {
-                    SetPlayerName_RPC();
+                    SetPlayerInfo_RPC();
                 }
             }
             
@@ -38,7 +38,7 @@ namespace DEMO.DB
         #region - RPCs -
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetPlayerName_RPC()
+		public void SetPlayerInfo_RPC()
         {
             playerId = Player_id;
 			playerName = Player_name;
