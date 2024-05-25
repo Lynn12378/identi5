@@ -10,6 +10,7 @@ namespace DEMO.DB
     {
         // private GameManager gameManager = null;
         private ChangeDetector changes;
+        // private GameObject obj;
 
         [Networked] public int playerId { get; private set; }
         [Networked] public string playerRef { get; private set; }
@@ -30,7 +31,7 @@ namespace DEMO.DB
             // gameManager.gamePlayerList.Add(Object.InputAuthority, this);
             // transform.SetParent(GameManager.Instance.transform);
             transform.SetParent(Runner.transform);
-            
+
             if (Object.HasStateAuthority)
             {
                 SetPlayerInfo_RPC(0,"TEST");
@@ -49,6 +50,7 @@ namespace DEMO.DB
         {
             playerId = id;
 			playerName = name;
+            // obj.name = "LocalPlayer";
             playerRef = Runner.LocalPlayer.ToString();
 		}
 

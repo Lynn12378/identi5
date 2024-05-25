@@ -48,6 +48,7 @@ namespace DEMO.Manager{
                     changes.Add(panel.Key);
                 }
             }
+            
             foreach(var change in changes)
             {
                 panelList[change].SetActive(panelState[change]);

@@ -21,8 +21,6 @@ namespace DEMO.GamePlay.Player
         {
             life = TickTimer.CreateFromSeconds(Runner, bulletTime);
             this.mousePosition = mousePosition.normalized;
-
-            Debug.Log($"Init Bullet");
             transform.Translate(Vector2.zero);
         }
 

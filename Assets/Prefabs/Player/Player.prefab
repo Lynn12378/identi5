@@ -707,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 7644333482875661869}
   attackHandler: {fileID: 3935815838663998337}
+  playerNetworkDataPrefab: {fileID: 4796105495841460358}
 --- !u!114 &7644333482875661869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +816,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4504320698300242342, guid: ed14ee6a7013e8c4cad20df0ce9975b3, type: 3}
+      propertyPath: _playerRef
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4695744124385218042, guid: ed14ee6a7013e8c4cad20df0ce9975b3, type: 3}
       propertyPath: SortKey
       value: 3231925284
@@ -837,6 +842,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4796105495841460358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4504320698300242342, guid: ed14ee6a7013e8c4cad20df0ce9975b3, type: 3}
+  m_PrefabInstance: {fileID: 8939011146129459488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee026d482b9603345ac15c26c581c380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &9031702570608352492 stripped
