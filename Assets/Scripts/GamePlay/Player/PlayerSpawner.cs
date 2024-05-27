@@ -2,6 +2,7 @@ using UnityEngine;
 using Fusion;
 
 using DEMO.Manager;
+using DEMO.UI;
 
 namespace DEMO.GamePlay.Player
 {

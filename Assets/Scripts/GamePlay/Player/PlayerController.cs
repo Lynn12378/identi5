@@ -6,6 +6,7 @@ using Fusion;
 using Fusion.Addons.Physics;
 
 using DEMO.DB;
+using DEMO.Manager;
 
 namespace DEMO.GamePlay.Player
 {
@@ -13,16 +14,16 @@ namespace DEMO.GamePlay.Player
     {
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
-        [SerializeField] private PlayerNetworkData playerNetworkDataPrefab;
-        // [SerializeField] private PlayerCanvasController playerCanvasController = null;
-        private Shelter shelter;
-        private PlayerNetworkData playerNetworkData;
+        [SerializeField] private PlayerNetworkData playerNetworkData;
+
+        private UIManager uIManager;
+        private GameObject obj;
         private NetworkButtons buttonsPrevious;
 
         public override void Spawned()
         {
-            shelter = FindObjectOfType<Shelter>();
-            playerNetworkData = playerNetworkDataPrefab;
+            uIManager = FindObjectOfType<UIManager>();
+            playerNetworkData.SetUIManager(uIManager);
         }
 
         private void Respawn() 
@@ -49,7 +50,15 @@ namespace DEMO.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
-                attackHandler.Shoot(data.mousePosition);
+                if(playerNetworkData.bulletAmount > 0)
+                {
+                    attackHandler.Shoot(data.mousePosition);
+                    playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount - 1);
+                }
+                else
+                {
+                    Debug.Log("Not enough bullet!");
+                }
             }
 
             if (pressed.IsSet(InputButtons.TESTDAMAGE))
@@ -57,11 +66,6 @@ namespace DEMO.GamePlay.Player
                 Debug.Log($"TESTDAMAGE");
                 playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - 10);
                 Debug.Log(playerNetworkData.HP);
-            }
-
-            if (pressed.IsSet(InputButtons.REPAIR) && shelter != null && shelter.IsPlayerInRange())
-            {
-                shelter.Repair(20);
             }
         }
     }

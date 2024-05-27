@@ -35,7 +35,6 @@ namespace DEMO.Manager
             // Set NetworkButton
             data.buttons.Set(InputButtons.FIRE, Input.GetKey(KeyCode.Mouse0));
             data.buttons.Set(InputButtons.PICKUP, Input.GetKey(KeyCode.Mouse1));
-            data.buttons.Set(InputButtons.REPAIR, Input.GetKey(KeyCode.LeftShift));
             data.buttons.Set(InputButtons.TESTDAMAGE, Input.GetKey(KeyCode.Space));
     
             input.Set(data);

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using Fusion;
 
 using DEMO.Manager;
@@ -8,14 +9,9 @@ namespace DEMO.DB
 {
     public class PlayerNetworkData : NetworkBehaviour
     {
-        // private GameManager gameManager = null;
+        private GameManager gameManager = null;
         private ChangeDetector changes;
-        // private GameObject obj;
-<<<<<<< HEAD
-        [SerializeField] private Slider healthPointSlider = null;
-        [SerializeField] private CanvasManager canvasManager = null;
-=======
->>>>>>> parent of 3544c30 (5/27 merge xuan)
+        private UIManager uIManager = null;
 
         [Networked] public int playerId { get; private set; }
         [Networked] public string playerRef { get; private set; }
@@ -27,14 +23,15 @@ namespace DEMO.DB
         public int MaxHP = 100;
         public int MaxBullet = 50;
 
+        public void SetUIManager(UIManager uIManager)
+        {
+            this.uIManager = uIManager;
+        }
+
 
         public override void Spawned()
         {
-			// gameManager = GameManager.Instance;
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-
-            // gameManager.gamePlayerList.Add(Object.InputAuthority, this);
-            // transform.SetParent(GameManager.Instance.transform);
             transform.SetParent(Runner.transform);
 
             if (Object.HasStateAuthority)
@@ -55,7 +52,6 @@ namespace DEMO.DB
         {
             playerId = id;
 			playerName = name;
-            // obj.name = "LocalPlayer";
             playerRef = Runner.LocalPlayer.ToString();
 		}
 
@@ -88,21 +84,11 @@ namespace DEMO.DB
                     switch (change)
                     {
                         case nameof(HP):
-<<<<<<< HEAD
-                            
-                            // UIManager.Instance?.UpdateHealthSlider(playerRef, HP);
-                            UpdateHealthPointSlider(HP);
+                            uIManager.UpdateHPSlider(HP, MaxHP);
                             break;
 
                         case nameof(bulletAmount):
-                            // UIManager.Instance?.UpdateBulletAmount(playerRef, bulletAmount);
-=======
-                            //call UIManager change slider
-                            break;
-
-                        case nameof(bulletAmount):
-                            //call UIManager change amount
->>>>>>> parent of 3544c30 (5/27 merge xuan)
+                            uIManager.UpdateBulletAmountTxt(bulletAmount, MaxBullet);
                             break;
 
                         case nameof(teamID):
