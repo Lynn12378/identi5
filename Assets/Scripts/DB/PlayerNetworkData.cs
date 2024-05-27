@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using Fusion;
 
 using DEMO.Manager;
@@ -12,11 +11,14 @@ namespace DEMO.DB
         // private GameManager gameManager = null;
         private ChangeDetector changes;
         // private GameObject obj;
+<<<<<<< HEAD
         [SerializeField] private Slider healthPointSlider = null;
+        [SerializeField] private CanvasManager canvasManager = null;
+=======
+>>>>>>> parent of 3544c30 (5/27 merge xuan)
 
         [Networked] public int playerId { get; private set; }
-        [Networked] public PlayerRef playerRef { get; private set; }
-        [Networked] public string playerRefString { get; private set; }
+        [Networked] public string playerRef { get; private set; }
         [Networked] public string playerName { get; private set; }
         [Networked] public int HP { get; set; }
         [Networked] public int bulletAmount { get; set; }
@@ -37,7 +39,7 @@ namespace DEMO.DB
 
             if (Object.HasStateAuthority)
             {
-                SetPlayerInfo_RPC(0,"TEST", Runner.LocalPlayer);
+                SetPlayerInfo_RPC(0,"TEST");
                 SetPlayerHP_RPC(MaxHP);
                 SetPlayerBullet_RPC(MaxBullet);
                 SetPlayerTeamID_RPC(-1);
@@ -46,35 +48,21 @@ namespace DEMO.DB
             // gameManager.UpdatedGamePlayer();
 		}
 
-        private void UpdateHealthPointSlider(int health)
-        {
-            healthPointSlider.value = health;
-        }
-
         #region - RPCs -
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetPlayerInfo_RPC(int id, string name, PlayerRef playerRef)
+		public void SetPlayerInfo_RPC(int id, string name)
         {
             playerId = id;
 			playerName = name;
             // obj.name = "LocalPlayer";
-            playerRefString = playerRef.ToString();
-            this.playerRef = playerRef;
+            playerRef = Runner.LocalPlayer.ToString();
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
 		public void SetPlayerHP_RPC(int hp)
         {
             HP = hp;
-
-            // Change color of slider for LocalPlayer
-            if (playerRef == Runner.LocalPlayer)
-            {
-                // Change color of color code, if failed then color = white
-                Color fillColor = ColorUtility.TryParseHtmlString("#00C800", out Color color) ? color : Color.white;
-                healthPointSlider.fillRect.GetComponent<Image>().color = fillColor;
-            }
 		}
         
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -100,12 +88,21 @@ namespace DEMO.DB
                     switch (change)
                     {
                         case nameof(HP):
-                            UIManager.Instance?.UpdateHealthSlider(playerRef, HP);
+<<<<<<< HEAD
+                            
+                            // UIManager.Instance?.UpdateHealthSlider(playerRef, HP);
                             UpdateHealthPointSlider(HP);
                             break;
 
                         case nameof(bulletAmount):
-                            UIManager.Instance?.UpdateBulletAmount(playerRef, bulletAmount);
+                            // UIManager.Instance?.UpdateBulletAmount(playerRef, bulletAmount);
+=======
+                            //call UIManager change slider
+                            break;
+
+                        case nameof(bulletAmount):
+                            //call UIManager change amount
+>>>>>>> parent of 3544c30 (5/27 merge xuan)
                             break;
 
                         case nameof(teamID):

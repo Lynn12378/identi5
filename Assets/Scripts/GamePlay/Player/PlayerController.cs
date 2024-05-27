@@ -14,21 +14,15 @@ namespace DEMO.GamePlay.Player
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         [SerializeField] private PlayerNetworkData playerNetworkDataPrefab;
+        // [SerializeField] private PlayerCanvasController playerCanvasController = null;
+        private Shelter shelter;
         private PlayerNetworkData playerNetworkData;
-        private GameObject obj;
         private NetworkButtons buttonsPrevious;
 
         public override void Spawned()
         {
+            shelter = FindObjectOfType<Shelter>();
             playerNetworkData = playerNetworkDataPrefab;
-
-            // obj = GameObject.Find("LocalPlayer");
-            // if(obj != null)
-            // {
-            //     playerNetworkData = obj.GetComponent<PlayerNetworkData>();
-            // }
-
-            // Debug.Log("Find:" + playerNetworkData.HP);
         }
 
         private void Respawn() 
@@ -55,15 +49,7 @@ namespace DEMO.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
-                if(playerNetworkData.bulletAmount > 0)
-                {
-                    attackHandler.Shoot(data.mousePosition);
-                    playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount - 1);
-                }
-                else
-                {
-                    Debug.Log("Not enough bullet!");
-                }
+                attackHandler.Shoot(data.mousePosition);
             }
 
             if (pressed.IsSet(InputButtons.TESTDAMAGE))
@@ -71,6 +57,11 @@ namespace DEMO.GamePlay.Player
                 Debug.Log($"TESTDAMAGE");
                 playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - 10);
                 Debug.Log(playerNetworkData.HP);
+            }
+
+            if (pressed.IsSet(InputButtons.REPAIR) && shelter != null && shelter.IsPlayerInRange())
+            {
+                shelter.Repair(20);
             }
         }
     }

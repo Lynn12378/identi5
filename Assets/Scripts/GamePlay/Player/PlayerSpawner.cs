@@ -2,7 +2,6 @@ using UnityEngine;
 using Fusion;
 
 using DEMO.Manager;
-using DEMO.UI;
 
 namespace DEMO.GamePlay.Player
 {
@@ -24,12 +23,6 @@ namespace DEMO.GamePlay.Player
 
             var playerObject = Runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
             Runner.SetPlayerObject(player, playerObject);
-            
-            // Use UIManager to handle the GameUI instantiation and display
-            if (UIManager.Instance != null)
-            {
-                UIManager.Instance.InitializeGameUI(player);
-            }
 
             if (player == Runner.LocalPlayer)
             {

@@ -18,7 +18,6 @@ namespace DEMO.Manager
         private InventoryUI inventoryUI;
         private Dictionary<PlayerRef, PlayerUIComponents> playerGameUIs = new Dictionary<PlayerRef, PlayerUIComponents>();
         
-
          public NetworkRunner Runner
         {
             get
