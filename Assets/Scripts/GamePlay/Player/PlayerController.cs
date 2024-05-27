@@ -14,21 +14,15 @@ namespace DEMO.GamePlay.Player
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         [SerializeField] private PlayerNetworkData playerNetworkDataPrefab;
+        // [SerializeField] private PlayerCanvasController playerCanvasController = null;
+        private Shelter shelter;
         private PlayerNetworkData playerNetworkData;
-        private GameObject obj;
         private NetworkButtons buttonsPrevious;
 
         public override void Spawned()
         {
+            shelter = FindObjectOfType<Shelter>();
             playerNetworkData = playerNetworkDataPrefab;
-
-            // obj = GameObject.Find("LocalPlayer");
-            // if(obj != null)
-            // {
-            //     playerNetworkData = obj.GetComponent<PlayerNetworkData>();
-            // }
-
-            // Debug.Log("Find:" + playerNetworkData.HP);
         }
 
         private void Respawn() 
@@ -71,6 +65,11 @@ namespace DEMO.GamePlay.Player
                 Debug.Log($"TESTDAMAGE");
                 playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - 10);
                 Debug.Log(playerNetworkData.HP);
+            }
+
+            if (pressed.IsSet(InputButtons.REPAIR) && shelter != null && shelter.IsPlayerInRange())
+            {
+                shelter.Repair(20);
             }
         }
     }

@@ -13,6 +13,7 @@ namespace DEMO.DB
         private ChangeDetector changes;
         // private GameObject obj;
         [SerializeField] private Slider healthPointSlider = null;
+        [SerializeField] private CanvasManager canvasManager = null;
 
         [Networked] public int playerId { get; private set; }
         [Networked] public PlayerRef playerRef { get; private set; }
@@ -100,12 +101,13 @@ namespace DEMO.DB
                     switch (change)
                     {
                         case nameof(HP):
-                            UIManager.Instance?.UpdateHealthSlider(playerRef, HP);
+                            
+                            // UIManager.Instance?.UpdateHealthSlider(playerRef, HP);
                             UpdateHealthPointSlider(HP);
                             break;
 
                         case nameof(bulletAmount):
-                            UIManager.Instance?.UpdateBulletAmount(playerRef, bulletAmount);
+                            // UIManager.Instance?.UpdateBulletAmount(playerRef, bulletAmount);
                             break;
 
                         case nameof(teamID):
