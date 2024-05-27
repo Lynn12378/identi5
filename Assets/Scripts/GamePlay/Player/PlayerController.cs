@@ -55,7 +55,15 @@ namespace DEMO.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
-                attackHandler.Shoot(data.mousePosition);
+                if(playerNetworkData.bulletAmount > 0)
+                {
+                    attackHandler.Shoot(data.mousePosition);
+                    playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount - 1);
+                }
+                else
+                {
+                    Debug.Log("Not enough bullet!");
+                }
             }
 
             if (pressed.IsSet(InputButtons.TESTDAMAGE))
