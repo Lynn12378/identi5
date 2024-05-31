@@ -9,7 +9,7 @@ namespace DEMO.DB
 {
     public class PlayerNetworkData : NetworkBehaviour
     {
-        private GameManager gameManager = null;
+        private GamePlayManager gamePlayManager = null;
         private ChangeDetector changes;
         private UIManager uIManager = null;
 
@@ -34,15 +34,20 @@ namespace DEMO.DB
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             transform.SetParent(Runner.transform);
 
+            gamePlayManager = FindObjectOfType<GamePlayManager>();
+            gamePlayManager.gamePlayerList.Add(Object.InputAuthority, this);      
+  
             if (Object.HasStateAuthority)
             {
+
                 SetPlayerInfo_RPC(0,"TEST");
                 SetPlayerHP_RPC(MaxHP);
                 SetPlayerBullet_RPC(MaxBullet);
                 SetPlayerTeamID_RPC(-1);
             }
+            
 
-            // gameManager.UpdatedGamePlayer();
+            gamePlayManager.UpdatedGamePlayer();
 		}
 
         #region - RPCs -
@@ -79,6 +84,7 @@ namespace DEMO.DB
 
             public override void Render()
             {
+                if(!Object.HasStateAuthority){return;}
                 foreach (var change in changes.DetectChanges(this, out var previousBuffer, out var currentBuffer))
                 {
                     switch (change)
