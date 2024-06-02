@@ -21,9 +21,6 @@ namespace DEMO.Manager
         [SerializeField] private Transform contentTrans = null;
         private GamePlayManager gamePlayManager = null;
 		private NetworkRunner networkInstance = null;
-        private TeamCell teamCell;
-        private int teamID;
-        
 
         #region - OnInGamePlayerUpdated -
 
@@ -35,26 +32,20 @@ namespace DEMO.Manager
 
             StartShared();
 
-            GamePlayManager.Instance.OnInGamePlayerUpdated += UpdatedGamePlayer;
+            gamePlayManager.OnTeamListUpdated += UpdatedTeamList;
         }
 
         private void OnDestroy()
         {
-            GamePlayManager.Instance.OnInGamePlayerUpdated -= UpdatedGamePlayer;
+            gamePlayManager.OnTeamListUpdated -= UpdatedTeamList;
         }
 
-        public void UpdatedGamePlayer()
+        public void UpdatedTeamList()
         {
-            foreach(Transform child in contentTrans)
-            {
-                Destroy(child.gameObject);
-            }
-
             foreach(var team in gamePlayManager.teamList)
             {
-                var cell = Instantiate(roomCellPrefab, contentTrans);
-
-                cell.SetInfo(lobbyManager, session.Name);
+                team.transform.SetParent(contentTrans, false);
+                team.SetInfo(team.teamID);
             }
         }
 
@@ -62,15 +53,8 @@ namespace DEMO.Manager
 
         public void CreateTeam()
         {
-            var cell = networkInstance.Spawn(teamCellPrefab,Vector3.zero, Quaternion.identity);
-            cell.transform.SetParent(contentTrans);
-            cell.transform.localScale = Vector3.one;
-
-            teamCell = cell.GetComponent<TeamCell>();
-            teamCell.SetInfo(teamID);
-            gamePlayManager.teamList.Add(teamCell);
-
-            teamID += 1;
+            var cell = networkInstance.Spawn(teamCellPrefab, Vector3.zero, Quaternion.identity);
+            cell.GetComponent<TeamCell>().SetPlayerTeamID_RPC(gamePlayManager.newTeamID);
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)

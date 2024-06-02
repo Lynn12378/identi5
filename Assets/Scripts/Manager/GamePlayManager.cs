@@ -56,6 +56,7 @@ namespace DEMO.Manager
 
         #region - TeamList -
 
+        public int newTeamID = 0;
         public List<TeamCell> teamList = new List<TeamCell>();
 
         public event Action OnTeamListUpdated = null;
