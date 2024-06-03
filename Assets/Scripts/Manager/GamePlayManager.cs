@@ -5,6 +5,7 @@ using Fusion;
 
 using DEMO.DB;
 using DEMO.UI;
+using DEMO.GamePlay.Inventory;
 
 namespace DEMO.Manager
 {
@@ -66,6 +67,6 @@ namespace DEMO.Manager
         }
         
         #endregion
-        
+        public List<Item> itemList = new List<Item>();
     }
 }

@@ -10,13 +10,14 @@ using TMPro;
 
 using DEMO.DB;
 using DEMO.UI;
+using DEMO.GamePlay.Inventory;
 
 namespace DEMO.Manager
 {
     public class InGameManager : MonoBehaviour, INetworkRunnerCallbacks
     {
 		[SerializeField] private string gameScene = null;
-        [SerializeField] public GameObject playerPrefab;
+        [SerializeField] private GameObject playerPrefab;
         [SerializeField] private GameObject teamCellPrefab = null;
         [SerializeField] private Transform contentTrans = null;
         private GamePlayManager gamePlayManager = null;
@@ -93,6 +94,15 @@ namespace DEMO.Manager
             }
         }
 
+        public void OnSceneLoadDone(NetworkRunner runner)
+        {
+            var itemSpawner = FindObjectOfType<ItemSpawner>();
+            if (itemSpawner != null)
+            {
+                itemSpawner.StartItemSpawner();
+            }
+        }
+
         #endregion
        
 		#region /-- Unused Function --/
@@ -112,7 +122,6 @@ namespace DEMO.Manager
             public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken){}
             public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data){}
             public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress){}
-            public void OnSceneLoadDone(NetworkRunner runner){}
             public void OnSceneLoadStart(NetworkRunner runner){}
         #endregion
     }

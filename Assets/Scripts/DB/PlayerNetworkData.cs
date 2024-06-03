@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
 
 using DEMO.Manager;
+using DEMO.GamePlay.Inventory;
 
 namespace DEMO.DB
 {
@@ -22,6 +24,7 @@ namespace DEMO.DB
 
         public int MaxHP = 100;
         public int MaxBullet = 50;
+        public List<Item> itemList = new List<Item>();
 
         public void SetUIManager(UIManager uIManager)
         {
