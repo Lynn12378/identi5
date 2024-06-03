@@ -21,9 +21,10 @@ namespace DEMO.GamePlay.Inventory
         }
 
         [SerializeField] private SpriteResolver spriteResolver;
+        [SerializeField] public SpriteRenderer sprite;
         [Networked] public int itemID { get; set; }
         [Networked] public int amount { get; set; }
-        public ItemType itemType;
+        private ItemType itemType;
 
         public override void Spawned()
         {

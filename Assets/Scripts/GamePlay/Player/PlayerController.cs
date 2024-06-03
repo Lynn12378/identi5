@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Fusion;
 using Fusion.Addons.Physics;
@@ -19,7 +20,7 @@ namespace DEMO.GamePlay.Player
 
         private UIManager uIManager;
         private NetworkButtons buttonsPrevious;
-        private Item itemInRange = null;
+        [SerializeField] private Item itemInRange = null;
 
         public override void Spawned()
         {
@@ -40,7 +41,7 @@ namespace DEMO.GamePlay.Player
             }
         }
 
-        private void ApplyInput(NetworkInputData data)
+        private async void ApplyInput(NetworkInputData data)
         {
             NetworkButtons buttons = data.buttons;
             var pressed = buttons.GetPressed(buttonsPrevious);
@@ -64,16 +65,19 @@ namespace DEMO.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.PICKUP))
             {
-                if(itemInRange = null){return;}
-                playerNetworkData.itemList.Add(itemInRange);
-                itemInRange = null;
+                if(itemInRange == null){return;}
+
+                var obj = GameObject.Find("Canvas/InventoryPanel/Items");
+                var item = Instantiate(itemInRange, obj.transform);
+                item.GetComponent<Image>().sprite = item.sprite.sprite;
+
+                playerNetworkData.itemList.Add(item);
+                itemInRange.DespawnItem_RPC();
             }
 
             if (pressed.IsSet(InputButtons.TESTDAMAGE))
             {
-                Debug.Log($"TESTDAMAGE");
                 playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - 10);
-                Debug.Log(playerNetworkData.HP);
             }
         }
 
