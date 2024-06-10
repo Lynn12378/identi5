@@ -23,13 +23,13 @@ namespace DEMO.DB
 			gameManager = GameManager.Instance;
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
 
-            gameManager.playerList.Add(Object.InputAuthority, this);
-            transform.SetParent(GameManager.Instance.transform);
             if (Object.HasStateAuthority)
             {
                 SetPlayerInfo_RPC();
             }
-            
+
+            transform.SetParent(GameManager.Instance.transform);
+            gameManager.playerList.Add(Object.InputAuthority, this);
             gameManager.UpdatePlayerList();
 		}
 
