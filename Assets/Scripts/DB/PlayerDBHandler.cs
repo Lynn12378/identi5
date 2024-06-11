@@ -8,15 +8,17 @@ using Newtonsoft.Json.Linq;
 using TMPro;
 
 using DEMO.Manager;
+using DEMO.UI;
 
 namespace DEMO.DB
 {
     public class PlayerDBHandler : DBMgr
     {
-        [SerializeField] PanelManager panelManager = null;
-        [SerializeField] private TMP_Text playerNameTxt = null;
-        [SerializeField] private TMP_Text playerPasswordTxt = null;
-        [SerializeField] private PlayerInfo playerInfo = null;
+        [SerializeField] private TMP_Text playerNameTxt;
+        [SerializeField] private TMP_Text playerPasswordTxt;
+        [SerializeField] private PlayerInfo playerInfo;
+        [SerializeField] private List<GameObject> panelList = new List<GameObject>();
+        private PanelManager panelManager;
 
         public void Login()
         {
@@ -48,7 +50,6 @@ namespace DEMO.DB
             string responseText = base.GetResponseText();
             JObject jsonResponse = JObject.Parse(responseText);
 
-            //登入註冊
             if (!string.IsNullOrEmpty(responseText))
             {
                 var status = jsonResponse["status"].ToString();
@@ -58,9 +59,9 @@ namespace DEMO.DB
                 {
                     int Player_id = Int32.Parse(jsonResponse["Player_id"].ToString());
                     SetPlayerID(Player_id);
-                    
+
                     GameManager.playerInfo = playerInfo;
-                    panelManager.OnActiveLobbyPanel();
+                    panelManager.OnActivePanel(panelList);
                 }
                 var message = jsonResponse["message"].ToString();
                 Debug.Log(message);
@@ -70,6 +71,12 @@ namespace DEMO.DB
                 Debug.Log("Error: No response from server.");
             }
         }
+
+        private void Start()
+        {
+            panelManager = FindObjectOfType<PanelManager>();
+        }
+
 
         private void SetPlayerID(int Player_id)
         {

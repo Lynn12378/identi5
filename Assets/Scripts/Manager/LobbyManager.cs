@@ -15,69 +15,63 @@ namespace DEMO.Manager
 {
     public class LobbyManager : MonoBehaviour, INetworkRunnerCallbacks
     {
-        [SerializeField] RoomListPanel roomListPanel = null;
         [SerializeField] private TMP_InputField roomName = null;
         [SerializeField] private string roomScene = null;
+        [SerializeField] private int maxPlayer;
 
-        private NetworkRunner networkInstance = null;
         private GameManager gameManager = null;
+        private NetworkRunner runner = null;
 
         private void Start()
         {
             gameManager = GameManager.Instance;
-            networkInstance = gameManager.Runner;
-            networkInstance.AddCallbacks(this);
+            runner = gameManager.Runner;
+            runner.AddCallbacks(this);
         }
 
-        // FindRoom
-        public void StartShared()
+        public void JoinRoom()
         {
-            StartGame(GameMode.Shared, roomName.text, roomScene);
+            StartGame(GameMode.Shared, roomName.text, roomScene, false);
         }
 
-        // JoinRoom
-        public void StartShared(string roomName)
+        public void RandomRoom()
         {
-            StartGame(GameMode.Shared, roomName, roomScene);
+            StartGame(GameMode.Shared, null, roomScene, true);
         }
 
-        private async void StartGame(GameMode mode, string roomName, string sceneName)
+        private async void StartGame(GameMode mode, string roomName, string sceneName, bool isRandom)
         {
             var startGameArgs = new StartGameArgs()
             {
                 GameMode = mode,
-                PlayerCount = 10,
+                PlayerCount = maxPlayer,
                 SessionName = roomName,
                 Scene = SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath(sceneName)),
-                ObjectProvider = networkInstance.GetComponent<NetworkObjectProviderDefault>(),
+                ObjectProvider = runner.GetComponent<NetworkObjectProviderDefault>(),
+                MatchmakingMode = isRandom ? 0 : null,
             };
 
-            await networkInstance.StartGame(startGameArgs);
+            await runner.StartGame(startGameArgs);
 
-            if (networkInstance.IsServer)
+            if (runner.IsServer)
             {
-                await networkInstance.LoadScene(sceneName);
+                await runner.LoadScene(sceneName);
             }
-        }
-        public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
-        {
-            roomListPanel.UpdateRoomList(sessionList);
-            Debug.Log(sessionList);
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
 		{
             if (player == runner.LocalPlayer)
             {
-			    networkInstance.Spawn(GameManager.playerInfo, Vector3.zero, Quaternion.identity, player);
+			    runner.Spawn(GameManager.playerInfo, Vector3.zero, Quaternion.identity, player);
             }
         }
 
 		public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
 		{
-			if (networkInstance.IsServer)
+			if (runner.IsServer)
             {
-                networkInstance.Despawn(GameManager.playerInfo.Object);
+                runner.Despawn(GameManager.playerInfo.Object);
             }
 		}
 
@@ -97,6 +91,7 @@ namespace DEMO.Manager
             public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data){}
             public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress){}
             public void OnSceneLoadDone(NetworkRunner runner){}
+            public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList){}
             public void OnSceneLoadStart(NetworkRunner runner){}
         #endregion
     }
