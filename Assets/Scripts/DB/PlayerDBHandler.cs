@@ -7,90 +7,124 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using TMPro;
 
-using DEMO.Manager;
 using DEMO.UI;
 
 namespace DEMO.DB
 {
     public class PlayerDBHandler : DBMgr
     {
-        [SerializeField] private TMP_Text playerNameTxt;
-        [SerializeField] private TMP_Text playerPasswordTxt;
-        [SerializeField] private PlayerInfo playerInfo;
-        [SerializeField] private List<GameObject> panelList = new List<GameObject>();
-        private PanelManager panelManager;
+        [SerializeField] private TMP_Text LPlayerNameTxt;
+        [SerializeField] private TMP_Text LPlayerPasswordTxt;
 
-        public void Login()
-        {
-            action = "login";
-            StartCoroutine(SendData());
-        }
+        [SerializeField] private TMP_Text SPlayerNameTxt;
+        [SerializeField] private TMP_Text SPlayerPasswordTxt;
+
+        [SerializeField] private TMP_Text messageTxt;
+        [SerializeField] private List<GameObject> dialog = new List<GameObject>();
+
+        [SerializeField] private List<GameObject> lobby = new List<GameObject>();
+        [SerializeField] private List<GameObject> CreateRolePanel = new List<GameObject>();
         
-        public void SignUp()
-        {
-            action = "signUp";
-            StartCoroutine(SendData());
-        }
-
-        private new IEnumerator SendData()
-        {
-            SetPlayerName();
-            SetPlayerPassword();
-
-            formData = new List<IMultipartFormSection>
-            {
-                new MultipartFormDataSection("Player_name", playerInfo.Player_name),
-                new MultipartFormDataSection("Player_password", playerInfo.Player_password)
-            };
-
-            SetForm(formData, "Player", action);
-
-            yield return StartCoroutine(base.SendData());
-
-            string responseText = base.GetResponseText();
-            JObject jsonResponse = JObject.Parse(responseText);
-
-            if (!string.IsNullOrEmpty(responseText))
-            {
-                var status = jsonResponse["status"].ToString();
-
-                Debug.Log(responseText);
-                if (status == "Success")
-                {
-                    int Player_id = Int32.Parse(jsonResponse["Player_id"].ToString());
-                    SetPlayerID(Player_id);
-
-                    GameManager.playerInfo = playerInfo;
-                    panelManager.OnActivePanel(panelList);
-                }
-                var message = jsonResponse["message"].ToString();
-                Debug.Log(message);
-            }
-            else
-            {
-                Debug.Log("Error: No response from server.");
-            }
-        }
+        [SerializeField] private PlayerInfo playerInfo;
+        private PanelManager panelManager;
 
         private void Start()
         {
             panelManager = FindObjectOfType<PanelManager>();
         }
 
+        public void Login()
+        {
+            action = "login";
+            SetPlayerName(LPlayerNameTxt.text);
+            SetPlayerPassword(LPlayerPasswordTxt.text);
+            StartCoroutine(SendData());
+        }
+        
+        public void SignUp()
+        {
+            action = "signUp";
+            SetPlayerName(SPlayerNameTxt.text);
+            SetPlayerPassword(SPlayerPasswordTxt.text);
+            StartCoroutine(SendData());
+        }
+
+        public void Create()
+        {
+            action = "create";
+            SetOufits(playerInfo.outfitList);
+            StartCoroutine(SendData());
+        }
+
+        public new IEnumerator SendData()
+        {
+            formData = new List<IMultipartFormSection>
+            {
+                new MultipartFormDataSection("PlayerInfo", playerInfo.ToJson()),
+            };
+
+            SetForm(formData, "Player", action);
+            yield return StartCoroutine(base.SendData());
+
+            string responseText = base.GetResponseText();
+            Debug.Log(responseText);
+            JObject jsonResponse = JObject.Parse(responseText);
+
+            if (!string.IsNullOrEmpty(responseText))
+            {
+                var status = jsonResponse["status"].ToString();
+                if (status == "Success")
+                {
+                    if(action == "signUp")
+                    {
+                        int Player_id = Int32.Parse(jsonResponse["Player_id"].ToString());
+                        SetPlayerID(Player_id);
+                        panelManager.OnActivePanel(CreateRolePanel);
+                    }else if(action == "login"){
+                        var playerInfoJS = jsonResponse["PlayerInfo"].ToString();
+                        playerInfo.FromJson(playerInfoJS);
+                        panelManager.OnActivePanel(lobby);
+                    }else{
+                        panelManager.OnActivePanel(lobby);
+                    }
+                }
+                else
+                {
+                    panelManager.OnActivePanel(dialog);
+                }
+                
+                GameManager.playerInfo = playerInfo;
+
+                messageTxt.text = jsonResponse["message"].ToString();
+            }
+            else
+            {
+                messageTxt.text = "Error: No response from server.";
+            }
+        }
 
         private void SetPlayerID(int Player_id)
         {
             playerInfo.Player_id = Player_id;
         }
 
-        public void SetPlayerName()
+        public void SetPlayerName(string text)
         {
-            playerInfo.Player_name = playerNameTxt.text.Trim('\u200b');
+            playerInfo.Player_name = text.Trim('\u200b');
         }
 
-        public void SetPlayerPassword()
+        public void SetPlayerPassword(string text)
         {
-            playerInfo.Player_password = playerPasswordTxt.text.Trim('\u200b');
+            playerInfo.Player_password = text.Trim('\u200b');
+        }
+
+        public void SetOufits(Dictionary<string, string> outfitList)
+        {
+            playerInfo.outfits = new List<string>();
+            foreach(var outfit in outfitList)
+            {
+                playerInfo.outfits.Add(outfit.Value);
+            }
         }
     }
 }
