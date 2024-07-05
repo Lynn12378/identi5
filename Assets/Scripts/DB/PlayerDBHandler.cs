@@ -52,7 +52,7 @@ namespace DEMO.DB
         public void Create()
         {
             action = "create";
-            SetOufits(playerInfo.outfitList);
+            SetOufits();
             StartCoroutine(SendData());
         }
 
@@ -118,12 +118,13 @@ namespace DEMO.DB
             playerInfo.Player_password = text.Trim('\u200b');
         }
 
-        public void SetOufits(Dictionary<string, string> outfitList)
+        public void SetOufits()
         {
+            var playerOutfitsHandler = FindObjectOfType<PlayerOutfitsHandler>();
             playerInfo.outfits = new List<string>();
-            foreach(var outfit in outfitList)
+            foreach(var resolver in playerOutfitsHandler.resolverList)
             {
-                playerInfo.outfits.Add(outfit.Value);
+                playerInfo.outfits.Add(resolver.GetLabel().ToString());
             }
         }
     }

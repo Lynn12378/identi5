@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+using DEMO.UI;
+
 namespace DEMO.Manager
 {
     public class UIManager : MonoBehaviour

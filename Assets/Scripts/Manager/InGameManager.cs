@@ -23,6 +23,9 @@ namespace DEMO.Manager
         private GamePlayManager gamePlayManager = null;
 		private NetworkRunner networkInstance = null;
 
+        [SerializeField] private TMP_Text messageTxt = null;
+        [SerializeField] private GameObject messageCellPrefab = null;
+        
         #region - OnInGamePlayerUpdated -
 
         private void Start()
@@ -39,6 +42,12 @@ namespace DEMO.Manager
         private void OnDestroy()
         {
             gamePlayManager.OnTeamListUpdated -= UpdatedTeamList;
+        }
+
+        public void CreateMessage()
+        {
+            var cell = networkInstance.Spawn(messageCellPrefab, Vector3.zero, Quaternion.identity);
+            cell.GetComponent<MessageCell>().SetMessage_RPC(networkInstance.LocalPlayer.ToString(), messageTxt.text);
         }
 
         public void UpdatedTeamList()

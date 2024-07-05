@@ -13,7 +13,7 @@ namespace DEMO.UI
         {
             for(int i = 0; i < panelList.Count ; i++)
             {
-                boolList[i] = panelList[i].activeSelf;
+                boolList.Add(panelList[i].activeSelf);
             }
         }
 

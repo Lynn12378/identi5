@@ -67,15 +67,8 @@ namespace DEMO.Manager
             }
         }
 
-		public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
-		{
-			if (runner.IsServer)
-            {
-                runner.Despawn(GameManager.playerInfo.Object);
-            }
-		}
-
         #region /-- Unused Function --/
+            public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){}
             public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason){}
             public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player){}
             public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player){}

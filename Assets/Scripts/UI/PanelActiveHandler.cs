@@ -7,15 +7,11 @@ namespace DEMO.UI
     public class PanelActiveHandler : MonoBehaviour
     {
         [SerializeField] private List<GameObject> panelList = new List<GameObject>();
-        private PanelManager panelManager;
-
-        private void Start()
-        {
-            panelManager = FindObjectOfType<PanelManager>();
-        }
+        [SerializeField] private PanelManager panelManager;
 
         public void OnActivePanel()
         {
+            panelManager = FindObjectsOfType<PanelManager>()[^1];
             panelManager.OnActivePanel(panelList);
         }
     }

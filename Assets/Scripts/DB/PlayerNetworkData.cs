@@ -11,9 +11,11 @@ namespace DEMO.DB
 {
     public class PlayerNetworkData : NetworkBehaviour
     {
-        private GamePlayManager gamePlayManager = null;
+        private GameManager gameManager = null;
         private ChangeDetector changes;
         private UIManager uIManager = null;
+
+        [SerializeField] public PlayerOutfitsHandler playerOutfitsHandler = null;
 
         [Networked] public int playerId { get; private set; }
         [Networked] public string playerRef { get; private set; }
@@ -21,6 +23,8 @@ namespace DEMO.DB
         [Networked] public int HP { get; set; }
         [Networked] public int bulletAmount { get; set; }
         [Networked] public int teamID { get; set; }
+        [Networked][Capacity(2)] public NetworkArray<Color> colorList => default;
+        [Networked][Capacity(10)] public NetworkArray<string> outfits => default;
 
         public int MaxHP = 100;
         public int MaxBullet = 50;
@@ -31,26 +35,36 @@ namespace DEMO.DB
             this.uIManager = uIManager;
         }
 
+        public void UpdatedOutfits()
+        {
+            var i = 0;
+            foreach(var resolver in playerOutfitsHandler.resolverList)
+            {
+                playerOutfitsHandler.ChangeOutfit(resolver.GetCategory(),outfits[i]);
+                i+=1;
+            }
+        }
 
         public override void Spawned()
         {
+            gameManager = GameManager.Instance;
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            transform.SetParent(Runner.transform);
-
-            gamePlayManager = FindObjectOfType<GamePlayManager>();
-            gamePlayManager.gamePlayerList.Add(Object.InputAuthority, this);      
   
             if (Object.HasStateAuthority)
             {
-
-                SetPlayerInfo_RPC(0,"TEST");
                 SetPlayerHP_RPC(MaxHP);
                 SetPlayerBullet_RPC(MaxBullet);
                 SetPlayerTeamID_RPC(-1);
             }
-            
 
-            gamePlayManager.UpdatedGamePlayer();
+            transform.SetParent(Runner.transform);
+            gameManager.gamePlayerList.Add(Object.InputAuthority, this);
+
+            playerOutfitsHandler.Init();
+
+            if(outfits.Get(0) != ""){UpdatedOutfits();}
+            playerOutfitsHandler.SetSkinColor(colorList[0]);
+            playerOutfitsHandler.SetHairColor(colorList[1]);
 		}
 
         #region - RPCs -
@@ -81,6 +95,23 @@ namespace DEMO.DB
             teamID = id;
 		}
 
+		public void SetColorList(List<Color> colors)
+        {
+            colorList.Clear();
+            colorList.Set(0, colors[0]);
+            colorList.Set(1, colors[1]);
+		}
+
+        public void SetOutfits(List<string> outfits)
+        {
+            this.outfits.Clear();
+
+            for(int i = 0; i < outfits.Count; i++)
+            {
+                this.outfits.Set(i, outfits[i]);
+            }
+		}
+
         #endregion
 
         #region - OnChanged Events -
@@ -95,13 +126,18 @@ namespace DEMO.DB
                         case nameof(HP):
                             uIManager.UpdateHPSlider(HP, MaxHP);
                             break;
-
                         case nameof(bulletAmount):
                             uIManager.UpdateBulletAmountTxt(bulletAmount, MaxBullet);
                             break;
-
                         case nameof(teamID):
                             //call UIManager change Team
+                            break;
+                        case nameof(outfits):
+                            UpdatedOutfits();
+                            break;
+                        case nameof(colorList):
+                            playerOutfitsHandler.SetSkinColor(colorList[0]);
+                            playerOutfitsHandler.SetHairColor(colorList[1]);
                             break;
                     }
                 }
