@@ -96,7 +96,7 @@ namespace Identi5.DB
                             break;
                         case "create":
                             SceneManager.LoadScene("Lobby");
-                            playerInfo.outfitTime = timer;
+                            Ga.outfitTime = timer;
                             break;
                     }
                 }

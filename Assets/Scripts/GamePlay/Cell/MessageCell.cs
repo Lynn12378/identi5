@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Fusion;
 using TMPro;
 
-namespace Identi5.GamePlay
+namespace Identi5.GamePlay.Cell
 {
     public class MessageCell : NetworkBehaviour
     {

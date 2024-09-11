@@ -9,6 +9,7 @@ using Photon.Voice.Unity;
 
 using Identi5.DB;
 using Identi5.GamePlay;
+using Identi5.GamePlay.Cell;
 
 namespace Identi5
 {
@@ -70,8 +71,6 @@ namespace Identi5
 
         #region - PlayerOutputData -
             public static PlayerOutputData playerOutputData = null;
-            public Dictionary<PlayerRef, PlayerOutputData> PODList = new Dictionary<PlayerRef, PlayerOutputData>();
-
         #endregion
 
         #region - Messages -

@@ -1,17 +1,17 @@
 using UnityEngine;
 using TMPro;
 
-namespace Identi5
+namespace Identi5.GamePlay.Cell
 {
-    public class MessageDialog : MonoBehaviour
+    public class DialogCell : MonoBehaviour
     {
         [SerializeField] private TMP_Text txt = null;
         public static float deltaTime;
         private float timer=0;
 
-        public void SetInfo(string message)
+        public void SetInfo(string text)
         {
-            txt.text = message;
+            txt.text = text;
         }
         void Update()
         {

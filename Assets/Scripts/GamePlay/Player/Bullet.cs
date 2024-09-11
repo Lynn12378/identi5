@@ -5,10 +5,9 @@ namespace Identi5.GamePlay.Player
 {
     public class Bullet : NetworkBehaviour
     {
-        private PlayerRef shooterPlayerRef;
+        private PlayerRef playerRef;
         private float bulletSpeed = 1f;
         private float bulletTime = 1f;
-        private int damage = 10;
         [Networked] private TickTimer life { get; set; }
 
         // private GamePlayManager gamePlayManager;
@@ -18,9 +17,9 @@ namespace Identi5.GamePlay.Player
         //     gamePlayManager = GamePlayManager.Instance;
         // }
 
-        public void Init(Vector2 mousePosition, PlayerRef shooterPlayerRef)
+        public void Init(Vector2 mousePosition)
         {
-            this.shooterPlayerRef = shooterPlayerRef;
+            playerRef = Runner.LocalPlayer;
             life = TickTimer.CreateFromSeconds(Runner, bulletTime);
             mousePosition = mousePosition.normalized;
             transform.Translate(Vector2.zero);
@@ -35,9 +34,27 @@ namespace Identi5.GamePlay.Player
             }
         }
 
-        // #region - OnTrigger -
-        // private void OnTriggerEnter2D(Collider2D collider)
-        // {
+        #region - OnTrigger -
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            var player = collider.GetComponent<PlayerController>();
+            // var enemy = collider.GetComponent<Enemy>();
+            // var livings = collider.GetComponent<Livings>();
+
+            if(player != null)
+            {
+                if(player.PND.teamID == -1 || player.PND.teamID != GameMgr.Instance.PNDList[playerRef].teamID)
+                {
+                    player.TakeDamage(10);
+                    
+                }
+            }
+            else
+            {
+                return;
+            }
+            Runner.Despawn(Object);
+            // else if()
         //     if(collider.CompareTag("MapCollision"))
         //     {
         //         foreach (var kvp in gamePlayManager.playerOutputList)
@@ -45,7 +62,7 @@ namespace Identi5.GamePlay.Player
         //             PlayerRef playerRefKey = kvp.Key;
         //             PlayerOutputData playerOutputDataValue = kvp.Value;
 
-        //             if (shooterPlayerRef == playerRefKey)
+        //             if (playerRef == playerRefKey)
         //             {
         //                 playerOutputDataValue.bulletCollision++;
         //             }
@@ -55,23 +72,21 @@ namespace Identi5.GamePlay.Player
         //         Runner.Despawn(Object);
         //     }
 
-        //     var enemy = collider.GetComponent<Enemy>();
-        //     var player = collider.GetComponent<PlayerController>();
-        //     var livings = collider.GetComponent<Livings>();
+        //     
 
         //     if (enemy != null)
         //     {
-        //         enemy.TakeDamage(damage, shooterPlayerRef);
+        //         enemy.TakeDamage(damage, playerRef);
         //         AudioManager.Instance.Play("Hit");
         //         Runner.Despawn(Object);
         //     }
         //     else if(player != null)                  ////////////////////////// team will not shoot each other
         //     {
-        //         if(player.GetPlayerNetworkData().playerRef != shooterPlayerRef)
+        //         if(player.GetPlayerNetworkData().playerRef != playerRef)
         //         {
         //             if(player.GetPlayerNetworkData().teamID != shooter.GetPlayerNetworkData().teamID || shooter.GetPlayerNetworkData().teamID == -1)
         //             {
-        //                 player.TakeDamage(damage, shooterPlayerRef);
+        //                 player.TakeDamage(damage, playerRef);
         //             }
         //             AudioManager.Instance.Play("Hit");
         //             Runner.Despawn(Object);
@@ -79,14 +94,14 @@ namespace Identi5.GamePlay.Player
         //     }
         //     else if(collider.CompareTag("Livings"))
         //     {
-        //         livings.TakeDamage(damage, shooterPlayerRef);
+        //         livings.TakeDamage(damage, playerRef);
 
         //         foreach (var kvp in gamePlayManager.playerOutputList)
         //         {
         //             PlayerRef playerRefKey = kvp.Key;
         //             PlayerOutputData playerOutputDataValue = kvp.Value;
 
-        //             if (shooterPlayerRef == playerRefKey)
+        //             if (playerRef == playerRefKey)
         //             {
         //                 playerOutputDataValue.bulletCollisionOnLiving++;
         //             }
@@ -94,7 +109,7 @@ namespace Identi5.GamePlay.Player
         //         AudioManager.Instance.Play("Hit");
         //         Runner.Despawn(Object);
         //     }
-        // }
-        // #endregion
+        }
+        #endregion
     }
 }

@@ -7,75 +7,63 @@ namespace Identi5.GamePlay.Player
     public class PlayerController : NetworkBehaviour
     {
         private GameMgr gameMgr;
-        // private Shelter shelter;
         private NetworkButtons buttonsPrevious;
         private float surviveTime = 0f;
+        // private Shelter shelter;
 
+        [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private TMP_Text playerNameTxt = null;
-        [SerializeField] private PlayerNetworkData playerNetworkData;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         // [SerializeField] private PlayerVoiceDetection voiceDetection = null;
-        
-        // [SerializeField] private PlayerOutputData playerOutputData;
         // private MapInteractionManager mapInteractionManager;
-
         // private Item itemInRange = null;
         // private IInteractable interactableInRange = null;
         // private bool isInteracting = false;
         // [SerializeField] private bool shopInRange = false;
-        [Networked] private TickTimer shelterTimer { get; set; }
+
+        // [SerializeField] private PlayerOutputData POD;
+        [Networked] private TickTimer HPTimer { get; set; }
+        [Networked] private TickTimer foodTimer { get; set; }
 
         
         public override void Spawned()
         {
             gameMgr = GameMgr.Instance;
-            
+
             // mapInteractionManager = FindObjectOfType<MapInteractionManager>();
-            playerNetworkData.uIManager = FindObjectOfType<UIManager>();
-            playerNetworkData.uIManager.SetPlayerNameTxt(playerNameTxt);
+            PND.uIManager = FindObjectOfType<UIManager>();
+            PND.uIManager.SetPlayerNameTxt(playerNameTxt);
+            playerNameTxt.text = PND.playerName;
         }
 
         private void Respawn() 
         {
+            PND.AddDeathNo_RPC();
+            if(surviveTime > PND.surviveTime)
+            {
+                PND.SetSurviveTime_RPC(surviveTime);
+            }
             surviveTime = 0f;
-            playerNetworkData.Init();
+            PND.Init();
             transform.position = Vector3.zero;
         }
 
-        // public void Restart()
-        // {
-        //     playerOutputData.restartNo++;
-        //     playerOutputData.AddDeathNo_RPC();
-
-        //     transform.position = Vector3.zero;
-
-        //     playerNetworkData.Restart();
-        //     playerOutputData.Restart();
-            
-        //     surviveTime = 0f;
-        // }
-
         public override void FixedUpdateNetwork()
         {
-            // surviveTime += Runner.DeltaTime;
-            // if(surviveTime > playerOutputData.surviveTime)
-            // {
-            //     playerOutputData.SetSurviveTime_RPC(surviveTime);
-            // }
+            surviveTime += Runner.DeltaTime;
 
-            // if(playerNetworkData.HP <= 0 || playerNetworkData.foodAmount <= 0)
-            // {
-            //     playerOutputData.AddDeathNo_RPC();
-            //     Respawn();
-            // }
+            if(PND.HP <= 0 || PND.foodAmount <= 0)
+            {
+                Respawn();
+            }
 
             if (GetInput(out NetworkInputData data))
             {
                 ApplyInput(data);
             }
 
-            // if(playerNetworkData.playerRef == Runner.LocalPlayer)
+            // if(PND.playerRef == Runner.LocalPlayer)
             // {
             //     uIManager.UpdateMinimapArrow(gameObject.transform);
             // }
@@ -84,25 +72,13 @@ namespace Identi5.GamePlay.Player
             // {
             //     if (shelterTimer.Expired(Runner))
             //     {
-            //         playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP + 10);
+            //         PND.SetPlayerHP_RPC(PND.HP + 10);
             //         shelterTimer = TickTimer.CreateFromSeconds(Runner, 5);
             //     }
             // }
 
             // voiceDetection.AudioCheck();
         }
-
-        // #region - Getter -
-        // public PlayerVoiceDetection GetPlayerVoiceDetection()
-        // {
-        //     return voiceDetection;
-        // }
-
-        // public PlayerNetworkData GetPlayerNetworkData()
-        // {
-        //     return playerNetworkData;
-        // }
-        // #endregion
 
         #region - Input -
         private async void ApplyInput(NetworkInputData data)
@@ -116,10 +92,10 @@ namespace Identi5.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
-                if(playerNetworkData.bulletAmount > 0)
+                if(PND.bulletAmount > 0)
                 {
                     attackHandler.Shoot(data.mousePosition);
-                    playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount - 1);
+                    PND.SetPlayerBullet_RPC(PND.bulletAmount - 1);
                 }
                 // else
                 // {
@@ -127,8 +103,8 @@ namespace Identi5.GamePlay.Player
                 // }
             }
 
-            // if (pressed.IsSet(InputButtons.SPACE))
-            // {
+            if (pressed.IsSet(InputButtons.SPACE))
+            {
             //     if(itemInRange != null)
             //     {
             //         Pickup();
@@ -150,7 +126,7 @@ namespace Identi5.GamePlay.Player
             //     {
             //         return;
             //     }
-            // }
+            }
 
             // if (pressed.IsSet(InputButtons.PET))
             // {
@@ -168,7 +144,7 @@ namespace Identi5.GamePlay.Player
 
             // if (pressed.IsSet(InputButtons.RELOAD) && shelter != null)
             // {
-            //     playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount + 5);
+            //     PND.SetPlayerBullet_RPC(PND.bulletAmount + 5);
             // }
         }
         #endregion
@@ -181,16 +157,16 @@ namespace Identi5.GamePlay.Player
         //     // If item is coin, then just add to coinAmount
         //     if(item.itemType == Item.ItemType.Coin)
         //     {
-        //         playerNetworkData.SetPlayerCoin_RPC(playerNetworkData.coinAmount + 10);
+        //         PND.SetPlayerCoin_RPC(PND.coinAmount + 10);
         //         AudioManager.Instance.Play("Pickup");
         //         itemInRange.DespawnItem_RPC();
         //     }
 
         //     // If item not coin and enough space    
-        //     if (playerNetworkData.itemList.Count < 12 && item.itemType != Item.ItemType.Coin)
+        //     if (PND.itemList.Count < 12 && item.itemType != Item.ItemType.Coin)
         //     {
-        //         playerNetworkData.itemList.Add(item);
-        //         playerNetworkData.UpdateItemList();
+        //         PND.itemList.Add(item);
+        //         PND.UpdateItemList();
 
         //         if (item.itemId >= 5 && item.itemId <= 13)
         //         {
@@ -200,7 +176,7 @@ namespace Identi5.GamePlay.Player
         //         AudioManager.Instance.Play("Pickup");
         //         itemInRange.DespawnItem_RPC();
         //     }
-        //     else if(playerNetworkData.itemList.Count >= 12)
+        //     else if(PND.itemList.Count >= 12)
         //     {
         //         playerOutputData.fullNo++;
         //         // gameMgr.ShowWarningBox("背包已滿，不能撿起物品。");
@@ -222,58 +198,13 @@ namespace Identi5.GamePlay.Player
         // }
         // #endregion
 
-        // #region - On Trigger -
-        // private void OnTriggerEnter2D(Collider2D collider)
-        // {
-        //     // Check for interactable objects
-        //     IInteractable interactable = collider.GetComponent<IInteractable>();
-        //     if (interactable != null)
-        //     {
-        //         interactableInRange = interactable;
-        //     }
-
-        //     // Check for items
-        //     Item item = collider.GetComponent<Item>();
-        //     if (item != null)
-        //     {
-        //         itemInRange = item;
-        //     }
-
-        //     // Check for shelter
-        //     Shelter shelterCollider = collider.GetComponent<Shelter>();
-        //     if (shelterCollider != null)
-        //     {
-        //         shelterTimer = TickTimer.CreateFromSeconds(Runner, 0);
-        //         shelter = shelterCollider;
-        //         playerNetworkData.SetShelter(shelter);
-        //     }
-        // }
-
-        // private void OnTriggerExit2D(Collider2D collider)
-        // {
-        //     // Check for interactable objects
-        //     IInteractable interactable = collider.GetComponent<IInteractable>();
-        //     if (interactable != null && interactable == interactableInRange)
-        //     {
-        //         interactableInRange = null;
-        //     }
-
-        //     // Check for items
-        //     Item item = collider.GetComponent<Item>();
-        //     if (item != null && item == itemInRange)
-        //     {
-        //         itemInRange = null;
-        //     }
-
-        //     // Check for shelter
-        //     Shelter shelterCollider = collider.GetComponent<Shelter>();
-        //     if (shelterCollider != null && shelterCollider == shelter)
-        //     {
-        //         shelter = null;
-        //         playerNetworkData.SetShelter(shelter);
-        //     }
-        // }
-        // #endregion
+        #region - On Trigger -
+        private void OnTriggerStay2D(Collider2D collider)
+        {
+            // IInteractable interactable = collider.GetComponent<IInteractable>();
+            // Item item = collider.GetComponent<Item>();
+            // Shelter shelter = collider.GetComponent<Shelter>();
+        }
 
         // #region - OnCollision -
         // private void OnCollisionEnter2D(Collision2D collision)
@@ -281,7 +212,7 @@ namespace Identi5.GamePlay.Player
         //     if(collision.collider.CompareTag("MapCollision"))
         //     {
         //         playerOutputData.collisionNo++;
-        //         Debug.Log(playerNetworkData.playerRefString + "'s collision no. is: " + playerOutputData.collisionNo.ToString());
+        //         Debug.Log(PND.playerRefString + "'s collision no. is: " + playerOutputData.collisionNo.ToString());
         //     }
 
         //     if(collision.collider.CompareTag("Shop"))
@@ -298,17 +229,16 @@ namespace Identi5.GamePlay.Player
         //         uIManager.CloseShopPanel();
         //     }
         // }
-        // #endregion
+        #endregion
 
-        #region - Player HP -
         public void TakeDamage(int damage)
         {
-            playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - damage);
+            PND.SetPlayerHP_RPC(PND.HP - damage);
         }
 
         // public void TakeDamage(int damage, PlayerRef shooter)
         // {
-        //     playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP - damage);
+        //     PND.SetPlayerHP_RPC(PND.HP - damage);
         //     AudioManager.Instance.Play("Hit");
 
         //     foreach (var kvp in gameMgr.playerOutputList)
@@ -322,6 +252,5 @@ namespace Identi5.GamePlay.Player
         //         }
         //     }
         // }
-        #endregion
     }
 }

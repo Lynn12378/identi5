@@ -20,10 +20,8 @@ namespace Identi5.GamePlay
         public int MaxFood = 100;
         public int MaxBullet = 50;
         #endregion
-        
+
         [SerializeField] public PlayerOutfitsHandler playerOutfitsHandler;
-        // public Slider hpSlider;
-        // public GameObject minimapIcon;
         // [SerializeField] private PlayerOutputData playerOutputData;
         
         [Networked] public int playerId { get; private set; }
@@ -36,13 +34,11 @@ namespace Identi5.GamePlay
         [Networked] public int teamID { get; private set; }
         [Networked][Capacity(2)] public NetworkArray<Color> colorList => default;
         [Networked][Capacity(10)] public NetworkArray<string> outfits => default;
-        
-        
-        // private TickTimer foodDecreaseTimer;
 
-        // public List<Item> itemList = new List<Item>();
-        // public Shelter shelter; // Reference when in shelter
-        // Color localColor;
+        [Networked] public int contribution { get; private set; }
+        [Networked] public int killNo { get; private set; }
+        [Networked] public int deathNo { get; private set; }
+        [Networked] public float surviveTime { get; private set; }
 
         public override void Spawned()
         {
@@ -50,9 +46,7 @@ namespace Identi5.GamePlay
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             transform.SetParent(Runner.transform);
             gameMgr.PNDList.Add(Object.InputAuthority, this);
-            
-            // foodDecreaseTimer = TickTimer.CreateFromSeconds(Runner, 20);
-  
+
             if (Object.HasStateAuthority)
             {
                 Init();
@@ -99,26 +93,6 @@ namespace Identi5.GamePlay
 
             // uIManager.UpdateMicTxt("none");
             // uIManager.SetPlayerRef(playerRef);
-		
-
-        // public void SetShelter(Shelter shelter)
-        // {
-        //     this.shelter = shelter;
-        // }
-
-        // public PlayerOutputData GetPlayerOutputData()
-        // {
-        //     return playerOutputData;
-        // }
-
-        // public override void FixedUpdateNetwork()
-        // {
-        //     if (foodDecreaseTimer.Expired(Runner))
-        //     {
-        //         SetPlayerFood_RPC(foodAmount - 1);
-        //         foodDecreaseTimer = TickTimer.CreateFromSeconds(Runner, 20);
-        //     }
-        // }
 
         // #region - Restart -
         // public void Restart()
@@ -167,62 +141,25 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.All)]
 		public void SetPlayerHP_RPC(int hp)
         {
-            HP = hp;
-
-            // if(hp > HP && shelter == null)
-            // {
-            //     playerOutputData.remainHP.Add(HP);
-            // }
-
-            // if(hp >= MaxHP)
-            // {
-            //     HP = MaxHP;
-            // }
-            // else
-            // {
-            //     HP = hp;
-            // }
-
-            // UpdateHPSlider(HP);
+            HP = (hp < MaxHP ? hp :MaxHP);
 		}
         
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
 		public void SetPlayerBullet_RPC(int amount)
         {
-            bulletAmount = amount;
-            // if(amount > bulletAmount)
-            // {
-            //     playerOutputData.remainBullet.Add(bulletAmount);
-            // }
-
-            // if(amount >= MaxBullet)
-            // {
-            //     bulletAmount = MaxBullet;
-            // }
-            // else
-            // {
-            //     bulletAmount = amount;
-            // }
-		}
-
-        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetPlayerCoin_RPC(int amount)
-        {
-            coinAmount = amount;
+            bulletAmount = (amount < MaxBullet ? amount :MaxBullet);
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
 		public void SetPlayerFood_RPC(int amount)
         {
             foodAmount = amount;
-            // if(amount >= MaxFood)
-            // {
-            //     foodAmount = MaxFood;
-            // }
-            // else
-            // {
-            //     foodAmount = amount;
-            // }
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetPlayerCoin_RPC(int amount)
+        {
+            coinAmount = amount;
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -259,6 +196,30 @@ namespace Identi5.GamePlay
             {
                 this.outfits.Set(i, outfits[i]);
             }
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void AddKillNo_RPC()
+        {
+            killNo++;
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void AddContribution_RPC()
+        {
+            contribution++;
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void AddDeathNo_RPC()
+        {
+            deathNo++;
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetSurviveTime_RPC(float longestTime)
+        {
+            surviveTime = longestTime;
 		}
 
         #endregion

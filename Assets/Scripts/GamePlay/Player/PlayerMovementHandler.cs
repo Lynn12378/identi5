@@ -5,27 +5,26 @@ namespace Identi5.GamePlay.Player
 {
     public class PlayerMovementHandler : MonoBehaviour
     {
-        private float moveSpeed = 5f;
-        private float lastPlayTime;
-        private float audioClipLength = 0.667f;
-        [SerializeField] private Animator animator;
-        [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
         [SerializeField] private Transform Weapon = null;
+        [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
+        [SerializeField] private Animator animator;
+        [SerializeField] private AudioSource source;
         
         public void Move(NetworkInputData data)
         {
             Vector2 moveVector = data.movementInput.normalized;
-            Vector2 newVelocity = moveVector * moveSpeed;
+            Vector2 newVelocity = moveVector * 5f;
             playerNetworkRigidbody.Rigidbody.velocity = newVelocity;
 
-            animator.SetBool("Walk",true);
-            if(newVelocity.magnitude > 0)
+            
+            if(newVelocity != Vector2.zero)
             {
-                if (Time.time - lastPlayTime >= audioClipLength)
-                {
-                    // AudioManager.Instance.Play("Walk");
-                    lastPlayTime = Time.time;
-                }
+                source.Play();
+                animator.SetBool("Walk",true);
+            }
+            else
+            {
+                source.Pause();
             }
         }
 

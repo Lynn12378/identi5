@@ -6,6 +6,8 @@ using Fusion;
 using Fusion.Sockets;
 using TMPro;
 
+using Identi5.GamePlay.Cell;
+
 namespace Identi5.GamePlay
 {
     public class GPMgr : MonoBehaviour, INetworkRunnerCallbacks

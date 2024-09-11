@@ -13,8 +13,7 @@ namespace Identi5.DB
         [Networked] public string playerName { get; private set; }
         [Networked] public bool isReady { get; private set; }
 
-        //public bool isOnline;
-        public float outfitTime;
+
         public int Player_id;
         public string Player_name;
         public string Player_password;
