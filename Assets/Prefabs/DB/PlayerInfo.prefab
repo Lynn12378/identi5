@@ -65,6 +65,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerId: 0
   _playerName: 
-  Player_id: 1
-  Player_name: playerTest
-  Player_password: 12345678
+  _isReady: 0
+  Player_id: 0
+  Player_name: 
+  Player_password: 
+  colorList:
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0.9960785, g: 0.9176471, b: 0.82745105, a: 1}
+  outfits: []

@@ -1,23 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-using Fusion;
 using Fusion.Addons.Physics;
 
-namespace DEMO.GamePlay.Player
+namespace Identi5.GamePlay.Player
 {
     public class PlayerMovementHandler : MonoBehaviour
     {
+        private float moveSpeed = 5f;
+        private float lastPlayTime;
+        private float audioClipLength = 0.667f;
+        [SerializeField] private Animator animator;
         [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
         [SerializeField] private Transform Weapon = null;
-
-        [SerializeField] private float moveSpeed = 5f;
-
+        
         public void Move(NetworkInputData data)
         {
             Vector2 moveVector = data.movementInput.normalized;
-            playerNetworkRigidbody.Rigidbody.velocity = moveVector * moveSpeed;
+            Vector2 newVelocity = moveVector * moveSpeed;
+            playerNetworkRigidbody.Rigidbody.velocity = newVelocity;
+
+            animator.SetBool("Walk",true);
+            if(newVelocity.magnitude > 0)
+            {
+                if (Time.time - lastPlayTime >= audioClipLength)
+                {
+                    // AudioManager.Instance.Play("Walk");
+                    lastPlayTime = Time.time;
+                }
+            }
         }
 
         public void SetRotation(Vector2 mousePosition)

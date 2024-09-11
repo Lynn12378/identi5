@@ -1,39 +1,55 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-using DEMO.Manager;
-
-namespace DEMO.DB
+namespace Identi5.DB
 {
     public class PlayerInfo : NetworkBehaviour
     {
-        private GameManager gameManager = null;
+        private GameMgr gameMgr = null;
         private ChangeDetector changes;
 
         [Networked] public int playerId { get; private set; }
         [Networked] public string playerName { get; private set; }
-        public bool isInRoom = false;
+        [Networked] public bool isReady { get; private set; }
+
+        //public bool isOnline;
+        public float outfitTime;
         public int Player_id;
         public string Player_name;
         public string Player_password;
+        public List<Color> colorList = new List<Color>();
+        public List<string> outfits = new List<string>();
 
         public override void Spawned()
         {
-			gameManager = GameManager.Instance;
+			gameMgr = GameMgr.Instance;
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            if(!isInRoom)
+
+            if (Object.HasStateAuthority)
             {
-                gameManager.playerList.Add(Object.InputAuthority, this);
-                transform.SetParent(GameManager.Instance.transform);
-                if (Object.HasStateAuthority)
-                {
-                    SetPlayerInfo_RPC();
-                }
+                SetPlayerInfo_RPC();
             }
-            
-            gameManager.UpdatePlayerList();
+
+            transform.SetParent(gameMgr.transform);
+            gameMgr.PIFList.Add(Object.InputAuthority, this);
+            gameMgr.UpdatePIFList();
 		}
+
+        public void Despawned()
+        {
+            Runner.Despawn(Object);
+        }
+
+        public string ToJson()
+        {
+            return JsonUtility.ToJson(this);
+        }
+
+        public void FromJson(string json)
+        {
+            JsonUtility.FromJsonOverwrite(json, this);
+        }
 
         #region - RPCs -
 
@@ -42,6 +58,13 @@ namespace DEMO.DB
         {
             playerId = Player_id;
 			playerName = Player_name;
+            isReady = false;
+		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetIsReady_RPC()
+        {
+            isReady = !isReady;
 		}
         
         #endregion
@@ -54,12 +77,9 @@ namespace DEMO.DB
                 {
                     switch (change)
                     {
-                        case nameof(playerName):
-                            GameManager.Instance.UpdatePlayerList();
+                        case nameof(isReady):
+                            gameMgr.UpdatePIFList();
                             break;
-                        // case nameof(IsReady):
-                        //     GameManager.Instance.UpdatePlayerList();
-                        //     break;
                     }
                 }
             }

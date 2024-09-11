@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Enemy
+  - MapCollision
+  - SpawnPoint
+  - Shelter
+  - Livings
+  - Placeholder
+  - SmallCollider
+  - Shop
   layers:
   - Default
   - TransparentFX
@@ -11,10 +20,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Minimap
+  - ItemLayer
+  - LivingsLayer
+  - ShopLayer
   - 
   - 
   - 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace DEMO.DB
+namespace Identi5.DB
 {
     public class DBMgr : MonoBehaviour
     {
@@ -11,6 +11,12 @@ namespace DEMO.DB
         protected string table;
         protected string action;
         protected string responseText;
+
+        protected void SetForm(List<IMultipartFormSection> formData, string table)
+        {
+            this.formData = formData;
+            this.table = table;
+        }
 
         protected void SetForm(List<IMultipartFormSection> formData, string table, string action)
         {
@@ -21,16 +27,7 @@ namespace DEMO.DB
 
         protected IEnumerator SendData()
         {
-            // 設置POST請求的URL
-            string url = "http://localhost/" + table + ".php?Action=" + action;
-            
-            if (formData == null || table == null)
-            {
-                Debug.LogError("Form data is not set.");
-                yield break;
-            }
-
-            // 發送POST請求
+            var url = $"http://localhost/DEMO/{table}.php"+ (action != null ? $"?Action={action}" : "");
             UnityWebRequest www = UnityWebRequest.Post(url, formData);
             yield return www.SendWebRequest();
 
