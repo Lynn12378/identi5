@@ -16,7 +16,6 @@ namespace Identi5.GamePlay.Player
             Vector2 newVelocity = moveVector * 5f;
             playerNetworkRigidbody.Rigidbody.velocity = newVelocity;
 
-            
             if(newVelocity != Vector2.zero)
             {
                 source.Play();

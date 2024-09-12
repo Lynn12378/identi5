@@ -15,6 +15,7 @@ namespace Identi5.DB
         private float timer = 0;
         private PanelMgr panelMgr;
         [SerializeField] private PlayerInfo playerInfo;
+        [SerializeField] public PlayerOutputData playerOutputData;
         [SerializeField] private TMP_Text LPlayerNameTxt;
         [SerializeField] private TMP_Text LPlayerPasswordTxt;
         [SerializeField] private TMP_Text SPlayerNameTxt;
@@ -96,9 +97,11 @@ namespace Identi5.DB
                             break;
                         case "create":
                             SceneManager.LoadScene("Lobby");
-                            Ga.outfitTime = timer;
+                            playerOutputData.outfitTime = timer;
                             break;
                     }
+                    playerOutputData.playerId = playerInfo.Player_id;
+                    GameMgr.playerOutputData = playerOutputData;
                 }
                 else
                 {

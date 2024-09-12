@@ -16,6 +16,7 @@ namespace Identi5.GamePlay
 		private NetworkRunner runner;
         private PlayerRef localPlayer;
         private PlayerNetworkData PND;
+        private PlayerOutputData POD;
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private PanelMgr panelMgr;
 
@@ -31,6 +32,7 @@ namespace Identi5.GamePlay
             gameMgr.OnInPNDListUpdated -= UpdatedPNDList;
             gameMgr.OnTeamListUpdated -= UpdatedTeamList;
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
+            gameMgr.OnItemListUpdated -= UpdatedItemList;
         }
 
         #region - Start Game -
@@ -38,12 +40,11 @@ namespace Identi5.GamePlay
         {
             var PIF = gameMgr.PIFList[localPlayer];
             PND = gameMgr.PNDList[localPlayer];
-            // var POD = gameMgr.playerOutputList[player];
+            POD = GameMgr.playerOutputData;
 
             PND.SetPlayerInfo_RPC(PIF.playerId, PIF.playerName);
             PND.SetColorList(PIF.colorList);
             PND.SetOutfits(PIF.outfits);
-            // POD.SetPlayerId_RPC(PIF.playerId);
 
             PIF.Despawned();
         }
@@ -53,6 +54,7 @@ namespace Identi5.GamePlay
             gameMgr.OnInPNDListUpdated += UpdatedPNDList;
             gameMgr.OnTeamListUpdated += UpdatedTeamList;
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
+            gameMgr.OnItemListUpdated += UpdatedItemList;
 
             localPlayer = runner.LocalPlayer;
             var playerObject = runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, localPlayer);
@@ -85,7 +87,6 @@ namespace Identi5.GamePlay
                 }
                 #endregion
         
-
         #region - Messages - 
         [SerializeField] private TMP_Text messageTxt = null;
         [SerializeField] private GameObject messageCellPrefab = null;
@@ -95,12 +96,9 @@ namespace Identi5.GamePlay
         {
             var cell = runner.Spawn(messageCellPrefab, Vector3.zero, Quaternion.identity);
             cell.GetComponent<MessageCell>().SetMessage_RPC(PND.playerName, messageTxt.text);
-
-            // foreach(var player in gameMgr.playerOutputList)
-            // {
-            //     if(player.Key == runner.LocalPlayer) player.Value.sendMessageNo++;
-            // }
+            gameMgr.UpdatedMessageList();
             messageTxt.text = "";
+            POD.messageSent++;
         }
 
         public void UpdatedMessageList()
@@ -134,6 +132,7 @@ namespace Identi5.GamePlay
             teamCell.SetInfo(++gameMgr.newTeamID);
             PND.SetPlayerTeamID_RPC(gameMgr.newTeamID);
             OnActivePanel();
+            POD.teamCreated++;
         }
 
         public void LeaveTeam()
@@ -183,6 +182,103 @@ namespace Identi5.GamePlay
                 team.SetInfo(team.teamID);
             }
         }
+        #endregion
+
+        #region - Inventory - 
+        [SerializeField] private GameObject itemCellPrefab = null;
+        [SerializeField] private Transform itemContentTrans = null;
+        private List<ItemCell> itemCells = new List<ItemCell>();
+        
+        public void UpdatedItemList()
+        {
+            var tempList = new List<Item>();
+            foreach(var cell in itemCells)
+            {
+                Destroy(cell.gameObject);
+            }
+            itemCells.Clear();
+            foreach(var item in PND.itemList)
+            {
+                if(item.quantity < 1)
+                {
+                    tempList.Add(item);
+                    continue;
+                }
+                var cell = Instantiate(itemCellPrefab).GetComponent<ItemCell>();
+                itemCells.Add(cell);
+                cell.transform.SetParent(itemContentTrans, false);
+                cell.SetInfo(item);
+            }
+            foreach(var item in tempList)
+            {
+                PND.itemList.Remove(item);
+                Destroy(item.gameObject);
+            }
+        }
+
+        public void ArrangeItem()
+        {
+            Dictionary<int, Item> tempList = new Dictionary<int, Item>();
+            foreach(var item in PND.itemList)
+            {
+                if(tempList.ContainsKey(item.itemId))
+                {
+                    tempList[item.itemId].quantity++;
+                    Destroy(item.gameObject);
+                }
+                else
+                {
+                    tempList.Add(item.itemId, item);
+                }
+            }
+            PND.itemList.Clear();
+            foreach(var item in tempList.Values)
+            {
+                PND.itemList.Add(item);
+            }
+            gameMgr.UpdatedItemList();
+        }
+        #endregion
+
+        #region - Action -
+            public PlayerRef receiver;
+            public Item itemAction;
+            [SerializeField] private GameObject actionListPanel;
+            [SerializeField] private GameObject givenPanel;
+            
+            public void SetReceiver(PlayerRef receiver)
+            {
+                this.receiver = receiver;
+                itemAction.quantity--;
+                gameMgr.UpdatedItemList();
+                CloseActionPanel();
+            }
+            public void SetItemAction(Item itemAction)
+            {
+                this.itemAction = itemAction;
+                actionListPanel.SetActive(true);
+            }
+            public void DiscardItem()
+            {
+                itemAction.quantity--;
+                gameMgr.UpdatedItemList();
+                CloseActionPanel();
+            }
+            #region - Panel - 
+            public void CloseActionPanel()
+            {
+                actionListPanel.SetActive(false);
+            }
+            public void ActiveGivenPanel()
+            {
+                givenPanel.SetActive(true);
+            }
+            public void CloseGivenPanel()
+            {
+                givenPanel.SetActive(false);
+            }
+            #endregion
+            
         #endregion
        
 		#region /-- Unused Function --/

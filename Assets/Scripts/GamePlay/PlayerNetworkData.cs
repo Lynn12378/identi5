@@ -2,10 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Fusion;
-
-// using DEMO.GamePlay.Inventory;
-// using DEMO.Gameplay;
-// using DEMO.UI;
+using TMPro;
 
 namespace Identi5.GamePlay
 {
@@ -21,8 +18,10 @@ namespace Identi5.GamePlay
         public int MaxBullet = 50;
         #endregion
 
+        public List<Item> itemList = new List<Item>();
+
         [SerializeField] public PlayerOutfitsHandler playerOutfitsHandler;
-        // [SerializeField] private PlayerOutputData playerOutputData;
+        [SerializeField] private TMP_Text playerNameTxt;
         
         [Networked] public int playerId { get; private set; }
         [Networked] public PlayerRef playerRef { get; private set; }
@@ -32,6 +31,7 @@ namespace Identi5.GamePlay
         [Networked] public int bulletAmount { get; set; }
         [Networked] public int coinAmount { get; set; }
         [Networked] public int teamID { get; private set; }
+        [Networked] public Item item { get; set; }
         [Networked][Capacity(2)] public NetworkArray<Color> colorList => default;
         [Networked][Capacity(10)] public NetworkArray<string> outfits => default;
 
@@ -46,22 +46,22 @@ namespace Identi5.GamePlay
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             transform.SetParent(Runner.transform);
             gameMgr.PNDList.Add(Object.InputAuthority, this);
-
+            
             if (Object.HasStateAuthority)
             {
                 Init();
                 SetPlayerRef_RPC();
                 SetPlayerCoin_RPC(100);
                 if(outfits.Get(0) != ""){
+                    uIManager.playerImg.Init();
                     uIManager.UpdatedOutfits(outfits);
                 }
                 uIManager.UpdatedColor(colorList);
             }
-
-            playerOutfitsHandler.Init();
-            uIManager.playerImg.Init();
+            
             if(outfits.Get(0) != "")
             {
+                playerOutfitsHandler.Init();
                 uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
             }
             
@@ -129,7 +129,6 @@ namespace Identi5.GamePlay
         {
             playerId = id;
 			playerName = name;
-            uIManager.UpdatePlayerName(playerName);
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -153,7 +152,7 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
 		public void SetPlayerFood_RPC(int amount)
         {
-            foodAmount = amount;
+            foodAmount = (amount < MaxFood ? amount :MaxFood);
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -167,19 +166,6 @@ namespace Identi5.GamePlay
         {
             teamID = id;
 		}
-
-        // [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        // public void ReceiveGift_RPC(Item.ItemType itemType)
-        // {
-        //     Item item = new Item
-        //     {
-        //         itemType = itemType,
-        //         quantity = 1
-        //     };
-        //     itemList.Add(item);
-
-        //     UpdateItemList();
-        // }
 
         public void SetColorList(List<Color> colors)
         {
@@ -246,6 +232,9 @@ namespace Identi5.GamePlay
                 if(!Object.HasStateAuthority){return;}
                 switch (change)
                 {
+                    case nameof(playerName):
+                        playerNameTxt.text = playerName;
+                        break;
                     case nameof(HP):
                         uIManager.UpdateHPSlider(HP, MaxHP);
                         break;
@@ -263,6 +252,8 @@ namespace Identi5.GamePlay
                         break;
                     case nameof(colorList):
                         uIManager.UpdatedColor(colorList);
+                        break;
+                    case nameof(item):
                         break;
                 }
             }

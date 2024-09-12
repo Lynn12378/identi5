@@ -12,16 +12,16 @@ namespace Identi5.GamePlay.Cell
         private ChangeDetector changes;
         [SerializeField] private TMP_Text messageTxt = null;
         [Networked] public string playerName { get; set; }
-        [Networked] public string message { get; set; }
         [Networked] TickTimer timer { get; set; }
+        [Networked, OnChangedRender(nameof(OnMessageChange))]
+        public string message { get; set; }
 
         public override void Spawned()
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             timer = TickTimer.CreateFromSeconds(Runner, 10f);
-            messageTxt.text = $"{playerName}:{message}";
-            GameMgr.Instance.UpdatedMessageList();
             GameMgr.Instance.messageList.Add(this);
+            OnMessageChange();
         }
 
         public override void FixedUpdateNetwork()
@@ -33,6 +33,12 @@ namespace Identi5.GamePlay.Cell
             }
         }
 
+        public void OnMessageChange()
+        {
+            messageTxt.text = $"{playerName}:{message}";
+            GameMgr.Instance.UpdatedMessageList();
+        }
+
         #region - RPCs -
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -42,24 +48,6 @@ namespace Identi5.GamePlay.Cell
             this.message = message;
 		}
 
-        #endregion
-
-        #region - OnChanged Events -
-
-            public override void Render()
-            {
-                foreach (var change in changes.DetectChanges(this, out var previousBuffer, out var currentBuffer))
-                {
-                    switch (change)
-                    {
-                        case nameof(message):
-                            messageTxt.text = $"{playerName}:{message}";
-                            GameMgr.Instance.UpdatedMessageList();
-                            break;
-                    }
-                }
-            }
-        
         #endregion
     }
 }

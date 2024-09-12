@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97587034370741708}
   - component: {fileID: 4695744124385218042}
-  - component: {fileID: 4504320698300242342}
+  - component: {fileID: 6097542614129085835}
   m_Layer: 0
   m_Name: PlayerNetworkData
   m_TagString: Untagged
@@ -50,8 +50,8 @@ MonoBehaviour:
   Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 4504320698300242342}
---- !u!114 &4504320698300242342
+  - {fileID: 6097542614129085835}
+--- !u!114 &6097542614129085835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,23 +60,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7490621295302069716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee026d482b9603345ac15c26c581c380, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e603368c8d10544a8dd18026e8c44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpSlider: {fileID: 0}
-  minimapIcon: {fileID: 0}
-  voiceObject: {fileID: 0}
   uIManager: {fileID: 0}
+  MaxHP: 100
+  MaxFood: 100
+  MaxBullet: 50
+  playerOutfitsHandler: {fileID: 0}
   _playerId: 0
-  _playerRefString: 
   _playerName: 
   _HP: 0
   _foodAmount: 0
   _bulletAmount: 0
   _coinAmount: 0
   _teamID: 0
-  MaxHP: 100
-  MaxFood: 100
-  MaxBullet: 50
-  itemList: []
-  shelter: {fileID: 0}
+  _colorList: []
+  _outfits: []
+  _contribution: 0
+  _killNo: 0
+  _deathNo: 0
+  _surviveTime: 0

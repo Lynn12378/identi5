@@ -93,6 +93,13 @@ namespace Identi5
             }
         #endregion
 
+        #region - ItemList -
+            public event Action OnItemListUpdated = null;
+            public void UpdatedItemList()
+            {
+                OnItemListUpdated?.Invoke();
+            }
+        #endregion
         // #region - RankList -
         //     public List<RankCell> rankList = new List<RankCell>();
         //     public event Action OnRankListUpdated = null;

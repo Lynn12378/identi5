@@ -31,10 +31,9 @@ namespace Identi5.GamePlay
 
         # region - Outfits -
         [SerializeField] public PlayerOutfitsHandler playerImg;
-        
-
         public void UpdatedOutfits(NetworkArray<string> outfits)
         {
+            playerImg.Init();
             UpdatedOutfits(playerImg, outfits);
         }
 
@@ -87,20 +86,6 @@ namespace Identi5.GamePlay
         // #endregion
 
         #region - PlayerNetworkData UI -
-
-        public TMP_Text playerCanvasName;
-        [SerializeField] private TMP_Text playerNameTxt = null;
-
-        public void SetPlayerNameTxt(TMP_Text playerName)
-        {
-            playerCanvasName = playerName;
-        }
-        public void UpdatePlayerName(string playerName)
-        {
-            playerCanvasName.SetText(playerName);
-            playerNameTxt.SetText(playerName);
-        }
-
         [SerializeField] Slider HPSlider;
         [SerializeField] private TMP_Text HPTxt;
         public void UpdateHPSlider(int HP, int maxHP)
@@ -128,13 +113,13 @@ namespace Identi5.GamePlay
         [SerializeField] private TMP_Text bulletAmountTxt;
         public void UpdateBulletAmountTxt(int bulletAmount, int maxbulletAmount)
         {
-            bulletAmountTxt.text = $"子彈數量: {bulletAmount}/{maxbulletAmount}";
+            bulletAmountTxt.text = $"{bulletAmount}";
         }
 
         [SerializeField] private TextMeshProUGUI playerCoinAmount;
         public void UpdateCoinAmountTxt(int coinAmount)
         {
-            playerCoinAmount.SetText(coinAmount.ToString());
+            // playerCoinAmount.SetText(coinAmount.ToString());
         }
 
         // public void UpdateMicIconColor(int isSpeaking)

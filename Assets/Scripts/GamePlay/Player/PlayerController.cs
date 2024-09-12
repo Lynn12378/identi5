@@ -1,6 +1,5 @@
 using UnityEngine;
 using Fusion;
-using TMPro;
 
 namespace Identi5.GamePlay.Player
 {
@@ -9,10 +8,14 @@ namespace Identi5.GamePlay.Player
         private GameMgr gameMgr;
         private NetworkButtons buttonsPrevious;
         private float surviveTime = 0f;
-        // private Shelter shelter;
+        private PlayerOutputData POD;
+
+        private Shelter shelter;
+        private Item item;
 
         [SerializeField] private PlayerNetworkData PND;
-        [SerializeField] private TMP_Text playerNameTxt = null;
+        [SerializeField] private Transform trans;
+        [SerializeField] private SpriteRenderer weapon;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         // [SerializeField] private PlayerVoiceDetection voiceDetection = null;
@@ -30,29 +33,34 @@ namespace Identi5.GamePlay.Player
         public override void Spawned()
         {
             gameMgr = GameMgr.Instance;
-
+            POD = GameMgr.playerOutputData;
             // mapInteractionManager = FindObjectOfType<MapInteractionManager>();
             PND.uIManager = FindObjectOfType<UIManager>();
-            PND.uIManager.SetPlayerNameTxt(playerNameTxt);
-            playerNameTxt.text = PND.playerName;
+            foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
         }
 
         private void Respawn() 
         {
             PND.AddDeathNo_RPC();
+            POD.deathNo++;
+
             if(surviveTime > PND.surviveTime)
             {
                 PND.SetSurviveTime_RPC(surviveTime);
             }
-            surviveTime = 0f;
             PND.Init();
+            surviveTime = 0f;
             transform.position = Vector3.zero;
         }
 
         public override void FixedUpdateNetwork()
         {
+            if(foodTimer.Expired(Runner))
+            {
+                PND.SetPlayerFood_RPC(PND.foodAmount - 10);
+                foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
+            }
             surviveTime += Runner.DeltaTime;
-
             if(PND.HP <= 0 || PND.foodAmount <= 0)
             {
                 Respawn();
@@ -68,14 +76,14 @@ namespace Identi5.GamePlay.Player
             //     uIManager.UpdateMinimapArrow(gameObject.transform);
             // }
 
-            // if (shelter != null)
-            // {
-            //     if (shelterTimer.Expired(Runner))
-            //     {
-            //         PND.SetPlayerHP_RPC(PND.HP + 10);
-            //         shelterTimer = TickTimer.CreateFromSeconds(Runner, 5);
-            //     }
-            // }
+            if (shelter != null)
+            {
+                if (HPTimer.Expired(Runner))
+                {
+                    PND.SetPlayerHP_RPC(PND.HP + 10);
+                    HPTimer = TickTimer.CreateFromSeconds(Runner, 5);
+                }
+            }
 
             // voiceDetection.AudioCheck();
         }
@@ -89,6 +97,9 @@ namespace Identi5.GamePlay.Player
 
             movementHandler.Move(data);
             movementHandler.SetRotation(data.mousePosition);
+            bool b = (data.mousePosition.x - trans.position.x) < 0;
+            trans.rotation = b ? new Quaternion(0, 0 , 0, 1) : new Quaternion(0, 180 , 0, 1);
+            weapon.flipY = b;
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
@@ -105,10 +116,20 @@ namespace Identi5.GamePlay.Player
 
             if (pressed.IsSet(InputButtons.SPACE))
             {
-            //     if(itemInRange != null)
-            //     {
-            //         Pickup();
-            //     }
+                if(item != null)
+                {
+                    if(PND.itemList.Count < 12)
+                    {
+                        var itemPicked = Instantiate(item.gameObject).GetComponent<Item>();
+                        PND.itemList.Add(itemPicked);
+                        gameMgr.UpdatedItemList();
+                        item.Despawned();
+                    }
+                    else
+                    {
+                        // ShowMessage
+                    }
+                }
             //     else if(shopInRange)
             //     {
             //         uIManager.OnOpenShopButton();
@@ -202,8 +223,8 @@ namespace Identi5.GamePlay.Player
         private void OnTriggerStay2D(Collider2D collider)
         {
             // IInteractable interactable = collider.GetComponent<IInteractable>();
-            // Item item = collider.GetComponent<Item>();
-            // Shelter shelter = collider.GetComponent<Shelter>();
+            shelter = collider.GetComponent<Shelter>();
+            item = collider.GetComponent<Item>();
         }
 
         // #region - OnCollision -
@@ -230,11 +251,6 @@ namespace Identi5.GamePlay.Player
         //     }
         // }
         #endregion
-
-        public void TakeDamage(int damage)
-        {
-            PND.SetPlayerHP_RPC(PND.HP - damage);
-        }
 
         // public void TakeDamage(int damage, PlayerRef shooter)
         // {

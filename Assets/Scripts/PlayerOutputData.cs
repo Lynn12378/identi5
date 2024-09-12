@@ -7,9 +7,32 @@ namespace Identi5
     public class PlayerOutputData : NetworkBehaviour
     {
         public int playerId;
+
+        #region - Openness -
         public float outfitTime;
-        public int killNo;                                  // No. of enemy killed
-        public int deathNo;                                 // No. of death
+
+        #endregion
+
+        #region - Conscientiousness -
+        public int failGame;
+        public int deathNo;
+        #endregion
+
+        #region - Extraversion -
+        public int messageSent;
+        public int teamCreated;
+
+        #endregion
+
+        #region - Agreeableness -
+
+        #endregion
+
+        #region - Neuroticism -
+
+        #endregion
+        
+        public int killNo;                                  // No. of enemy killed                            
         public float surviveTime;                           // Longest survival time
         public int collisionNo;                             // No. of player's collision with buildings
         public int bulletCollision;                         // No. of player bullet's collision with buildings
@@ -36,6 +59,11 @@ namespace Identi5
         public string ToJson()
         {
             return JsonUtility.ToJson(this);
+        }
+
+        public void FromJson(string json)
+        {
+            JsonUtility.FromJsonOverwrite(json, this);
         }
         #endregion
     }

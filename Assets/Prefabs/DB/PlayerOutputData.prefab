@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7092441033208180538}
   - component: {fileID: 8763974716377074827}
-  - component: {fileID: 6112315321310826925}
+  - component: {fileID: 6047792432197699593}
   m_Layer: 0
   m_Name: PlayerOutputData
   m_TagString: Untagged
@@ -50,8 +50,8 @@ MonoBehaviour:
   Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 6112315321310826925}
---- !u!114 &6112315321310826925
+  - {fileID: 6047792432197699593}
+--- !u!114 &6047792432197699593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,9 +60,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8784313577853381870}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7cf8218e952cc446896c0ffb515d915, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fc5c66d322048d4bad423af51e0c72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killNo: 0
-  _deathNo: 0
-  _timeLast: 0
+  playerId: 0
+  outfitTime: 0
+  killNo: 0
+  deathNo: 0
+  surviveTime: 0
+  collisionNo: 0
+  bulletCollision: 0
+  bulletCollisionOnLiving: 0
+  remainHP: 
+  remainBullet: 
+  totalVoiceDetectionDuration: 0
+  organizeNo: 0
+  fullNo: 0
+  placeholderNo: 0
+  rankNo: 0
+  giftNo: 0
+  createTeamNo: 0
+  joinTeamNo: 0
+  quitTeamNo: 0
+  repairQuantity: 0
+  restartNo: 0
+  usePlaceholderNo: 0
+  petNo: 0
+  sendMessageNo: 0
+  durationOfRound: 0

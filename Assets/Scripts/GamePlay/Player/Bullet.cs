@@ -6,8 +6,7 @@ namespace Identi5.GamePlay.Player
     public class Bullet : NetworkBehaviour
     {
         private PlayerRef playerRef;
-        private float bulletSpeed = 1f;
-        private float bulletTime = 1f;
+        [SerializeField] private AudioSource source;
         [Networked] private TickTimer life { get; set; }
 
         // private GamePlayManager gamePlayManager;
@@ -19,15 +18,16 @@ namespace Identi5.GamePlay.Player
 
         public void Init(Vector2 mousePosition)
         {
+            source.Play();
             playerRef = Runner.LocalPlayer;
-            life = TickTimer.CreateFromSeconds(Runner, bulletTime);
+            life = TickTimer.CreateFromSeconds(Runner, 1f);
             mousePosition = mousePosition.normalized;
             transform.Translate(Vector2.zero);
         }
 
         public override void FixedUpdateNetwork()
         {
-            transform.Translate(Vector2.right * bulletSpeed);
+            transform.Translate(Vector2.right * 1f);
             if (life.Expired(Runner))
             {
                 Runner.Despawn(Object);
@@ -37,16 +37,15 @@ namespace Identi5.GamePlay.Player
         #region - OnTrigger -
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            var player = collider.GetComponent<PlayerController>();
+            var player = collider.GetComponent<PlayerNetworkData>();
             // var enemy = collider.GetComponent<Enemy>();
             // var livings = collider.GetComponent<Livings>();
 
             if(player != null)
             {
-                if(player.PND.teamID == -1 || player.PND.teamID != GameMgr.Instance.PNDList[playerRef].teamID)
+                if(player.teamID == -1 || player.teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {
-                    player.TakeDamage(10);
-                    
+                    player.SetPlayerHP_RPC(player.HP - 10);
                 }
             }
             else
