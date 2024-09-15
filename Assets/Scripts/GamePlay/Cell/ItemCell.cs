@@ -26,7 +26,7 @@ namespace Identi5.GamePlay.Cell
 
         public void OnUseClicked()
         {
-            GameMgr.Instance.UpdatedItemList();
+            GameMgr.Instance.UpdateItemList();
         //     bool validItem = true;
 
         //     switch (itemType)
@@ -78,13 +78,6 @@ namespace Identi5.GamePlay.Cell
         //                 validItem = false;
         //             }
         //             break;
-        //     }
-
-        //     if(validItem)
-        //     {
-        //         DecreaseQuantityOrRemove(playerNetworkData.itemList);
-        //     }
         }
-
     }
 }

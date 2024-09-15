@@ -10,6 +10,7 @@ using Photon.Voice.Unity;
 using Identi5.DB;
 using Identi5.GamePlay;
 using Identi5.GamePlay.Cell;
+using Identi5.GamePlay.Player;
 
 namespace Identi5
 {
@@ -95,19 +96,22 @@ namespace Identi5
 
         #region - ItemList -
             public event Action OnItemListUpdated = null;
-            public void UpdatedItemList()
+            public void UpdateItemList()
             {
                 OnItemListUpdated?.Invoke();
             }
         #endregion
-        // #region - RankList -
-        //     public List<RankCell> rankList = new List<RankCell>();
-        //     public event Action OnRankListUpdated = null;
-        //     public void UpdateRankList()
-        //     {
-        //         OnRankListUpdated?.Invoke();
-        //     }
-        // #endregion
+        #region - RankList -
+            public event Action OnRankListUpdated = null;
+            public void UpdateRankList()
+            {
+                OnRankListUpdated?.Invoke();
+            }
+        #endregion
+
+        public Shelter shelter;
+        public DialogCell dialogCell;
+        public DocCell docCell;
+        public Dictionary<PlayerRef, PlayerVoiceDetection> playerVoiceList = new Dictionary<PlayerRef, PlayerVoiceDetection>();
     }
 }
-

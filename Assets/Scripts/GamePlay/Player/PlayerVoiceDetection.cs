@@ -1,128 +1,116 @@
-// using System.Collections.Generic;
-// using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
+using Fusion;
+using Photon.Voice.Unity;
+using Photon.Voice.Fusion;
 
-// using Fusion;
-// using Photon.Voice.Unity;
-// using Photon.Voice.Fusion;
+namespace Identi5.GamePlay.Player
+{
+    public class PlayerVoiceDetection : NetworkBehaviour
+    {
+        public Recorder rec;
+        private GameMgr gameMgr;
+        [SerializeField] public GameObject icon;
+        [SerializeField] public VoiceNetworkObject voiceObject;
+        [SerializeField] private PlayerNetworkData PND;
+        [SerializeField] private List<PlayerController> playersInRange = new List<PlayerController>();
+       
+        private void Start()
+        {
+            gameMgr = GameMgr.Instance;
+            gameMgr.playerVoiceList.Add(Object.InputAuthority, this);   
 
-// using DEMO.DB;
+            if (PND.playerRef == Runner.LocalPlayer)
+            {
+                rec = voiceObject.RecorderInUse;
+                rec.TransmitEnabled = false;
+                rec.VoiceDetection = false;
+            }
+        }
+        public void AudioCheck()
+        {
+            if(rec != null && rec.IsCurrentlyTransmitting)
+            {
+                if(PND.playerRef == Runner.LocalPlayer)
+                {
+                    icon.SetActive(true);
+                }
+                else 
+                {
+                    icon.SetActive(false);
+                }
+            }
+            else
+            {
+                foreach (var kvp in gameMgr.playerVoiceList)
+                {
+                    PlayerVoiceDetection playerVoiceDetection = kvp.Value;
 
-// namespace DEMO.GamePlay.Player
-// {
-//     public class PlayerVoiceDetection : NetworkBehaviour
-//     {
-//         [SerializeField] public VoiceNetworkObject voiceObject;
-//         [SerializeField] private PlayerNetworkData playerNetworkData;
-//         [SerializeField] private PlayerOutputData playerOutputData;
+                    if (playerVoiceDetection.voiceObject.IsSpeaking)
+                    {
+                        icon.SetActive(true);
+                    }
+                    else
+                    {
+                        icon.SetActive(false);
+                    }
+                }
+            }
+        }
 
-//         public Recorder rec;
-//         [SerializeField] private List<PlayerController> playersInRange = new List<PlayerController>();
+        #region - Distance Limit -
+        private void EnableMicrophone(PlayerController playerController, bool enable)
+        {
+            var speaker = playerController.GetPlayerVoiceDetection().voiceObject.SpeakerInUse;
+            if(rec != null)
+            {
+                if(enable == false)
+                {
+                    rec.TransmitEnabled = enable;
+                    rec.VoiceDetection = enable;
+                    speaker.enabled = enable;
+                }
+                else
+                {
+                    rec.TransmitEnabled = rec.TransmitEnabled;
+                    rec.VoiceDetection = enable;
+                    speaker.enabled = enable;
+                }
+            }
+        }
 
-//         private GamePlayManager gamePlayManager;
-        
-//         private void Start()
-//         {
-//             gamePlayManager = GamePlayManager.Instance;
-//             gamePlayManager.playerVoiceList.Add(Object.InputAuthority, this);   
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if(collider.CompareTag("Player"))
+            {
+                var colliderPlayerController = collider.GetComponent<PlayerController>();
+                playersInRange.Add(colliderPlayerController);
+                EnableMicrophone(colliderPlayerController, true);
+            }
+        }
 
-//             if (playerNetworkData.playerRef == Runner.LocalPlayer)
-//             {
-//                 rec = voiceObject.RecorderInUse;
-//                 rec.TransmitEnabled = false;
-//                 rec.VoiceDetection = false;
-//             }
-//         }
+        private void OnTriggerExit2D(Collider2D collider)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                var colliderPlayerController = collider.GetComponent<PlayerController>();
+                playersInRange.Remove(colliderPlayerController);
+                EnableMicrophone(colliderPlayerController, false);
+            }
+        }
+        #endregion
 
-//         #region - UI -
-//         public void AudioCheck()
-//         {
-//             if(rec != null && rec.IsCurrentlyTransmitting)
-//             {
-//                 if(playerNetworkData.playerRef == Runner.LocalPlayer)
-//                 {
-//                     playerNetworkData.uIManager.UpdateMicIconColor(0);
-//                     playerNetworkData.uIManager.UpdateMicTxt(playerNetworkData.playerName);
-//                 }
-//                 else 
-//                 {
-//                     playerNetworkData.uIManager.UpdateMicIconColor(-1);
-//                     playerNetworkData.uIManager.UpdateMicTxt("none");
-//                 }
-//             }
-//             else
-//             {
-//                 foreach (var kvp in gamePlayManager.playerVoiceList)
-//                 {
-//                     PlayerVoiceDetection playerVoiceDetection = kvp.Value;
-
-//                     if (playerVoiceDetection.voiceObject.IsSpeaking)
-//                     {
-//                         playerNetworkData.uIManager.UpdateMicIconColor(1);
-//                         playerNetworkData.uIManager.UpdateMicTxt(kvp.Value.playerNetworkData.playerName);
-//                     }
-//                     else
-//                     {
-//                         playerNetworkData.uIManager.UpdateMicIconColor(-1);
-//                         playerNetworkData.uIManager.UpdateMicTxt("none");
-//                     }
-//                 }
-//             }
-//         }
-//         #endregion
-
-//         #region - Distance Limit -
-//         private void EnableMicrophone(PlayerController playerController, bool enable)
-//         {
-//             var speaker = playerController.GetPlayerVoiceDetection().voiceObject.SpeakerInUse;
-//             if(rec != null)
-//             {
-//                 if(enable == false)
-//                 {
-//                     rec.TransmitEnabled = enable;
-//                     rec.VoiceDetection = enable;
-//                     speaker.enabled = enable;
-//                 }
-//                 else
-//                 {
-//                     rec.TransmitEnabled = rec.TransmitEnabled;
-//                     rec.VoiceDetection = enable;
-//                     speaker.enabled = enable;
-//                 }
-//             }
-//         }
-
-//         private void OnTriggerEnter2D(Collider2D collider)
-//         {
-//             if(collider.CompareTag("Player"))
-//             {
-//                 var colliderPlayerController = collider.GetComponent<PlayerController>();
-//                 playersInRange.Add(colliderPlayerController);
-//                 EnableMicrophone(colliderPlayerController, true);
-//             }
-//         }
-
-//         private void OnTriggerExit2D(Collider2D collider)
-//         {
-//             if (collider.CompareTag("Player"))
-//             {
-//                 var colliderPlayerController = collider.GetComponent<PlayerController>();
-//                 playersInRange.Remove(colliderPlayerController);
-//                 EnableMicrophone(colliderPlayerController, false);
-//             }
-//         }
-//         #endregion
-
-//         #region - Voice Detection -
-//         void Update()
-//         {
-//             if (rec != null && rec.TransmitEnabled && rec.VoiceDetection)
-//             {
-//                 if (rec.LevelMeter.CurrentAvgAmp >= rec.VoiceDetectionThreshold)
-//                 {
-//                     playerOutputData.totalVoiceDetectionDuration += Time.deltaTime;
-//                 }
-//             }
-//         }
-//         #endregion
-//     }
-// }
+        #region - Voice Detection -
+        void Update()
+        {
+            if (rec != null && rec.TransmitEnabled && rec.VoiceDetection)
+            {
+                if (rec.LevelMeter.CurrentAvgAmp >= rec.VoiceDetectionThreshold)
+                {
+                    GameMgr.playerOutputData.totalVoiceDetectionDuration += Time.deltaTime;
+                }
+            }
+        }
+        #endregion
+    }
+}

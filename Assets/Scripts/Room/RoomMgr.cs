@@ -101,6 +101,7 @@ namespace Identi5.Room
         }
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
+            gameMgr.PIFList.Remove(player);
             gameMgr.UpdatePIFList();
         }
         

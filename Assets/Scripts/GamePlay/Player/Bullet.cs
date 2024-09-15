@@ -5,21 +5,14 @@ namespace Identi5.GamePlay.Player
 {
     public class Bullet : NetworkBehaviour
     {
-        private PlayerRef playerRef;
         [SerializeField] private AudioSource source;
         [Networked] private TickTimer life { get; set; }
-
-        // private GamePlayManager gamePlayManager;
-
-        // private void Start()
-        // {
-        //     gamePlayManager = GamePlayManager.Instance;
-        // }
+        [Networked] public PlayerRef playerRef { get; private set; }
 
         public void Init(Vector2 mousePosition)
         {
             source.Play();
-            playerRef = Runner.LocalPlayer;
+            SetPlayerRef_RPC();
             life = TickTimer.CreateFromSeconds(Runner, 1f);
             mousePosition = mousePosition.normalized;
             transform.Translate(Vector2.zero);
@@ -33,19 +26,57 @@ namespace Identi5.GamePlay.Player
                 Runner.Despawn(Object);
             }
         }
+        
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetPlayerRef_RPC()
+        {
+            playerRef = Runner.LocalPlayer;
+		}
 
         #region - OnTrigger -
+        [SerializeField] private PlayerController playert;
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            var player = collider.GetComponent<PlayerNetworkData>();
-            // var enemy = collider.GetComponent<Enemy>();
-            // var livings = collider.GetComponent<Livings>();
+            var player = collider.GetComponent<PlayerController>();
+            var zombie = collider.GetComponent<Zombie>();
+            var livings = collider.GetComponent<Livings>();
+
+            if(collider.CompareTag("MapCollision"))
+            {
+                if(playerRef == Runner.LocalPlayer)
+                {
+                    GameMgr.playerOutputData.bulletOnCollisions++;
+                }
+            }
 
             if(player != null)
             {
-                if(player.teamID == -1 || player.teamID != GameMgr.Instance.PNDList[playerRef].teamID)
+                playert= player;
+                if(player.GetPND().playerRef == playerRef){return;}
+                if(player.GetPND().teamID == -1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {
-                    player.SetPlayerHP_RPC(player.HP - 10);
+                    player.TakeDamage(10);
+                }
+            }
+            else if(zombie != null)
+            {
+                zombie.SetZombieHP_RPC(zombie.Hp - 10);
+                if(zombie.Hp <= 0)
+                {
+                    GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
+                    zombie.DespawnZombie_RPC();
+                }
+            }
+            else if(livings != null)
+            {
+                livings.SetLivingsHP_RPC(livings.Hp - 10);
+                if(playerRef == Runner.LocalPlayer)
+                {
+                    GameMgr.playerOutputData.bulletOnLiving++;
+                }
+                if(livings.Hp <= 0)
+                {
+                    livings.DespawnLivings_RPC();
                 }
             }
             else
@@ -53,61 +84,6 @@ namespace Identi5.GamePlay.Player
                 return;
             }
             Runner.Despawn(Object);
-            // else if()
-        //     if(collider.CompareTag("MapCollision"))
-        //     {
-        //         foreach (var kvp in gamePlayManager.playerOutputList)
-        //         {
-        //             PlayerRef playerRefKey = kvp.Key;
-        //             PlayerOutputData playerOutputDataValue = kvp.Value;
-
-        //             if (playerRef == playerRefKey)
-        //             {
-        //                 playerOutputDataValue.bulletCollision++;
-        //             }
-        //         }
-
-        //         AudioManager.Instance.Play("Hit");
-        //         Runner.Despawn(Object);
-        //     }
-
-        //     
-
-        //     if (enemy != null)
-        //     {
-        //         enemy.TakeDamage(damage, playerRef);
-        //         AudioManager.Instance.Play("Hit");
-        //         Runner.Despawn(Object);
-        //     }
-        //     else if(player != null)                  ////////////////////////// team will not shoot each other
-        //     {
-        //         if(player.GetPlayerNetworkData().playerRef != playerRef)
-        //         {
-        //             if(player.GetPlayerNetworkData().teamID != shooter.GetPlayerNetworkData().teamID || shooter.GetPlayerNetworkData().teamID == -1)
-        //             {
-        //                 player.TakeDamage(damage, playerRef);
-        //             }
-        //             AudioManager.Instance.Play("Hit");
-        //             Runner.Despawn(Object);
-        //         }
-        //     }
-        //     else if(collider.CompareTag("Livings"))
-        //     {
-        //         livings.TakeDamage(damage, playerRef);
-
-        //         foreach (var kvp in gamePlayManager.playerOutputList)
-        //         {
-        //             PlayerRef playerRefKey = kvp.Key;
-        //             PlayerOutputData playerOutputDataValue = kvp.Value;
-
-        //             if (playerRef == playerRefKey)
-        //             {
-        //                 playerOutputDataValue.bulletCollisionOnLiving++;
-        //             }
-        //         }
-        //         AudioManager.Instance.Play("Hit");
-        //         Runner.Despawn(Object);
-        //     }
         }
         #endregion
     }

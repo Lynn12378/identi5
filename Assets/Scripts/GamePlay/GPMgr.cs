@@ -17,6 +17,8 @@ namespace Identi5.GamePlay
         private PlayerRef localPlayer;
         private PlayerNetworkData PND;
         private PlayerOutputData POD;
+        public DialogCell dialogCell;
+        public DocCell docCell;
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private PanelMgr panelMgr;
 
@@ -32,7 +34,8 @@ namespace Identi5.GamePlay
             gameMgr.OnInPNDListUpdated -= UpdatedPNDList;
             gameMgr.OnTeamListUpdated -= UpdatedTeamList;
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
-            gameMgr.OnItemListUpdated -= UpdatedItemList;
+            gameMgr.OnItemListUpdated -= UpdateItemList;
+            gameMgr.OnRankListUpdated -= UpdateRankList;
         }
 
         #region - Start Game -
@@ -54,7 +57,8 @@ namespace Identi5.GamePlay
             gameMgr.OnInPNDListUpdated += UpdatedPNDList;
             gameMgr.OnTeamListUpdated += UpdatedTeamList;
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
-            gameMgr.OnItemListUpdated += UpdatedItemList;
+            gameMgr.OnItemListUpdated += UpdateItemList;
+            gameMgr.OnRankListUpdated += UpdateRankList;
 
             localPlayer = runner.LocalPlayer;
             var playerObject = runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, localPlayer);
@@ -62,30 +66,41 @@ namespace Identi5.GamePlay
             runner.SetPlayerObject(localPlayer, playerObject);
             Camera.main.transform.SetParent(playerObject.transform);
             Init();
-            
-            // var spawner = FindObjectOfType<Spawner>();
-            // spawner.StartSpawners();
+            SortKill();
+            gameMgr.UpdatedPNDList();
+            gameMgr.dialogCell = dialogCell;
+            gameMgr.docCell = docCell;
+        }
+
+        public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+        {
+            gameMgr.UpdatedPNDList();
         }
 
         #endregion
         #region - PND -
-                public void UpdatedPNDList()
+            private List<ReceiverCell> receiverCells = new List<ReceiverCell>();
+            [SerializeField] private ReceiverCell receiverCell = null;
+            [SerializeField] private Transform receiverContentTrans = null;
+            public void UpdatedPNDList()
+            {
+                rankList.Clear();
+                foreach(var cell in receiverCells)
                 {
-                    // foreach (var gamePlayer in gameMgr.PNDList.Values)
-                    // {
-                    //     if(gamePlayer == PND || PND.teamID == -1) continue;
-
-                    //     if (gamePlayer.teamID == PND.teamID)
-                    //     {
-                    //         gamePlayer.minimapIcon.SetActive(true);
-                    //     }
-                    //     else
-                    //     {
-                    //         gamePlayer.minimapIcon.SetActive(false);
-                    //     }
-                    // }
+                    Destroy(cell.gameObject);
                 }
-                #endregion
+                receiverCells.Clear();
+                foreach(var player in gameMgr.PNDList.Values)
+                {
+                    rankList.Add(player);
+                    if(player.playerRef == localPlayer){continue;}
+                    var cell = Instantiate(receiverCell);
+                    cell.SetInfo(player.playerRef, player.playerName);
+                    cell.transform.SetParent(receiverContentTrans, false);
+                    receiverCells.Add(cell);
+                }
+            }
+        #endregion
         
         #region - Messages - 
         [SerializeField] private TMP_Text messageTxt = null;
@@ -139,6 +154,7 @@ namespace Identi5.GamePlay
         {
             PND.SetPlayerTeamID_RPC(0);
             OnActivePanel();
+            POD.quitTeamNo++;
         }
 
         public void OnActivePanel()
@@ -189,7 +205,7 @@ namespace Identi5.GamePlay
         [SerializeField] private Transform itemContentTrans = null;
         private List<ItemCell> itemCells = new List<ItemCell>();
         
-        public void UpdatedItemList()
+        public void UpdateItemList()
         {
             var tempList = new List<Item>();
             foreach(var cell in itemCells)
@@ -236,7 +252,8 @@ namespace Identi5.GamePlay
             {
                 PND.itemList.Add(item);
             }
-            gameMgr.UpdatedItemList();
+            gameMgr.UpdateItemList();
+            POD.organizeNo++;
         }
         #endregion
 
@@ -245,34 +262,81 @@ namespace Identi5.GamePlay
             public Item itemAction;
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
-            
-            public void SetReceiver(PlayerRef receiver)
-            {
-                this.receiver = receiver;
-                itemAction.quantity--;
-                gameMgr.UpdatedItemList();
-                CloseActionPanel();
-            }
             public void SetItemAction(Item itemAction)
             {
                 this.itemAction = itemAction;
                 actionListPanel.SetActive(true);
             }
+
+            public void SetReceiver(PlayerRef receiver)
+            {
+                this.receiver = receiver;
+                itemAction.quantity--;
+                gameMgr.UpdateItemList();
+                CloseActionPanel();
+            }
+
+            public void GiveItem()
+            {
+                gameMgr.PNDList[receiver].SetItem_RPC(itemAction);
+                itemAction.quantity--;
+                CloseGivenPanel();
+                POD.giftNo++;
+                gameMgr.dialogCell.SetInfo("已送出該物品");
+            }
+            
+            public void UseItem()
+            {
+                switch((Item.ItemType)itemAction.itemId)
+                {
+                    case Item.ItemType.Bullet:
+                        POD.remainBullet.Add(PND.bulletAmount);
+                        PND.SetPlayerBullet_RPC(PND.bulletAmount + 10);
+                        break;
+                    case Item.ItemType.Food:
+                        PND.SetPlayerFood_RPC(PND.foodAmount + 20);
+                        break;
+                    case Item.ItemType.Health:
+                        POD.remainHP.Add(PND.HP);
+                        PND.SetPlayerHP_RPC(PND.HP + 20);                    
+                        break;
+                    case Item.ItemType.Wood:
+                        if(gameMgr.shelter != null)
+                        {
+                            gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
+                        }
+                        else
+                        {
+                            gameMgr.dialogCell.SetInfo("該物品無法使用");
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                itemAction.quantity--;
+                gameMgr.UpdateItemList();
+                CloseActionPanel();
+            }
+
             public void DiscardItem()
             {
                 itemAction.quantity--;
-                gameMgr.UpdatedItemList();
+                gameMgr.UpdateItemList();
                 CloseActionPanel();
             }
+
             #region - Panel - 
             public void CloseActionPanel()
             {
                 actionListPanel.SetActive(false);
             }
+
             public void ActiveGivenPanel()
             {
                 givenPanel.SetActive(true);
             }
+
             public void CloseGivenPanel()
             {
                 givenPanel.SetActive(false);
@@ -280,10 +344,85 @@ namespace Identi5.GamePlay
             #endregion
             
         #endregion
+
+        #region - Rank -
+            [SerializeField] private RankCell rankCell;
+            [SerializeField] private Transform rankContentTrans = null;
+            List<PlayerNetworkData> rankList = new List<PlayerNetworkData>();
+             List<float> scoreList = new List<float>();
+            private List<RankCell> rankCells = new List<RankCell>();
+
+            public void OnRankBtnCliked()
+            {
+                POD.rankClikedNo++;
+            }
+    
+            public void SortKill()
+            {
+                rankList.Sort((a, b) => b.killNo.CompareTo(a.killNo));
+                scoreList.Clear();
+                foreach(var rank in rankList)
+                {
+                    scoreList.Add(rank.killNo);
+                }
+                gameMgr.UpdateRankList();
+            }
+            public void SortDeath()
+            {
+                rankList.Sort((b, a) => b.deathNo.CompareTo(a.deathNo));
+                scoreList.Clear();
+                foreach(var rank in rankList)
+                {
+                    scoreList.Add(rank.deathNo);
+                }
+                gameMgr.UpdateRankList();
+            }
+            public void SortSuvivetime()
+            {
+                rankList.Sort((a, b) => b.surviveTime.CompareTo(a.surviveTime));
+                scoreList.Clear();
+                foreach(var rank in rankList)
+                {
+                    scoreList.Add(rank.surviveTime);
+                }
+                gameMgr.UpdateRankList();
+            }
+            public void SortContribution()
+            {
+                rankList.Sort((a, b) => b.contribution.CompareTo(a.contribution));
+                scoreList.Clear();
+                foreach(var rank in rankList)
+                {
+                    scoreList.Add(rank.contribution);
+                }
+                gameMgr.UpdateRankList();
+            }
+            
+            public void UpdateRankList()
+            {
+                foreach(var cell in rankCells)
+                {
+                    Destroy(cell.gameObject);
+                }
+                rankCells.Clear();
+                foreach(var PND in rankList)
+                {
+                    var i = 1;
+                    var cell = Instantiate(rankCell, rankContentTrans);
+                    cell.SetInfo(PND.playerName,scoreList[i-1],i);
+                    rankCells.Add(cell);
+                    i++;
+                }
+            }
+        #endregion 
+
+        public void OnOutfitBtnCliked()
+        {
+            POD.oufitClikedNo++;
+        }
        
 		#region /-- Unused Function --/
             public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){}
-            public void OnPlayerLeft(NetworkRunner runner, PlayerRef player){}
             public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason){}
             public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player){}
             public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player){}

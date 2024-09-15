@@ -9,16 +9,16 @@ namespace Identi5.GamePlay.Player
         private NetworkButtons buttonsPrevious;
         private float surviveTime = 0f;
         private PlayerOutputData POD;
-
-        private Shelter shelter;
         private Item item;
+        private Livings livings;
+        private Building building;
 
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private Transform trans;
         [SerializeField] private SpriteRenderer weapon;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
-        // [SerializeField] private PlayerVoiceDetection voiceDetection = null;
+        [SerializeField] private PlayerVoiceDetection voiceDetection = null;
         // private MapInteractionManager mapInteractionManager;
         // private Item itemInRange = null;
         // private IInteractable interactableInRange = null;
@@ -28,8 +28,17 @@ namespace Identi5.GamePlay.Player
         // [SerializeField] private PlayerOutputData POD;
         [Networked] private TickTimer HPTimer { get; set; }
         [Networked] private TickTimer foodTimer { get; set; }
-
+        [Networked, OnChangedRender(nameof(Flip))]
+        private bool isFlip { get; set; }
         
+        public PlayerNetworkData GetPND()
+        {
+            return PND;
+        }
+        public PlayerVoiceDetection GetPlayerVoiceDetection()
+        {
+            return voiceDetection;
+        }
         public override void Spawned()
         {
             gameMgr = GameMgr.Instance;
@@ -47,6 +56,7 @@ namespace Identi5.GamePlay.Player
             if(surviveTime > PND.surviveTime)
             {
                 PND.SetSurviveTime_RPC(surviveTime);
+                POD.surviveTime = surviveTime;
             }
             PND.Init();
             surviveTime = 0f;
@@ -76,7 +86,7 @@ namespace Identi5.GamePlay.Player
             //     uIManager.UpdateMinimapArrow(gameObject.transform);
             // }
 
-            if (shelter != null)
+            if (gameMgr.shelter != null)
             {
                 if (HPTimer.Expired(Runner))
                 {
@@ -84,8 +94,7 @@ namespace Identi5.GamePlay.Player
                     HPTimer = TickTimer.CreateFromSeconds(Runner, 5);
                 }
             }
-
-            // voiceDetection.AudioCheck();
+            voiceDetection.AudioCheck();
         }
 
         #region - Input -
@@ -97,9 +106,7 @@ namespace Identi5.GamePlay.Player
 
             movementHandler.Move(data);
             movementHandler.SetRotation(data.mousePosition);
-            bool b = (data.mousePosition.x - trans.position.x) < 0;
-            trans.rotation = b ? new Quaternion(0, 0 , 0, 1) : new Quaternion(0, 180 , 0, 1);
-            weapon.flipY = b;
+            SetIsFlip_RPC((data.mousePosition.x - trans.position.x) < 0);
 
             if (pressed.IsSet(InputButtons.FIRE))
             {
@@ -108,165 +115,84 @@ namespace Identi5.GamePlay.Player
                     attackHandler.Shoot(data.mousePosition);
                     PND.SetPlayerBullet_RPC(PND.bulletAmount - 1);
                 }
-                // else
-                // {
-                //     gamePlayManager.ShowWarningBox("請填充子彈。");
-                // }
+                else
+                {
+                    gameMgr.dialogCell.SetInfo("請補充子彈");
+                }
             }
 
             if (pressed.IsSet(InputButtons.SPACE))
             {
                 if(item != null)
                 {
-                    if(PND.itemList.Count < 12)
+                    if(item.itemId == (int)Item.ItemType.Coin)
+                    {
+                        PND.SetPlayerCoin_RPC(PND.coinAmount);
+                        item.DespawnItem_RPC();
+                    }
+                    else if(PND.itemList.Count < 12)
                     {
                         var itemPicked = Instantiate(item.gameObject).GetComponent<Item>();
                         PND.itemList.Add(itemPicked);
-                        gameMgr.UpdatedItemList();
-                        item.Despawned();
+                        gameMgr.UpdateItemList();
+                        item.DespawnItem_RPC();
                     }
                     else
                     {
-                        // ShowMessage
+                        gameMgr.dialogCell.SetInfo("物品欄位已滿");
+                        POD.fullNo++;
                     }
                 }
-            //     else if(shopInRange)
-            //     {
-            //         uIManager.OnOpenShopButton();
-            //     }
-            //     else if(interactableInRange != null && isInteracting == false)
-            //     {
-            //         Interact();
-            //         isInteracting = true;
-            //     }
-            //     else if ( (interactableInRange != null && isInteracting) || interactableInRange == null)
-            //     {
-            //         EndInteract();
-            //     }
-            //     else
-            //     {
-            //         return;
-            //     }
+                if(livings != null)
+                {
+                    livings.Interact();
+                    POD.interactNo++;
+                }
+                if(building != null)
+                {
+                    gameMgr.docCell.SetInfo(building.GetDoc());
+                }
             }
-
-            // if (pressed.IsSet(InputButtons.PET))
-            // {
-            //     if (isInteracting && mapInteractionManager.currentInteraction.interactionType == InteractionType.Pet)
-            //     {
-            //         mapInteractionManager.Pet(gameObject);
-            //         playerOutputData.petNo++;
-            //     }
-            // }
-
-            // if (pressed.IsSet(InputButtons.TALK))
-            // {
-            //     voiceDetection.rec.TransmitEnabled = !voiceDetection.rec.TransmitEnabled;
-            // }
-
-            // if (pressed.IsSet(InputButtons.RELOAD) && shelter != null)
-            // {
-            //     PND.SetPlayerBullet_RPC(PND.bulletAmount + 5);
-            // }
+            if (pressed.IsSet(InputButtons.TALK))
+            {
+                voiceDetection.rec.TransmitEnabled = !voiceDetection.rec.TransmitEnabled;
+            }
         }
         #endregion
-
-        // #region - Pickup Item -
-        // private void Pickup()
-        // {
-        //     var item = itemInRange.GetComponent<Item>();
-
-        //     // If item is coin, then just add to coinAmount
-        //     if(item.itemType == Item.ItemType.Coin)
-        //     {
-        //         PND.SetPlayerCoin_RPC(PND.coinAmount + 10);
-        //         AudioManager.Instance.Play("Pickup");
-        //         itemInRange.DespawnItem_RPC();
-        //     }
-
-        //     // If item not coin and enough space    
-        //     if (PND.itemList.Count < 12 && item.itemType != Item.ItemType.Coin)
-        //     {
-        //         PND.itemList.Add(item);
-        //         PND.UpdateItemList();
-
-        //         if (item.itemId >= 5 && item.itemId <= 13)
-        //         {
-        //             playerOutputData.placeholderNo++;
-        //         }
-
-        //         AudioManager.Instance.Play("Pickup");
-        //         itemInRange.DespawnItem_RPC();
-        //     }
-        //     else if(PND.itemList.Count >= 12)
-        //     {
-        //         playerOutputData.fullNo++;
-        //         // gameMgr.ShowWarningBox("背包已滿，不能撿起物品。");
-        //     }
-        // }
-        // #endregion
-
-        // #region - Interact -
-        // private void Interact()
-        // {
-        //     var interactable = interactableInRange;
-        //     interactable.Interact();
-        // }
-
-        // private void EndInteract()
-        // {
-        //     mapInteractionManager.EndInteraction();
-        //     isInteracting = false;
-        // }
-        // #endregion
 
         #region - On Trigger -
         private void OnTriggerStay2D(Collider2D collider)
         {
-            // IInteractable interactable = collider.GetComponent<IInteractable>();
-            shelter = collider.GetComponent<Shelter>();
+            gameMgr.shelter = collider.GetComponent<Shelter>();
             item = collider.GetComponent<Item>();
+            livings = collider.GetComponent<Livings>();
+            building = collider.GetComponent<Building>();
         }
 
-        // #region - OnCollision -
-        // private void OnCollisionEnter2D(Collision2D collision)
-        // {
-        //     if(collision.collider.CompareTag("MapCollision"))
-        //     {
-        //         playerOutputData.collisionNo++;
-        //         Debug.Log(PND.playerRefString + "'s collision no. is: " + playerOutputData.collisionNo.ToString());
-        //     }
-
-        //     if(collision.collider.CompareTag("Shop"))
-        //     {
-        //         shopInRange = true;
-        //     }
-        // }
-
-        // private void OnCollisionExit2D(Collision2D collision)
-        // {
-        //     if(collision.collider.CompareTag("Shop"))
-        //     {
-        //         shopInRange = false;
-        //         uIManager.CloseShopPanel();
-        //     }
-        // }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(collision.collider.CompareTag("MapCollision"))
+            {
+                POD.collisionNo++;
+            }
+        }
         #endregion
 
-        // public void TakeDamage(int damage, PlayerRef shooter)
-        // {
-        //     PND.SetPlayerHP_RPC(PND.HP - damage);
-        //     AudioManager.Instance.Play("Hit");
+        public void TakeDamage(int damage)
+        {
+            PND.SetPlayerHP_RPC(PND.HP - damage);
+        }
 
-        //     foreach (var kvp in gameMgr.playerOutputList)
-        //     {
-        //         PlayerRef playerRefKey = kvp.Key;
-        //         PlayerOutputData playerOutputDataValue = kvp.Value;
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetIsFlip_RPC(bool isFlip)
+        {
+            this.isFlip = isFlip;
+		}
 
-        //         if (shooter == playerRefKey)
-        //         {
-        //             playerOutputDataValue.bulletCollisionOnLiving++;
-        //         }
-        //     }
-        // }
+        private void Flip()
+        {
+            trans.rotation = isFlip ? new Quaternion(0, 0 , 0, 1) : new Quaternion(0, 180 , 0, 1);
+            weapon.flipY = isFlip;
+        }
     }
 }

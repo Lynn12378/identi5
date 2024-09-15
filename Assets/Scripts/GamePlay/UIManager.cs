@@ -62,17 +62,7 @@ namespace Identi5.GamePlay
         private void Start()
         {
             gameMgr = GameMgr.Instance;
-            // inventorySlots = slotsBackground.GetComponentsInChildren<InventorySlot>();
         }
-
-        // public void InitializeItemSlots(PlayerNetworkData playerNetworkData)
-        // {
-        //     itemSlots = shopPanel.GetComponentsInChildren<ShopItemSlot>();
-        //     foreach (var slot in itemSlots)
-        //     {
-        //         slot.Initialize(playerNetworkData);
-        //     }
-        // }
 
         // #region - Minimap -
         // public void UpdateMinimapArrow(Transform playerTransform)

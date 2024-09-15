@@ -5,14 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
-  - Enemy
   - MapCollision
-  - SpawnPoint
   - Shelter
   - Livings
-  - Placeholder
   - SmallCollider
-  - Shop
+  - Zombie
+  - Building
   layers:
   - Default
   - TransparentFX

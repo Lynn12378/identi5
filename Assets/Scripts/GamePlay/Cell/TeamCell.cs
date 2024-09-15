@@ -47,6 +47,7 @@ namespace Identi5.GamePlay.Cell
         public void OnJoinClicked()
         {        
             gameMgr.PNDList[Runner.LocalPlayer].SetPlayerTeamID_RPC(teamID);
+            FindObjectOfType<PlayerOutputData>().joinTeamNo++;
         }
 
         #region - RPCs -

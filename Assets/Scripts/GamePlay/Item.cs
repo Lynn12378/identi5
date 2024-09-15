@@ -29,6 +29,7 @@ namespace Identi5.GamePlay
             var itemWorld = GameObject.Find("GPManager/itemWorld");
             transform.SetParent(itemWorld.transform, false);
             SetItemID_RPC(itemID);
+            OnItemIDChange();
         }
 
         public void OnItemIDChange()
@@ -37,8 +38,9 @@ namespace Identi5.GamePlay
             spriteResolver.SetCategoryAndLabel("item", type.ToString());
             itemId = itemID;
 		}
-
-		public void Despawned()
+        
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void DespawnItem_RPC()
         {
             Runner.Despawn(Object);
 		}
