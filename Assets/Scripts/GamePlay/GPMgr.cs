@@ -49,6 +49,7 @@ namespace Identi5.GamePlay
             PND.SetPlayerInfo_RPC(PIF.playerId, PIF.playerName);
             PND.SetColorList(PIF.colorList);
             PND.SetOutfits(PIF.outfits);
+            GameMgr.playerNetworkData = PND;
 
             PIF.Despawned();
         }

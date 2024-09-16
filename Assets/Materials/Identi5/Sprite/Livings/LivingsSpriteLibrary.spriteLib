@@ -19,22 +19,92 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: Dog1
       m_Hash: 232481073
-      m_Sprite: {fileID: 0}
+      m_Sprite: {fileID: 8766275244866583510, guid: 8cc4ffa55bf75024e8a568a4e5b66542, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 0}
+      m_SpriteOverride: {fileID: 8766275244866583510, guid: 8cc4ffa55bf75024e8a568a4e5b66542, type: 3}
+    - m_Name: Dog2
+      m_Hash: 349319307
+      m_Sprite: {fileID: -7336081715125077504, guid: 05063cc82f7a06e46a962fa0751bc74d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7336081715125077504, guid: 05063cc82f7a06e46a962fa0751bc74d, type: 3}
+    - m_Name: Dog3
+      m_Hash: 601161757
+      m_Sprite: {fileID: 8110379209132325798, guid: 745e72c57aedc154b8372ce3ade7b24b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8110379209132325798, guid: 745e72c57aedc154b8372ce3ade7b24b, type: 3}
+    - m_Name: Dog4
+      m_Hash: 1035048382
+      m_Sprite: {fileID: 539187468279614127, guid: 638588240a9cc1d46b9cd3f216f8fcc7, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 539187468279614127, guid: 638588240a9cc1d46b9cd3f216f8fcc7, type: 3}
+    - m_Name: Cat1
+      m_Hash: 998061328
+      m_Sprite: {fileID: 3157300726208037309, guid: 25764acc79db2694688d3d871b82a452, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3157300726208037309, guid: 25764acc79db2694688d3d871b82a452, type: 3}
+    - m_Name: Cat2
+      m_Hash: 578053290
+      m_Sprite: {fileID: -689580003100269895, guid: 6b9aa5ec8d431ad4c95bfdf96d1bd404, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -689580003100269895, guid: 6b9aa5ec8d431ad4c95bfdf96d1bd404, type: 3}
+    - m_Name: Cat3
+      m_Hash: 359879740
+      m_Sprite: {fileID: -7743237402500359526, guid: c852390cf8c71924fab9e8ffbf41dcd6, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -7743237402500359526, guid: c852390cf8c71924fab9e8ffbf41dcd6, type: 3}
+    - m_Name: Cat4
+      m_Hash: 186106271
+      m_Sprite: {fileID: -6413066581207609112, guid: dcc1747f7ee52f24b9f6b1f97aa9afaa, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -6413066581207609112, guid: dcc1747f7ee52f24b9f6b1f97aa9afaa, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 8
   - m_Name: livings_2
     m_Hash: 269067913
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: Dog1
       m_Hash: 232481073
-      m_Sprite: {fileID: 0}
+      m_Sprite: {fileID: 8758227030914595385, guid: d1258d89422426345b4d357c08e74145, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 0}
+      m_SpriteOverride: {fileID: 8758227030914595385, guid: d1258d89422426345b4d357c08e74145, type: 3}
+    - m_Name: Dog2
+      m_Hash: 349319307
+      m_Sprite: {fileID: 7993773693011264732, guid: 2f9fc5f6f8860a140ae7f3918fa5168b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7993773693011264732, guid: 2f9fc5f6f8860a140ae7f3918fa5168b, type: 3}
+    - m_Name: Dog3
+      m_Hash: 601161757
+      m_Sprite: {fileID: -5565254704825332109, guid: 41eef69582dd7714ab5114e94df330c8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -5565254704825332109, guid: 41eef69582dd7714ab5114e94df330c8, type: 3}
+    - m_Name: Dog4
+      m_Hash: 1035048382
+      m_Sprite: {fileID: 7102383282657882789, guid: d2a24925c2b0f7342ae56e331ab318fe, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7102383282657882789, guid: d2a24925c2b0f7342ae56e331ab318fe, type: 3}
+    - m_Name: Cat1
+      m_Hash: 998061328
+      m_Sprite: {fileID: -1486489600365148003, guid: cd1328bfed24ae1448fbd857e137fece, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1486489600365148003, guid: cd1328bfed24ae1448fbd857e137fece, type: 3}
+    - m_Name: Cat2
+      m_Hash: 578053290
+      m_Sprite: {fileID: 5332560622135094213, guid: cd9bf9843faec274d932d302326f94eb, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 5332560622135094213, guid: cd9bf9843faec274d932d302326f94eb, type: 3}
+    - m_Name: Cat3
+      m_Hash: 359879740
+      m_Sprite: {fileID: 1967092588963256640, guid: acd17d4c80d06624fb3e9964e171c741, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1967092588963256640, guid: acd17d4c80d06624fb3e9964e171c741, type: 3}
+    - m_Name: Cat4
+      m_Hash: 186106271
+      m_Sprite: {fileID: 7137648278186670047, guid: b3bdca0dc0dd1284e911c34b0960a889, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 7137648278186670047, guid: b3bdca0dc0dd1284e911c34b0960a889, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 1
+    m_EntryOverrideCount: 8
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638620693462583022
+  m_ModificationHash: 638620779923508095
   m_Version: 1

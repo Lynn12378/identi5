@@ -109,13 +109,13 @@ namespace Identi5.GamePlay
         [SerializeField] private TextMeshProUGUI playerCoinAmount;
         public void UpdateCoinAmountTxt(int coinAmount)
         {
-            // playerCoinAmount.SetText(coinAmount.ToString());
+            playerCoinAmount.SetText(coinAmount.ToString());
         }
 
         #region - Minimap -
         public Transform baseTransform;
         public RectTransform arrowRectTransform;
-        public float initialAngleOffset = 90f;
+        public float initialAngleOffset = 350f;
 
         public void UpdateMinimapArrow(Transform playerTransform)
         {

@@ -56,7 +56,7 @@ namespace Identi5.GamePlay
         {
             livingsType = (LivingsType) livingsID;
             spriteResolver.SetCategoryAndLabel("livings", livingsType.ToString());
-            spriteResolver.SetCategoryAndLabel("livings_2", livingsType.ToString());
+            spriteResolver2.SetCategoryAndLabel("livings_2", livingsType.ToString());
             Debug.Log(livingsType.ToString());
         }
         #endregion

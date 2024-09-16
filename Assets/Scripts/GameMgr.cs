@@ -61,6 +61,7 @@ namespace Identi5
         #endregion
 
         #region - playerNetworkData -
+            public static PlayerNetworkData playerNetworkData;
             public Dictionary<PlayerRef, PlayerNetworkData> PNDList = new Dictionary<PlayerRef, PlayerNetworkData>();
             
             public event Action OnInPNDListUpdated = null;
@@ -89,6 +90,10 @@ namespace Identi5
             public List<TeamCell> teamList = new List<TeamCell>();
             public event Action OnTeamListUpdated = null;
             public void UpdatedTeamList()
+            {
+                OnTeamListUpdated?.Invoke();
+            }
+            public void UpdatedPlayerMinimap()
             {
                 OnTeamListUpdated?.Invoke();
             }

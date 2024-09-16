@@ -81,10 +81,10 @@ namespace Identi5.GamePlay.Player
                 ApplyInput(data);
             }
 
-            // if(PND.playerRef == Runner.LocalPlayer)
-            // {
-            //     uIManager.UpdateMinimapArrow(gameObject.transform);
-            // }
+            if(PND.playerRef == Runner.LocalPlayer)
+            {
+                PND.uIManager.UpdateMinimapArrow(gameObject.transform);
+            }
 
             if (gameMgr.shelter != null)
             {

@@ -1268,6 +1268,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1422947231120268285}
     - target: {fileID: 6097542614129085835, guid: ed14ee6a7013e8c4cad20df0ce9975b3, type: 3}
+      propertyPath: minimapIcon
+      value: 
+      objectReference: {fileID: 5741847462493712553}
+    - target: {fileID: 6097542614129085835, guid: ed14ee6a7013e8c4cad20df0ce9975b3, type: 3}
       propertyPath: playerNameTxt
       value: 
       objectReference: {fileID: 1824611488683744326}

@@ -7,32 +7,24 @@ namespace Identi5.GamePlay.Cell
 {
     public class ShopCell : MonoBehaviour
     {
-        private Item item;
-        private Item.ItemType itemType;
+        [SerializeField] private Item item;
+        [SerializeField] public Item.ItemType itemType;
+        [SerializeField] private int buyCost;
         public Image itemImage;
         public SpriteLibraryAsset spriteLibraryAsset;
-
-        public Button leftButton;
-        public Button rightButton;
-        public Button buyButton;
         public TMP_InputField inputField;
-        public TextMeshProUGUI costTxt;
+        public TMP_Text costTxt;
         private int buyQuantity = 1;
-        [SerializeField] private int buyCost;
         private int totalCost;
 
         private PlayerNetworkData playerNetworkData;
 
-        private void Start(Item item)
+        private void Start()
         {
-            itemType = (Item.ItemType)item.itemId;
+            playerNetworkData = GameMgr.playerNetworkData;
             itemImage.sprite = spriteLibraryAsset.GetSprite("item", itemType.ToString());
             inputField.text = buyQuantity.ToString();
             UpdateTotalCost();
-        }
-        public void Initialize(PlayerNetworkData playerNetworkData)
-        {
-            this.playerNetworkData = playerNetworkData;
         }
 
         public void OnInputFieldValueChanged(string value)
@@ -44,7 +36,7 @@ namespace Identi5.GamePlay.Cell
             }
             else
             {
-                inputField.text = buyQuantity.ToString(); // If input not valid, back to latest buyQuantity
+                inputField.text = buyQuantity.ToString();
             }
         }
 
@@ -52,11 +44,11 @@ namespace Identi5.GamePlay.Cell
         {
             if (!int.TryParse(value, out int result) || result <= 0)
             {
-                inputField.text = buyQuantity.ToString(); // Ensure input valid
+                inputField.text = buyQuantity.ToString();
             }
             else
             {
-                UpdateTotalCost(); // Ensure total cost is updated when editing end
+                UpdateTotalCost();
             }
         }
 
@@ -85,13 +77,17 @@ namespace Identi5.GamePlay.Cell
 
         public void OnBuyButton()
         {
+            if(playerNetworkData.itemList .Count > 11)
+            {
+                GameMgr.Instance.dialogCell.SetInfo("背包已滿");
+                return;
+            }
+
             if(playerNetworkData.coinAmount >= totalCost)
             {
-                item = new Item
-                {
-                    itemId = (int)itemType,
-                    quantity = buyQuantity
-                };
+                item.itemId = (int)itemType;
+                item.quantity = buyQuantity;
+                Instantiate(item);
 
                 playerNetworkData.itemList.Add(item);
                 GameMgr.Instance.UpdateItemList();

@@ -204,6 +204,7 @@ namespace Identi5.GamePlay
                     case nameof(teamID):
                         gameMgr.UpdatedPNDList();
                         gameMgr.UpdatedTeamList();
+                        gameMgr.UpdatedPlayerMinimap();
                         break;
                     case nameof(outfits):
                         uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
