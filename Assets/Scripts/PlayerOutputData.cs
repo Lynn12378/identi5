@@ -10,7 +10,8 @@ namespace Identi5
 
         #region - Openness -
         public float outfitTime;
-        public int oufitClikedNo;
+        public int oufitBoughtNo;
+        public int placeholderNo;
 
         #endregion
 
@@ -48,7 +49,7 @@ namespace Identi5
         #endregion
 
         public float totalVoiceDetectionDuration;           // Duration of voice detected on player's mic
-        public int placeholderNo;                           // No. of placeholder items that player pick up
+                                   // No. of placeholder items that player pick up
         public int repairQuantity;                          // Quantity of player given to repair shelter
         public int usePlaceholderNo;                        // No. of player use badge at right building
         public float durationOfRound;

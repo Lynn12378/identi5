@@ -11,14 +11,14 @@ namespace Identi5.GamePlay
     {
         public enum LivingsType
         {
-            Cat1,
-            Cat2,
-            Cat3,
-            Cat4,
             Dog1,
             Dog2,
             Dog3,
             Dog4,
+            Cat1,
+            Cat2,
+            Cat3,
+            Cat4,
             Goose,
             Squirrel,
             Frog,
@@ -28,6 +28,7 @@ namespace Identi5.GamePlay
         [SerializeField] private NetworkRigidbody2D livingsNetworkRigidbody = null;
 
         [SerializeField] private SpriteResolver spriteResolver;
+        [SerializeField] private SpriteResolver spriteResolver2;
         [SerializeField] public Slider HpSlider;
         [SerializeField] GameObject love;
     
@@ -54,7 +55,9 @@ namespace Identi5.GamePlay
         public void Init()
         {
             livingsType = (LivingsType) livingsID;
-            spriteResolver.SetCategoryAndLabel("livings", livingsType.ToString());            
+            spriteResolver.SetCategoryAndLabel("livings", livingsType.ToString());
+            spriteResolver.SetCategoryAndLabel("livings_2", livingsType.ToString());
+            Debug.Log(livingsType.ToString());
         }
         #endregion
 
@@ -65,9 +68,9 @@ namespace Identi5.GamePlay
             {
                 moveDirection = Random.insideUnitCircle.normalized;
                 isMoving = true;
-                yield return new WaitForSeconds(Random.Range(1.0f, 3.0f)); // Move for a random duration
+                yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
                 isMoving = false;
-                yield return new WaitForSeconds(Random.Range(1.0f, 3.0f)); // Wait before next movement
+                yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
             }
         }
 

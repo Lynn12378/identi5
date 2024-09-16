@@ -11,6 +11,7 @@ namespace Identi5.GamePlay
         private GameMgr gameMgr;
         private ChangeDetector changes;
         public UIManager uIManager;
+        public GameObject minimapIcon;
         private PlayerOutputData POD;
         
         #region - max -
@@ -59,11 +60,16 @@ namespace Identi5.GamePlay
                 SetPlayerRef_RPC();
                 SetPlayerCoin_RPC(100);
                 HPSlider.fillRect.GetComponent<Image>().color = Color.green;
+                minimapIcon.GetComponent<SpriteRenderer>().color = Color.green;
                 if(outfits.Get(0) != ""){
                     uIManager.playerImg.Init();
                     uIManager.UpdatedOutfits(outfits);
                 }
                 uIManager.UpdatedColor(colorList);
+            }
+            else
+            {
+                minimapIcon.SetActive(false);
             }
             
             if(outfits.Get(0) != "")

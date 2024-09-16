@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -7522646816593561284, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -384,6 +388,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2748366638123698662, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -729,6 +737,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -8022606543317063009, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -942,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &33269468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1175,6 +1188,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -8325466158241878518, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -2453,6 +2470,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -923645657276481064, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 99
@@ -2763,6 +2784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &191583316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3070,6 +3092,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1889571745966074818, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -3325,6 +3351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &246787906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3662,6 +3689,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1724928827467003614, guid: 4186b622ac1e4cf4a93a93e9d3f3ef4e, type: 3}
   m_PrefabInstance: {fileID: 269295332}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &269295334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2109557517895792786, guid: 4186b622ac1e4cf4a93a93e9d3f3ef4e, type: 3}
+  m_PrefabInstance: {fileID: 269295332}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53011272d2df99441a03d3e95337109f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &270539413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3699,8 +3737,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -602.3243}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -603.8225}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &270539416
 MonoBehaviour:
@@ -4280,6 +4318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &295086475
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4639,6 +4678,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3258717217679519611, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -5042,6 +5085,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8704236872984842982, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 180
@@ -6023,6 +6070,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5963014281867605776, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 180
@@ -6414,6 +6465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &480897626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6572,6 +6624,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4194770116719408434, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 539
@@ -7030,8 +7086,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -77.4749}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -77.688934}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &521885618
 MonoBehaviour:
@@ -7615,6 +7671,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 4596763916740094249, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 825
@@ -7833,6 +7893,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3869732424451068887, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1341
@@ -7875,7 +7939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -7883,15 +7947,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8148,6 +8212,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 4903815123607237768, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -8480,6 +8548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &637288679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9324,6 +9393,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 6992768126175963579, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -9533,6 +9606,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 6223998145860386725, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -9956,6 +10033,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5114292208336378296, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 134
@@ -10118,6 +10199,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1165051907908907066, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -10327,6 +10412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &802356246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10562,6 +10648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &826212462
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10930,6 +11017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &879607286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11096,6 +11184,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3110962170497943126, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -11591,6 +11683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &912719232
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11749,6 +11842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &913834605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12214,6 +12308,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7804168964637513059, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -13540,6 +13638,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6493696892821591705, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -13753,6 +13855,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 121738331670741331, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -13966,6 +14072,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1261236971373444267, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 131
@@ -14262,6 +14372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1142525624
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14543,6 +14654,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 5875530451910372314, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 542
@@ -15161,8 +15276,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -427.3745}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -428.44467}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1215156759
 MonoBehaviour:
@@ -15491,6 +15606,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2877555218231063296, guid: 0f66e4d413edf6f4ba994e3e1702ecda, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 551
@@ -15900,6 +16019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1263264930
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16328,6 +16448,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1593117042787052991, guid: 9cc54a4fad1130e4db113c8210d8ac94, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1225
@@ -16370,7 +16494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -16378,15 +16502,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16418,7 +16542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16723,6 +16847,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -16932,6 +17060,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8154493128904661104, guid: 244d31102680ec34490105a487f26064, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1225
@@ -16974,7 +17106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -16982,15 +17114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17026,7 +17158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -120
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17417,6 +17549,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 3024375923905093181, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -18240,8 +18376,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -777.2741}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -779.20044}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505934152
 MonoBehaviour:
@@ -18599,6 +18735,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5797263334182238256, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 539
@@ -18848,6 +18988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1546369294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19006,6 +19147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1571741408
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19164,6 +19306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1576513198
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19322,6 +19465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1580312463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19774,6 +19918,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8471841638675065050, guid: f0462c8280d8b254381e072bd40dd6e3, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1309
@@ -19816,7 +19964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -19824,15 +19972,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19868,7 +20016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -120
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21893,6 +22041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1789522707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22703,6 +22852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &1921986168
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23409,6 +23559,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5107830698695934292, guid: bbd9c7db4751f8b41a3cec410a227644, type: 3}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 6351674675176982480, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1225
@@ -23451,7 +23605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -23459,15 +23613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23575,8 +23729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -252.4247}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -253.0668}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2013086525
 MonoBehaviour:
@@ -23879,8 +24033,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: -952.22394}
-  m_SizeDelta: {x: 120, y: 154.9498}
+  m_AnchoredPosition: {x: 60, y: -954.57825}
+  m_SizeDelta: {x: 120, y: 155.37787}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2050508314
 MonoBehaviour:
@@ -24458,6 +24612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &2080554404
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24829,6 +24984,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3224429604200565720, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
+      propertyPath: playerOutfitsHandler
+      value: 
+      objectReference: {fileID: 269295334}
     - target: {fileID: 4755658353751348495, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -24859,7 +25018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.x
@@ -24867,15 +25026,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24907,11 +25066,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -120
       objectReference: {fileID: 0}
     - target: {fileID: 8806335683427051724, guid: b43c7eee9c6a0544ab233187e1b12f20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -24998,6 +25157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 269295334}
 --- !u!212 &2121861263
 SpriteRenderer:
   m_ObjectHideFlags: 0

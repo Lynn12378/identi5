@@ -135,6 +135,10 @@ namespace Identi5.GamePlay.Player
                         var itemPicked = Instantiate(item.gameObject).GetComponent<Item>();
                         PND.itemList.Add(itemPicked);
                         gameMgr.UpdateItemList();
+                        if(itemPicked.itemId > 4)
+                        {
+                            POD.placeholderNo++;
+                        }
                         item.DespawnItem_RPC();
                     }
                     else

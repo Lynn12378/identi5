@@ -8,7 +8,7 @@ namespace Identi5.Lobby
 {
     public class OutfitCell : MonoBehaviour
     {
-        private PlayerOutfitsHandler playerOutfitsHandler;
+        [SerializeField] private PlayerOutfitsHandler playerOutfitsHandler;
         private SpriteResolver resolver;
         private SpriteRenderer sprite;
         private Image image;
@@ -24,8 +24,6 @@ namespace Identi5.Lobby
             sprite = GetComponent<SpriteRenderer>();
             image = GetComponent<Image>();
             image.sprite = sprite.sprite;
-
-            playerOutfitsHandler = FindObjectOfType<PlayerOutfitsHandler>();
         }
     }
 }

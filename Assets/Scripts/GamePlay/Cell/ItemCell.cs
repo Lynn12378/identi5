@@ -27,57 +27,6 @@ namespace Identi5.GamePlay.Cell
         public void OnUseClicked()
         {
             GameMgr.Instance.UpdateItemList();
-        //     bool validItem = true;
-
-        //     switch (itemType)
-        //     {
-        //         default:
-        //         case ItemType.Bullet:
-        //             playerNetworkData.SetPlayerBullet_RPC(playerNetworkData.bulletAmount + bulletAdd);
-        //             AudioManager.Instance.Play("Use");
-        //             break;
-        //         case ItemType.Food:
-        //             playerNetworkData.SetPlayerFood_RPC(playerNetworkData.foodAmount + foodAdd);
-        //             AudioManager.Instance.Play("Eat");
-        //             break;
-        //         case ItemType.Health:
-        //             playerNetworkData.SetPlayerHP_RPC(playerNetworkData.HP + boostHealth);
-        //             AudioManager.Instance.Play("Heal");
-        //             break;
-        //         case ItemType.Wood:
-        //             if(playerNetworkData.shelter != null)
-        //             {
-        //                 playerNetworkData.shelter.SetDurability_RPC(playerNetworkData.shelter.durability + 2);
-        //                 playerNetworkData.GetPlayerOutputData().repairQuantity++;
-        //                 AudioManager.Instance.Play("Use");
-        //             }
-        //             else
-        //             {
-        //                 gamePlayManager.ShowWarningBox("這個物品只能在基地使用。");
-        //                 validItem = false;
-        //             }
-        //             break;
-        //         case ItemType.Badge_LiberalArts:
-        //         case ItemType.Badge_Science:
-        //         case ItemType.Badge_Engineer:
-        //         case ItemType.Badge_Management:
-        //         case ItemType.Badge_EECS:
-        //         case ItemType.Badge_Earth:
-        //         case ItemType.Badge_Hakka:
-        //         case ItemType.Badge_HST:
-        //         case ItemType.Badge_TeachingCenters:
-        //             if (IsPlayerInCorrectLocation(playerNetworkData, itemType, out Building building))
-        //             {
-        //                 building.AddBadge_RPC();
-        //                 playerNetworkData.GetPlayerOutputData().usePlaceholderNo++;
-        //                 AudioManager.Instance.Play("BadgeUse"); ///////////////////////// Add sound
-        //             }
-        //             else
-        //             {
-        //                 gamePlayManager.ShowWarningBox("這個物品不能在這裡使用。");
-        //                 validItem = false;
-        //             }
-        //             break;
         }
     }
 }

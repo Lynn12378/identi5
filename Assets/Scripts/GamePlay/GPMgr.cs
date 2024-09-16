@@ -35,6 +35,7 @@ namespace Identi5.GamePlay
             gameMgr.OnTeamListUpdated -= UpdatedTeamList;
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
             gameMgr.OnItemListUpdated -= UpdateItemList;
+            gameMgr.OnTeamListUpdated -= UpdatedPlayerMinimap;
             gameMgr.OnRankListUpdated -= UpdateRankList;
         }
 
@@ -58,6 +59,7 @@ namespace Identi5.GamePlay
             gameMgr.OnTeamListUpdated += UpdatedTeamList;
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
             gameMgr.OnItemListUpdated += UpdateItemList;
+            gameMgr.OnTeamListUpdated += UpdatedPlayerMinimap;
             gameMgr.OnRankListUpdated += UpdateRankList;
 
             localPlayer = runner.LocalPlayer;
@@ -198,6 +200,22 @@ namespace Identi5.GamePlay
                 team.SetInfo(team.teamID);
             }
         }
+        public void UpdatedPlayerMinimap()
+        {
+            foreach (var gamePlayer in gameMgr.PNDList.Values)
+            {
+                if(gamePlayer == PND || PND.teamID == -1) continue;
+
+                if (gamePlayer.teamID == PND.teamID)
+                {
+                    gamePlayer.minimapIcon.SetActive(true);
+                }
+                else
+                {
+                    gamePlayer.minimapIcon.SetActive(false);
+                }
+            }
+        }
         #endregion
 
         #region - Inventory - 
@@ -307,7 +325,7 @@ namespace Identi5.GamePlay
                         }
                         else
                         {
-                            gameMgr.dialogCell.SetInfo("該物品無法使用");
+                            gameMgr.dialogCell.SetInfo("請在基地內使用");
                             return;
                         }
                         break;
@@ -415,11 +433,6 @@ namespace Identi5.GamePlay
                 }
             }
         #endregion 
-
-        public void OnOutfitBtnCliked()
-        {
-            POD.oufitClikedNo++;
-        }
        
 		#region /-- Unused Function --/
             public void OnPlayerJoined(NetworkRunner runner, PlayerRef player){}

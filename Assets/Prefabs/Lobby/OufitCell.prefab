@@ -291,3 +291,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219b5e6011a6cc149aa9ec9b0f7f0a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOutfitsHandler: {fileID: 0}
