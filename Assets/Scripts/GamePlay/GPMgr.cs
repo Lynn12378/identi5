@@ -285,7 +285,7 @@ namespace Identi5.GamePlay
         #endregion
 
         #region - Action -
-            public PlayerRef receiver;
+            [SerializeField] public PlayerRef receiver;
             public Item itemAction;
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
