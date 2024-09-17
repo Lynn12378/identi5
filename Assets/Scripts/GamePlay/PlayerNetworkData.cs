@@ -94,22 +94,6 @@ namespace Identi5.GamePlay
             }
         }
 
-        private void ActiveMiniMapIcon()
-        {
-            if(playerRef == Runner.LocalPlayer)
-            {
-                return;
-            }
-            else if(teamID == -1 || teamID != GameMgr.playerNetworkData.teamID)
-            {
-                minimapIcon.SetActive(false);
-            }
-            else
-            {
-                minimapIcon.SetActive(true);
-            }
-        }
-
         #region - RPCs -
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
 		public void SetPlayerInfo_RPC(int id, string name)
@@ -216,7 +200,7 @@ namespace Identi5.GamePlay
                     case nameof(teamID):
                         gameMgr.UpdatedPNDList();
                         gameMgr.UpdatedTeamList();
-                        ActiveMiniMapIcon();
+                        gameMgr.UpdatedPlayerMinimap();
                         break;
                     case nameof(outfits):
                         uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);

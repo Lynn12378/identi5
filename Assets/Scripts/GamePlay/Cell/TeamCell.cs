@@ -13,29 +13,17 @@ namespace Identi5.GamePlay.Cell
         private ChangeDetector changes;
         [SerializeField] private TMP_Text teamTxt;
         [Networked] public int teamID { get; set;}
-        [Networked][Capacity(5)] public NetworkArray<string> member => default;
+        [Networked, OnChangedRender(nameof(OnCountChange))]
+        public int count { get; set;}
 
         public override void Spawned()
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             gameMgr = GameMgr.Instance;
             gameMgr.teamList.Add(this);
+            gameMgr.newTeamID = teamID > gameMgr.newTeamID ? teamID : gameMgr.newTeamID;
             SetInfo(teamID);
-            gameMgr.newTeamID = teamID;
-        }
-        public override void FixedUpdateNetwork()
-        {
-            if(teamID != 0 && member[0] == "")
-            {
-                Despawned();
-                gameMgr.UpdatedTeamList();
-            }
-        }
-
-        public void Despawned()
-        {
-            gameMgr.teamList.Remove(this);
-            Runner.Despawn(Object);
+            gameMgr.UpdatedTeamList();
         }
 
         public void SetInfo(int id)
@@ -45,9 +33,23 @@ namespace Identi5.GamePlay.Cell
         }
 
         public void OnJoinClicked()
-        {        
-            gameMgr.PNDList[Runner.LocalPlayer].SetPlayerTeamID_RPC(teamID);
-            FindObjectOfType<PlayerOutputData>().joinTeamNo++;
+        {
+            SetCount_RPC(++count);
+            GameMgr.playerNetworkData.SetPlayerTeamID_RPC(teamID);
+            GameMgr.playerOutputData.joinTeamNo++;
+        }
+
+        public void OnCountChange()
+        {
+            if(teamID > 0 && count < 1)
+            {
+                Despawn_RPC();
+            }
+        }
+
+        void OnDestroy()
+        {
+            gameMgr.teamList.Remove(this);
         }
 
         #region - RPCs -
@@ -57,14 +59,17 @@ namespace Identi5.GamePlay.Cell
             teamID = id;
 		}
 
-        public void SetMember(List<string> memberList)
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetCount_RPC(int count)
         {
-            member.Clear();
-            for(int i = 0; i < memberList.Count; i++)
-            {
-                member.Set(i, memberList[i]);
-            }
+            this.count = count;
 		}
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void Despawn_RPC()
+        {
+            Runner.Despawn(Object);
+        }
         #endregion
     }
 }

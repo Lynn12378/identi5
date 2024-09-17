@@ -53,7 +53,7 @@ namespace Identi5.GamePlay.Player
             {
                 playert= player;
                 if(player.GetPND().playerRef == playerRef){return;}
-                if(player.GetPND().teamID == -1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
+                if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {
                     player.TakeDamage(10);
                 }

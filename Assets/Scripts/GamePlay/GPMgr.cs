@@ -27,6 +27,7 @@ namespace Identi5.GamePlay
             gameMgr = GameMgr.Instance;
             runner = gameMgr.Runner;
             runner.AddCallbacks(this);
+            panel.Add(TeamListPanel);
         }
 
         public void Test()
@@ -38,6 +39,7 @@ namespace Identi5.GamePlay
         {
             gameMgr.OnInPNDListUpdated -= UpdatedPNDList;
             gameMgr.OnTeamListUpdated -= UpdatedTeamList;
+            gameMgr.OnTeamListUpdated -= UpdatedPlayerMinimap;
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
             gameMgr.OnItemListUpdated -= UpdateItemList;
             gameMgr.OnRankListUpdated -= UpdateRankList;
@@ -62,6 +64,7 @@ namespace Identi5.GamePlay
         {
             gameMgr.OnInPNDListUpdated += UpdatedPNDList;
             gameMgr.OnTeamListUpdated += UpdatedTeamList;
+            gameMgr.OnTeamListUpdated += UpdatedPlayerMinimap;
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
             gameMgr.OnItemListUpdated += UpdateItemList;
             gameMgr.OnRankListUpdated += UpdateRankList;
@@ -132,6 +135,7 @@ namespace Identi5.GamePlay
         #endregion
 
         #region - Team -
+        private List<GameObject> panel = new List<GameObject>();
         private List<MemberCell> memberCells = new List<MemberCell>();
         [SerializeField] private TMP_Text teamTxt = null;
         [SerializeField] private GameObject teamCellPrefab;
@@ -145,39 +149,43 @@ namespace Identi5.GamePlay
         {
             var cell = runner.Spawn(teamCellPrefab, Vector3.zero, Quaternion.identity);
             var teamCell = cell.GetComponent<TeamCell>();
-
-            List<string> memberList = new List<string>();
-            memberList.Add(PND.playerName);
-
-            teamCell.SetMember(memberList);
+            teamCell.SetCount_RPC(++teamCell.count);
             teamCell.SetInfo(++gameMgr.newTeamID);
             PND.SetPlayerTeamID_RPC(gameMgr.newTeamID);
-            OnActivePanel();
             POD.teamCreated++;
+            OnActivePanel();
         }
 
         public void LeaveTeam()
         {
+            foreach(var team in gameMgr.teamList)
+            {
+                if(team.teamID == PND.teamID)
+                {
+                    team.SetCount_RPC(--team.count);
+                }
+            }
             PND.SetPlayerTeamID_RPC(0);
-            OnActivePanel();
             POD.quitTeamNo++;
+            OnActivePanel();
         }
 
         public void OnActivePanel()
         {
-            List<GameObject> panel = new List<GameObject>();
-            if(PND.teamID == 0)
+            panel = new List<GameObject>();
+            if(PND.teamID > 0)
+            {
+                panel.Add(MemberListPanel);
+            }
+            else
             {
                 panel.Add(TeamListPanel);
-            }else{
-                panel.Add(MemberListPanel);
             }
             panelMgr.OnActivePanel(panel);
         }
 
         public void UpdatedTeamList()
         {
-            if(PND.teamID == 0){return;}
             foreach(var cell in memberCells)
             {
                 Destroy(cell.gameObject);
@@ -185,23 +193,38 @@ namespace Identi5.GamePlay
             memberCells.Clear();
             foreach(var team in gameMgr.teamList)
             {
-                if(team.teamID == PND.teamID);
+                team.transform.SetParent(teamContentTrans, false);
+                team.SetInfo(team.teamID);
+            }
+            if(PND.teamID > 0)
+            {
+                teamTxt.text = $"隊伍 {PND.teamID}";
+                foreach(var player in gameMgr.PNDList.Values)
                 {
-                    var members = new List<string>();
-                    teamTxt.text = $"隊伍 {PND.teamID}";
-                    foreach(var member in team.member)
+                    if(player.teamID == PND.teamID)
                     {
-                        if(member == ""){break;}
                         var cell = Instantiate(memberCell);
                         memberCells.Add(cell);
                         cell.transform.SetParent(memberContentTrans, false);
-                        cell.SetInfo(member);
-                        members.Add(memberCell.playerName);
+                        cell.SetInfo(player.playerName);
                     }
-                    team.SetMember(members);
                 }
-                team.transform.SetParent(teamContentTrans, false);
-                team.SetInfo(team.teamID);
+            }
+            panel[0].SetActive(false);
+        }
+        public void UpdatedPlayerMinimap()
+        {
+            foreach (var player in gameMgr.PNDList.Values)
+            {
+                if(player == PND || PND.teamID == -1) continue;
+                if (player.teamID == PND.teamID)
+                {
+                    player.minimapIcon.SetActive(true);
+                }
+                else
+                {
+                    player.minimapIcon.SetActive(false);
+                }
             }
         }
         #endregion
