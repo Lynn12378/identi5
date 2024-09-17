@@ -305,7 +305,7 @@ namespace Identi5.GamePlay
 
             public void GiveItem()
             {
-                gameMgr.PNDList[receiver].SetItem_RPC(itemAction);
+                gameMgr.PNDList[receiver].SetItem_RPC(itemAction.itemId);
                 itemAction.quantity--;
                 CloseGivenPanel();
                 POD.giftNo++;

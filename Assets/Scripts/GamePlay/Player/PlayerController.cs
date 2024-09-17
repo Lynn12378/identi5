@@ -12,6 +12,7 @@ namespace Identi5.GamePlay.Player
         private Item item;
         private Livings livings;
         private Building building;
+        private GameObject icon;
 
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private Transform trans;
@@ -23,6 +24,8 @@ namespace Identi5.GamePlay.Player
         [Networked] private TickTimer foodTimer { get; set; }
         [Networked, OnChangedRender(nameof(Flip))]
         private bool isFlip { get; set; }
+        [Networked, OnChangedRender(nameof(MicOpen))]
+        private bool micOpen { get; set; }
         
         public PlayerNetworkData GetPND()
         {
@@ -38,6 +41,7 @@ namespace Identi5.GamePlay.Player
             POD = GameMgr.playerOutputData;
             PND.uIManager = FindObjectOfType<UIManager>();
             foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
+            icon = voiceDetection.icon;
         }
 
         private void Respawn() 
@@ -86,6 +90,7 @@ namespace Identi5.GamePlay.Player
                 }
             }
             voiceDetection.AudioCheck();
+            SetIsMic_RPC(icon.activeSelf);
         }
 
         #region - Input -
@@ -200,6 +205,17 @@ namespace Identi5.GamePlay.Player
         {
             trans.rotation = isFlip ? new Quaternion(0, 0 , 0, 1) : new Quaternion(0, 180 , 0, 1);
             weapon.flipY = isFlip;
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetIsMic_RPC(bool micOpen)
+        {
+            this.micOpen = micOpen;
+		}
+
+        private void MicOpen()
+        {
+            icon.SetActive(micOpen);
         }
     }
 }

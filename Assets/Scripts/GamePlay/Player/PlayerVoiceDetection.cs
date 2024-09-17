@@ -10,11 +10,12 @@ namespace Identi5.GamePlay.Player
     {
         public Recorder rec;
         private GameMgr gameMgr;
-        [SerializeField] public GameObject icon;
+        public GameObject icon;
+
         [SerializeField] public VoiceNetworkObject voiceObject;
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private List<PlayerController> playersInRange = new List<PlayerController>();
-       
+
         private void Start()
         {
             gameMgr = GameMgr.Instance;
@@ -31,30 +32,11 @@ namespace Identi5.GamePlay.Player
         {
             if(rec != null && rec.IsCurrentlyTransmitting)
             {
-                if(PND.playerRef == Runner.LocalPlayer)
-                {
-                    icon.SetActive(true);
-                }
-                else 
-                {
-                    icon.SetActive(false);
-                }
+                icon.SetActive(true);
             }
             else
             {
-                foreach (var kvp in gameMgr.playerVoiceList)
-                {
-                    PlayerVoiceDetection playerVoiceDetection = kvp.Value;
-
-                    if (playerVoiceDetection.voiceObject.IsSpeaking)
-                    {
-                        icon.SetActive(true);
-                    }
-                    else
-                    {
-                        icon.SetActive(false);
-                    }
-                }
+                icon.SetActive(false);
             }
         }
 

@@ -22,6 +22,7 @@ namespace Identi5.GamePlay
 
         public List<Item> itemList = new List<Item>();
 
+        [SerializeField] private Item item;
         [SerializeField] public PlayerOutfitsHandler playerOutfitsHandler;
         [SerializeField] private TMP_Text playerNameTxt;
         [SerializeField] Slider HPSlider;
@@ -35,7 +36,7 @@ namespace Identi5.GamePlay
         [Networked] public int bulletAmount { get; set; }
         [Networked] public int coinAmount { get; set; }
         [Networked] public int teamID { get; private set; }
-        [Networked] public Item item { get; set; }
+        [Networked] public int itemID { get; set; } = -1;
         [Networked][Capacity(2)] public NetworkArray<Color> colorList => default;
         [Networked][Capacity(10)] public NetworkArray<string> outfits => default;
 
@@ -87,11 +88,17 @@ namespace Identi5.GamePlay
 
         private void ReceiveItem()
         {
-            if(item != null && itemList.Count < 12)
+            if(itemID != -1 && itemList.Count < 12)
             {
-                itemList.Add(item);
+                var itemReceive = Instantiate(item);
+                itemReceive.itemId = itemID;
+                itemReceive.quantity = 1;
+                itemReceive.SetSprite();
+                itemList.Add(itemReceive);
                 gameMgr.UpdateItemList();
+                gameMgr.dialogCell.SetInfo("收到贈禮");
             }
+            SetItem_RPC(-1);
         }
 
         #region - RPCs -
@@ -139,9 +146,9 @@ namespace Identi5.GamePlay
 		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetItem_RPC(Item item)
+		public void SetItem_RPC(int itemID)
         {
-            this.item = item;
+            this.itemID = itemID;
 		}
 
         public void SetColorList(List<Color> colors)
@@ -240,8 +247,7 @@ namespace Identi5.GamePlay
                     case nameof(colorList):
                         uIManager.UpdatedColor(colorList);
                         break;
-                    case nameof(item):
-                        item.quantity = 1;
+                    case nameof(itemID):
                         ReceiveItem();
                         break;
                     case nameof(killNo):
