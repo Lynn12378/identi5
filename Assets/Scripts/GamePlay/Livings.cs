@@ -58,7 +58,6 @@ namespace Identi5.GamePlay
             SRV1.SetCategoryAndLabel("livings1", livingsType.ToString());
             SRV2.SetCategoryAndLabel("livings2", livingsType.ToString());
             SRV3.SetCategoryAndLabel("livings3", livingsType.ToString());
-            Debug.Log(livingsType.ToString());
         }
         #endregion
 

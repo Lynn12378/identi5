@@ -48,7 +48,20 @@ namespace Identi5.DB
             action = "login";
             playerInfo.Player_name = LPlayerNameTxt.text.Trim('\u200b');
             playerInfo.Player_password = LPlayerPasswordTxt.text.Trim('\u200b');
-            StartCoroutine(SendData());
+            if (playerInfo.Player_name.Length < 1)
+            {
+                messageTxt.text = "請輸入名稱";
+                panelMgr.OnActivePanel(dialog);
+            }
+            else if(playerInfo.Player_password.Length < 1)
+            {
+                messageTxt.text = "請輸入密碼";
+                panelMgr.OnActivePanel(dialog);
+            }
+            else
+            {
+                StartCoroutine(SendData());
+            }
         }
 
         public void SignUp()
@@ -56,10 +69,23 @@ namespace Identi5.DB
             action = "signUp";
             playerInfo.Player_name = SPlayerNameTxt.text.Trim('\u200b');
             playerInfo.Player_password = SPlayerPasswordTxt.text.Trim('\u200b');
-            SetOufits();
-            playerInfo.colorList[0] = Color.white;
-            playerInfo.colorList[1] = Color.white;
-            StartCoroutine(SendData());
+            if (playerInfo.Player_name.Length < 4 || playerInfo.Player_name.Length > 16)
+            {
+                messageTxt.text = "名稱長度請介於4~16個字元間";
+                panelMgr.OnActivePanel(dialog);
+            }
+            else if(playerInfo.Player_password.Length < 8)
+            {
+                messageTxt.text = "密碼長度不得少於8個字元";
+                panelMgr.OnActivePanel(dialog);
+            }
+            else
+            {
+                SetOufits();
+                playerInfo.colorList[0] = Color.white;
+                playerInfo.colorList[1] = Color.white;
+                StartCoroutine(SendData());
+            }
         }
 
         public void Create()
