@@ -8,6 +8,7 @@ GiveItem()
 麥克風
 動畫
 音效
+controller
 
 測試帳號1
 12345678
