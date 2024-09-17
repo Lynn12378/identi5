@@ -8,9 +8,7 @@ TagManager:
   - MapCollision
   - Shelter
   - Livings
-  - SmallCollider
   - Zombie
-  - Building
   layers:
   - Default
   - TransparentFX

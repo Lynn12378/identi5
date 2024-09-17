@@ -93,7 +93,6 @@ namespace Identi5.GamePlay
             [SerializeField] private Transform receiverContentTrans = null;
             public void UpdatedPNDList()
             {
-                rankList.Clear();
                 foreach(var cell in receiverCells)
                 {
                     Destroy(cell.gameObject);
@@ -101,7 +100,6 @@ namespace Identi5.GamePlay
                 receiverCells.Clear();
                 foreach(var player in gameMgr.PNDList.Values)
                 {
-                    rankList.Add(player);
                     if(player.playerRef == localPlayer){continue;}
                     var cell = Instantiate(receiverCell);
                     cell.SetInfo(player.playerRef, player.playerName);
@@ -377,10 +375,10 @@ namespace Identi5.GamePlay
         #endregion
 
         #region - Rank -
+            private int sortID = 0;
+            List<PlayerNetworkData> sortedList;
             [SerializeField] private RankCell rankCell;
             [SerializeField] private Transform rankContentTrans = null;
-            List<PlayerNetworkData> rankList = new List<PlayerNetworkData>();
-             List<float> scoreList = new List<float>();
             private List<RankCell> rankCells = new List<RankCell>();
 
             public void OnRankBtnCliked()
@@ -390,59 +388,80 @@ namespace Identi5.GamePlay
     
             public void SortKill()
             {
-                rankList.Sort((a, b) => b.killNo.CompareTo(a.killNo));
-                scoreList.Clear();
-                foreach(var rank in rankList)
-                {
-                    scoreList.Add(rank.killNo);
-                }
+                sortID = 0;
                 gameMgr.UpdateRankList();
             }
             public void SortDeath()
             {
-                rankList.Sort((b, a) => b.deathNo.CompareTo(a.deathNo));
-                scoreList.Clear();
-                foreach(var rank in rankList)
-                {
-                    scoreList.Add(rank.deathNo);
-                }
+                sortID = 1;
                 gameMgr.UpdateRankList();
             }
             public void SortSuvivetime()
             {
-                rankList.Sort((a, b) => b.surviveTime.CompareTo(a.surviveTime));
-                scoreList.Clear();
-                foreach(var rank in rankList)
-                {
-                    scoreList.Add(rank.surviveTime);
-                }
+                sortID = 2;
                 gameMgr.UpdateRankList();
             }
             public void SortContribution()
             {
-                rankList.Sort((a, b) => b.contribution.CompareTo(a.contribution));
-                scoreList.Clear();
-                foreach(var rank in rankList)
-                {
-                    scoreList.Add(rank.contribution);
-                }
+                sortID = 3;
                 gameMgr.UpdateRankList();
             }
-            
+
+            private void sortByID()
+            {
+                switch(sortID)
+                {
+                    case 0:
+                        CalculateRank(gameMgr.PNDList.Values, (a, b) => b.killNo.CompareTo(a.killNo));
+                        break;
+                    case 1:
+                        CalculateRank(gameMgr.PNDList.Values, (a, b) => a.deathNo.CompareTo(b.deathNo));
+                        break;
+                    case 2:
+                        CalculateRank(gameMgr.PNDList.Values, (a, b) => b.surviveTime.CompareTo(a.surviveTime));
+                        break;
+                    case 3:
+                        CalculateRank(gameMgr.PNDList.Values, (a, b) => b.contribution.CompareTo(a.contribution));
+                        break;
+                } 
+            }
+
+            private void CalculateRank(IEnumerable<PlayerNetworkData> PNDList, Comparison<PlayerNetworkData> comparison)
+            {
+                sortedList = new List<PlayerNetworkData>(PNDList);
+                sortedList.Sort(comparison);
+            }
+
             public void UpdateRankList()
             {
+                int i = 0;
+                sortByID();
                 foreach(var cell in rankCells)
                 {
                     Destroy(cell.gameObject);
                 }
                 rankCells.Clear();
-                foreach(var PND in rankList)
+                foreach(var PND in sortedList)
                 {
-                    var i = 1;
+                    
                     var cell = Instantiate(rankCell, rankContentTrans);
-                    cell.SetInfo(PND.playerName,scoreList[i-1],i);
-                    rankCells.Add(cell);
+                    switch(sortID)
+                    {
+                        case 0:
+                            cell.SetInfo(PND.playerName, PND.killNo, i);
+                            break;
+                        case 1:
+                            cell.SetInfo(PND.playerName, PND.deathNo, i);
+                            break;
+                        case 2:
+                            cell.SetInfo(PND.playerName, PND.surviveTime, i);
+                            break;
+                        case 3:
+                            cell.SetInfo(PND.playerName, PND.contribution, i);
+                            break;
+                    }
                     i++;
+                    rankCells.Add(cell);
                 }
             }
         #endregion 

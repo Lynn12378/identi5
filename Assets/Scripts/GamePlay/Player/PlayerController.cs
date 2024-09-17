@@ -44,12 +44,6 @@ namespace Identi5.GamePlay.Player
         {
             PND.AddDeathNo_RPC();
             POD.deathNo++;
-
-            if(surviveTime > PND.surviveTime)
-            {
-                PND.SetSurviveTime_RPC(surviveTime);
-                POD.surviveTime = surviveTime;
-            }
             PND.Init();
             surviveTime = 0f;
             transform.position = Vector3.zero;
@@ -57,6 +51,12 @@ namespace Identi5.GamePlay.Player
 
         public override void FixedUpdateNetwork()
         {
+            if(surviveTime > PND.surviveTime)
+            {
+                PND.SetSurviveTime_RPC(surviveTime);
+                POD.surviveTime = surviveTime;
+            }
+
             if(foodTimer.Expired(Runner))
             {
                 PND.SetPlayerFood_RPC(PND.foodAmount - 10);
@@ -142,6 +142,7 @@ namespace Identi5.GamePlay.Player
                 if(livings != null)
                 {
                     livings.Interact();
+                    // gameMgr.docCell.SetInfo();
                     POD.interactNo++;
                 }
                 if(building != null)
@@ -178,7 +179,7 @@ namespace Identi5.GamePlay.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.collider.CompareTag("MapCollision") || collision.collider.CompareTag("Building"))
+            if(collision.collider.CompareTag("MapCollision"))
             {
                 POD.collisionMapNo++;
             }

@@ -41,7 +41,7 @@ namespace Identi5.GamePlay.Player
             var zombie = collider.GetComponent<Zombie>();
             var livings = collider.GetComponent<Livings>();
 
-            if(collider.CompareTag("MapCollision") || collider.CompareTag("Building"))
+            if(collider.CompareTag("MapCollision"))
             {
                 if(playerRef == Runner.LocalPlayer)
                 {
