@@ -12,10 +12,10 @@ namespace Identi5.GamePlay
         {
             if(collider.CompareTag("Player"))
             {
-                var PND = collider.GetComponent<PlayerController>();
-                if (PND != null)
+                var player = collider.GetComponent<PlayerController>();
+                if (player != null)
                 {
-                    playerInCollider.Add(PND);
+                    playerInCollider.Add(player);
                 }
             }
         }
@@ -24,10 +24,10 @@ namespace Identi5.GamePlay
         {
             if(collider.CompareTag("Player"))
             {
-                var PND = collider.GetComponent<PlayerController>();
-                if (PND != null)
+                var player = collider.GetComponent<PlayerController>();
+                if (player != null)
                 {
-                    playerInCollider.Remove(PND);
+                    playerInCollider.Remove(player);
                 }
             }
         }

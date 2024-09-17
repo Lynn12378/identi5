@@ -44,8 +44,7 @@ namespace Identi5.GamePlay
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            var livingsTransform = GameObject.Find("GPManager/Livings");
-            transform.SetParent(livingsTransform.transform, false);
+            transform.SetParent(GameObject.Find("GPManager/Livings").transform, false);
             SetLivingsID_RPC(livingsID);
             Init();
             SetLivingsHP_RPC(30);

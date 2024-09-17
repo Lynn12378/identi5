@@ -27,7 +27,7 @@ namespace Identi5.GamePlay
         private int directDamage = 10;
         private int damageOverTime = 5;
         private float damageInterval = 3f;
-        private float moveSpeed = 1;
+        private float moveSpeed = 1f;
         [SerializeField] private PlayerDetection playerDetection;
         [SerializeField] private ItemSpawner itemSpawner;
         [SerializeField] private SpriteResolver spriteResolver;
@@ -42,10 +42,10 @@ namespace Identi5.GamePlay
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
+            transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
             SetZombieID_RPC(ZombieID);
             Init();
-            transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
-            damageTimer = TickTimer.CreateFromSeconds(Runner, 3f);
+            damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
         }
 
         public void Init()
@@ -87,7 +87,11 @@ namespace Identi5.GamePlay
             }
             else
             {
-                RandomDirection();
+                if(damageTimer.Expired(Runner))
+                {
+                    RandomDirection();
+                    damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
+                }
             }
             ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
         }
@@ -100,7 +104,8 @@ namespace Identi5.GamePlay
         }
         private void RandomDirection()
         {
-            direction = new Vector2(Random.value, 1 - Random.value);
+            direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+            Debug.Log(direction);
         }
         #endregion
 
@@ -124,7 +129,7 @@ namespace Identi5.GamePlay
                 if(player != null && damageTimer.Expired(Runner))
                 {
                     player.TakeDamage(damageOverTime);
-                    damageTimer = TickTimer.CreateFromSeconds(Runner, 3f);
+                    damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
                 }
             }
         }
