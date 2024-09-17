@@ -34,9 +34,14 @@ namespace Identi5.GamePlay
 
         public void OnItemIDChange()
         {
-            var type = (ItemType)itemID;
-            spriteResolver.SetCategoryAndLabel("item", type.ToString());
             itemId = itemID;
+            SetSprite();
+		}
+
+        public void SetSprite()
+        {
+            var type = (ItemType)itemId;
+            spriteResolver.SetCategoryAndLabel("item", type.ToString());
 		}
         
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

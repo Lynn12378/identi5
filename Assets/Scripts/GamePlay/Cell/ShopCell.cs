@@ -85,7 +85,9 @@ namespace Identi5.GamePlay.Cell
             else if(playerNetworkData.coinAmount >= totalCost)
             {
                 var itemInit = Instantiate(item);
+                itemInit.itemId = (int)itemType;
                 itemInit.quantity = buyQuantity;
+                itemInit.SetSprite();
                 playerNetworkData.itemList.Add(itemInit);
                 GameMgr.Instance.UpdateItemList();
                 playerNetworkData.SetPlayerCoin_RPC(playerNetworkData.coinAmount - totalCost);
