@@ -161,7 +161,14 @@ namespace Identi5.GamePlay.Player
         #endregion
 
         #region - On Trigger -
-        private void OnTriggerStay2D(Collider2D collider)
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            gameMgr.shelter = collider.GetComponent<Shelter>();
+            item = collider.GetComponent<Item>();
+            livings = collider.GetComponent<Livings>();
+            building = collider.GetComponent<Building>();
+        }
+        private void OnTriggerExit2D(Collider2D collider)
         {
             gameMgr.shelter = collider.GetComponent<Shelter>();
             item = collider.GetComponent<Item>();

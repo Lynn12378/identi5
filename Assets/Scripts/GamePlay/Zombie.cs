@@ -93,7 +93,10 @@ namespace Identi5.GamePlay
         }
         private void FollowDirection()
         {
-            direction = playerDetection.playerInCollider[0].transform.position - transform.position;
+            if(playerDetection.playerInCollider[0]!=null)
+            {
+                direction = playerDetection.playerInCollider[0].transform.position - transform.position;
+            }
         }
         private void RandomDirection()
         {

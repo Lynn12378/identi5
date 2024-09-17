@@ -9,7 +9,7 @@ namespace Identi5.GamePlay
 {
     public class UIManager : MonoBehaviour
     {
-        # region - Outfits -
+        #region - Outfits -
         [SerializeField] public PlayerOutfitsHandler playerImg;
         public void UpdatedOutfits(NetworkArray<string> outfits)
         {
@@ -75,6 +75,7 @@ namespace Identi5.GamePlay
         {
             playerCoinAmount.SetText(coinAmount.ToString());
         }
+        #endregion
 
         #region - Minimap -
         public Transform baseTransform;
@@ -89,8 +90,6 @@ namespace Identi5.GamePlay
 
             arrowRectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
-        #endregion
-
         #endregion
     }
 }

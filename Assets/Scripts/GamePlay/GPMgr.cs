@@ -40,7 +40,6 @@ namespace Identi5.GamePlay
             gameMgr.OnTeamListUpdated -= UpdatedTeamList;
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
             gameMgr.OnItemListUpdated -= UpdateItemList;
-            gameMgr.OnTeamListUpdated -= UpdatedPlayerMinimap;
             gameMgr.OnRankListUpdated -= UpdateRankList;
         }
 
@@ -65,7 +64,6 @@ namespace Identi5.GamePlay
             gameMgr.OnTeamListUpdated += UpdatedTeamList;
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
             gameMgr.OnItemListUpdated += UpdateItemList;
-            gameMgr.OnTeamListUpdated += UpdatedPlayerMinimap;
             gameMgr.OnRankListUpdated += UpdateRankList;
 
             localPlayer = runner.LocalPlayer;
@@ -204,22 +202,6 @@ namespace Identi5.GamePlay
                 }
                 team.transform.SetParent(teamContentTrans, false);
                 team.SetInfo(team.teamID);
-            }
-        }
-        public void UpdatedPlayerMinimap()
-        {
-            foreach (var gamePlayer in gameMgr.PNDList.Values)
-            {
-                if(gamePlayer == PND || PND.teamID == -1) continue;
-
-                if (gamePlayer.teamID == PND.teamID)
-                {
-                    gamePlayer.minimapIcon.SetActive(true);
-                }
-                else
-                {
-                    gamePlayer.minimapIcon.SetActive(false);
-                }
             }
         }
         #endregion

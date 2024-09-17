@@ -41,14 +41,14 @@ namespace Identi5.GamePlay.Player
             var zombie = collider.GetComponent<Zombie>();
             var livings = collider.GetComponent<Livings>();
 
-            if(collider.CompareTag("MapCollision"))
+            if(collider.CompareTag("MapCollision") || collider.CompareTag("Building"))
             {
                 if(playerRef == Runner.LocalPlayer)
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
+                Runner.Despawn(Object);
             }
-
             if(player != null)
             {
                 playert= player;
@@ -57,6 +57,7 @@ namespace Identi5.GamePlay.Player
                 {
                     player.TakeDamage(10);
                 }
+                Runner.Despawn(Object);
             }
             else if(zombie != null)
             {
@@ -66,6 +67,7 @@ namespace Identi5.GamePlay.Player
                     GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
+                Runner.Despawn(Object);
             }
             else if(livings != null)
             {
@@ -78,12 +80,9 @@ namespace Identi5.GamePlay.Player
                 {
                     livings.DespawnLivings_RPC();
                 }
+                Runner.Despawn(Object);
             }
-            else
-            {
-                return;
-            }
-            Runner.Despawn(Object);
+            
         }
         #endregion
     }

@@ -59,19 +59,15 @@ namespace Identi5.GamePlay
                 Init();
                 SetPlayerRef_RPC();
                 SetPlayerCoin_RPC(100);
-                HPSlider.fillRect.GetComponent<Image>().color = Color.green;
-                minimapIcon.GetComponent<SpriteRenderer>().color = Color.green;
                 if(outfits.Get(0) != ""){
                     uIManager.playerImg.Init();
                     uIManager.UpdatedOutfits(outfits);
                 }
                 uIManager.UpdatedColor(colorList);
+                minimapIcon.GetComponent<SpriteRenderer>().color = Color.green;
+                HPSlider.fillRect.GetComponent<Image>().color = Color.green;
+                minimapIcon.SetActive(true);
             }
-            else
-            {
-                minimapIcon.SetActive(false);
-            }
-            
             if(outfits.Get(0) != "")
             {
                 playerOutfitsHandler.Init();
@@ -95,6 +91,22 @@ namespace Identi5.GamePlay
             {
                 itemList.Add(item);
                 gameMgr.UpdateItemList();
+            }
+        }
+
+        private void ActiveMiniMapIcon()
+        {
+            if(playerRef == Runner.LocalPlayer)
+            {
+                return;
+            }
+            else if(teamID == -1 || teamID != GameMgr.playerNetworkData.teamID)
+            {
+                minimapIcon.SetActive(false);
+            }
+            else
+            {
+                minimapIcon.SetActive(true);
             }
         }
 
@@ -204,7 +216,7 @@ namespace Identi5.GamePlay
                     case nameof(teamID):
                         gameMgr.UpdatedPNDList();
                         gameMgr.UpdatedTeamList();
-                        gameMgr.UpdatedPlayerMinimap();
+                        ActiveMiniMapIcon();
                         break;
                     case nameof(outfits):
                         uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
