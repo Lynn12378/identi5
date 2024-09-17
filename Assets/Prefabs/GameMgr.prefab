@@ -119,6 +119,9 @@ MonoBehaviour:
   messageList: []
   newTeamID: 0
   teamList: []
+  shelter: {fileID: 0}
+  dialogCell: {fileID: 0}
+  docCell: {fileID: 0}
 --- !u!82 &4115365703552954889
 AudioSource:
   m_ObjectHideFlags: 0
@@ -131,7 +134,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4559935c00ef8e94b846e2e03e39f0d0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.02
   m_Pitch: 1
   Loop: 1
   Mute: 0

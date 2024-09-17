@@ -9,11 +9,11 @@ namespace Identi5.GamePlay
     {
         public enum ItemType
         {
-            Bullet,
-            Coin,
-            Food,
-            Health,
-            Wood
+            BulletBox,
+            Cerement,
+            FishCan,
+            NedicalKit,
+            Money
         }
 
         [SerializeField] private SpriteResolver spriteResolver;

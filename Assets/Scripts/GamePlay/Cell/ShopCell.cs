@@ -7,16 +7,16 @@ namespace Identi5.GamePlay.Cell
 {
     public class ShopCell : MonoBehaviour
     {
-        [SerializeField] private Item item;
-        [SerializeField] public Item.ItemType itemType;
+        [SerializeField] private Item.ItemType itemType;
+        [SerializeField] public Image itemImage;
         [SerializeField] private int buyCost;
-        public Image itemImage;
+        [SerializeField] private Item item;
+
         public SpriteLibraryAsset spriteLibraryAsset;
         public TMP_InputField inputField;
         public TMP_Text costTxt;
         private int buyQuantity = 1;
         private int totalCost;
-
         private PlayerNetworkData playerNetworkData;
 
         private void Start()
@@ -79,17 +79,14 @@ namespace Identi5.GamePlay.Cell
         {
             if(playerNetworkData.itemList .Count > 11)
             {
-                GameMgr.Instance.dialogCell.SetInfo("背包已滿");
+                GameMgr.Instance.dialogCell.SetInfo("購買失敗! 背包已滿");
                 return;
             }
-
-            if(playerNetworkData.coinAmount >= totalCost)
+            else if(playerNetworkData.coinAmount >= totalCost)
             {
-                item.itemId = (int)itemType;
-                item.quantity = buyQuantity;
-                Instantiate(item);
-
-                playerNetworkData.itemList.Add(item);
+                var itemInit = Instantiate(item);
+                itemInit.quantity = buyQuantity;
+                playerNetworkData.itemList.Add(itemInit);
                 GameMgr.Instance.UpdateItemList();
                 playerNetworkData.SetPlayerCoin_RPC(playerNetworkData.coinAmount - totalCost);
             }

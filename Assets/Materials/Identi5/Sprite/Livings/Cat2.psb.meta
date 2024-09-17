@@ -94,7 +94,49 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: "\u5716\u5C64 1"
+  - name: Cat2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 77
+      width: 62
+      height: 58
+    spriteID: 817894de73facb748b81f8628266ee19
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 77}
+    spritePosition: {x: 2, y: 3}
+  - name: Cat2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 143
+      width: 62
+      height: 58
+    spriteID: c932b514679c0d34eb5801362845871e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 143}
+    spritePosition: {x: 2, y: 3}
+  - name: Cat2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -104,8 +146,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 65
-      height: 61
-    spriteID: 75d2838bb27d0af4594ef680315050fa
+      height: 65
+    spriteID: 2e58c2225f9d14241ae6c9aea1496252
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -114,7 +156,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 2, y: 5}
+    spritePosition: {x: 2, y: 3}
   characterData:
     bones: []
     parts: []
@@ -151,12 +193,32 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: "\u5716\u5C64 1"
-    spriteName: "\u5716\u5C64 1"
+  - name: Cat2
+    spriteName: Cat2
     isGroup: 0
     parentIndex: -1
-    spriteID: 75d2838bb27d0af4594ef680315050fa
-    layerID: 2
+    spriteID: 817894de73facb748b81f8628266ee19
+    layerID: 5
+    mosaicPosition: {x: 4, y: 77}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cat2
+    spriteName: Cat2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c932b514679c0d34eb5801362845871e
+    layerID: 6
+    mosaicPosition: {x: 4, y: 143}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Cat2
+    spriteName: Cat2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 2e58c2225f9d14241ae6c9aea1496252
+    layerID: 4
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1

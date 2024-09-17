@@ -1,63 +1,37 @@
 <?php
-include 'Connector.php';
 
-$conn = connectDatabase();
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
-if (!$conn) 
+function GetOutputData($conn, $PlayerOutputData)
 {
-    echo "Database connection failed.";
-    return;
+    $sql = sprintf(
+        "SELECT * FROM output_data WHERE Player_id= '%s' Limit 1",
+        $PlayerOutputData->Player_id
+    );
+
+    $result = $conn->query($sql);
+    if ($result)
+    {
+        $row = $result->fetch_assoc();
+        $PlayerOutputData->buildingVisit = json_decode($row['buildingVisit']);
+        $PlayerOutputData->remainHP = json_decode($row['remainHP']);
+        $PlayerOutputData->remainBullet = json_decode($row['remainBullet']);
+    }
+    return $PlayerOutputData;
 }
 
-$PlayerOutputData = json_decode($_POST['PlayerOutputData']);
-
-if (isset($PlayerOutputData->playerId)) {
-    $playerId = (int) $PlayerOutputData->playerId;
-    $killNo = (int) $PlayerOutputData->killNo;
-    $deathNo = (int) $PlayerOutputData->deathNo;
-    $surviveTime = (float) $PlayerOutputData->surviveTime;
-    $collisionNo = (int) $PlayerOutputData->collisionNo;
-    $bulletCollision = (int) $PlayerOutputData->bulletCollision;
-    $bulletCollisionOnLiving = (int) $PlayerOutputData->bulletCollisionOnLiving;
-    $remainHP = json_encode($PlayerOutputData->remainHP);
-    $remainBullet = json_encode($PlayerOutputData->remainBullet);
-    $totalVoiceDetectionDuration = (float) $PlayerOutputData->totalVoiceDetectionDuration;
-    $organizeNo = (int) $PlayerOutputData->organizeNo;
-    $fullNo = (int) $PlayerOutputData->fullNo;
-    $placeholderNo = (int) $PlayerOutputData->placeholderNo;
-    $rankNo = (int) $PlayerOutputData->rankNo;
-    $giftNo = (int) $PlayerOutputData->giftNo;
-    $createTeamNo = (int) $PlayerOutputData->createTeamNo;
-    $joinTeamNo = (int) $PlayerOutputData->joinTeamNo;
-    $quitTeamNo = (int) $PlayerOutputData->quitTeamNo;
-    $repairQuantity = (int) $PlayerOutputData->repairQuantity;
-    $restartNo = (int) $PlayerOutputData->restartNo;
-    $usePlaceholderNo = (int) $PlayerOutputData->usePlaceholderNo;
-    $petNo = (int) $PlayerOutputData->petNo;
-    $sendMessageNo = (int) $PlayerOutputData->sendMessageNo;
-    $durationOfRound = (float) $PlayerOutputData->durationOfRound;
-
-    $sql = "INSERT INTO output_data (playerId, killNo, deathNo, surviveTime, collisionNo, bulletCollision, bulletCollisionOnLiving, 
-                                    remainHP, remainBullet, totalVoiceDetectionDuration, organizeNo, fullNo, placeholderNo, rankNo, 
-                                    giftNo, createTeamNo, joinTeamNo, quitTeamNo, repairQuantity, restartNo, usePlaceholderNo, petNo, sendMessageNo, durationOfRound) 
-            VALUES ($playerId, $killNo, $deathNo, $surviveTime, $collisionNo, $bulletCollision, $bulletCollisionOnLiving, 
-                    '$remainHP', '$remainBullet', $totalVoiceDetectionDuration, $organizeNo, $fullNo, $placeholderNo, $rankNo, 
-                    $giftNo, $createTeamNo, $joinTeamNo, $quitTeamNo, $repairQuantity, $restartNo, $usePlaceholderNo, $petNo, $sendMessageNo, $durationOfRound)";}
-
-$response = array(); // Initialize response array
-
-if ($conn->query($sql) === TRUE) 
+function UpdateColumn($conn, $column, $Player_id, $value)
 {
-    $response['status'] = "Success";
-    $response['message'] = "PlayerOutputData inserted successfully.";
-} else 
-{
-    $response['status'] = "Failure";
-    $response['message'] = "Error: " . $sql . "<br>" . $conn->error;
+    $sql = sprintf(
+        "UPDATE output_data
+        SET $column = '%s'
+        WHERE player_id = %s",
+        $value,
+        $Player_id
+    );
+    $result = $conn->query($sql);
 }
 
-header('Content-Type: application/json');
-echo json_encode($response);
-
-$conn->close();
 ?>

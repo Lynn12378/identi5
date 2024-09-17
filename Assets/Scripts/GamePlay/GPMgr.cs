@@ -308,21 +308,23 @@ namespace Identi5.GamePlay
             {
                 switch((Item.ItemType)itemAction.itemId)
                 {
-                    case Item.ItemType.Bullet:
+                    case Item.ItemType.BulletBox:
                         POD.remainBullet.Add(PND.bulletAmount);
                         PND.SetPlayerBullet_RPC(PND.bulletAmount + 10);
                         break;
-                    case Item.ItemType.Food:
+                    case Item.ItemType.FishCan:
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
-                    case Item.ItemType.Health:
+                    case Item.ItemType.NedicalKit:
                         POD.remainHP.Add(PND.HP);
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
-                    case Item.ItemType.Wood:
+                    case Item.ItemType.Cerement:
                         if(gameMgr.shelter != null)
                         {
                             gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
+                            PND.AddContribution_RPC();
+                            POD.contribution = PND.contribution;
                         }
                         else
                         {

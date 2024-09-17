@@ -1312,16 +1312,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 113ae2bfbe24dae42a154b75edc083aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 1221371619398977639, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
   itemType: 0
   itemImage: {fileID: 3268152176729244652}
+  buyCost: 0
+  item: {fileID: 1221371619398977639, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
   spriteLibraryAsset: {fileID: 7108339969198208228, guid: c598cc774018cb44ba37643fe8eb8b22, type: 3}
-  leftButton: {fileID: 3283799670305178398}
-  rightButton: {fileID: 4276917250925652008}
-  buyButton: {fileID: 915774686928028511}
   inputField: {fileID: 4186109462027528397}
   costTxt: {fileID: 3179594381132860842}
-  buyCost: 0
 --- !u!1 &9049866549134797755
 GameObject:
   m_ObjectHideFlags: 0

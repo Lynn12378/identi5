@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3bdca0dc0dd1284e911c34b0960a889
+guid: 86a0e0e57c2c10c40a1cd682c9a87374
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: "\u5716\u5C64 1"
+  - name: Duck
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -103,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 67
+      width: 61
       height: 64
-    spriteID: ebe1959c3f3e1cd40bf183bf1d4517ca
+    spriteID: 9ee20b4f3543c7448a47c41400c39c61
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -114,7 +114,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 2, y: 4}
+    spritePosition: {x: 10, y: 4}
   characterData:
     bones: []
     parts: []
@@ -151,11 +151,11 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: "\u5716\u5C64 1"
-    spriteName: "\u5716\u5C64 1"
+  - name: Duck
+    spriteName: Duck
     isGroup: 0
     parentIndex: -1
-    spriteID: ebe1959c3f3e1cd40bf183bf1d4517ca
+    spriteID: 9ee20b4f3543c7448a47c41400c39c61
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0

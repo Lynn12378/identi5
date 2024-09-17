@@ -17,78 +17,33 @@ MonoBehaviour:
     m_Hash: 521872670
     m_CategoryList: []
     m_OverrideEntries:
-    - m_Name: Bullet
-      m_Hash: 1035941187
-      m_Sprite: {fileID: 154122315, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+    - m_Name: BulletBox
+      m_Hash: 1003966805
+      m_Sprite: {fileID: -9203138832925698951, guid: 16645b990a7c30845b204d47587233a4, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 154122315, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    - m_Name: Coin
-      m_Hash: 895170659
-      m_Sprite: {fileID: -1997803578, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+      m_SpriteOverride: {fileID: -9203138832925698951, guid: 16645b990a7c30845b204d47587233a4, type: 3}
+    - m_Name: Cerement
+      m_Hash: 666958027
+      m_Sprite: {fileID: -4766914002773482028, guid: 5e36cc72d9558084d986cc6ec5d13c8e, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -1997803578, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    - m_Name: Food
-      m_Hash: 873105097
-      m_Sprite: {fileID: 362616440, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+      m_SpriteOverride: {fileID: -4766914002773482028, guid: 5e36cc72d9558084d986cc6ec5d13c8e, type: 3}
+    - m_Name: FishCan
+      m_Hash: 832348540
+      m_Sprite: {fileID: -2380335422655095822, guid: 6dd4fa296f4c4cc4d93b66ff2ca78605, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 362616440, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    - m_Name: Health
-      m_Hash: 158737957
-      m_Sprite: {fileID: 934571490, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+      m_SpriteOverride: {fileID: -2380335422655095822, guid: 6dd4fa296f4c4cc4d93b66ff2ca78605, type: 3}
+    - m_Name: NedicalKit
+      m_Hash: 1004032161
+      m_Sprite: {fileID: -7588819218424230309, guid: d2587f3064c29ce408e3c03ef8ac19e3, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 934571490, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    - m_Name: Wood
-      m_Hash: 481277491
-      m_Sprite: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+      m_SpriteOverride: {fileID: -7588819218424230309, guid: d2587f3064c29ce408e3c03ef8ac19e3, type: 3}
+    - m_Name: Money
+      m_Hash: 907951328
+      m_Sprite: {fileID: -2560654606017976508, guid: 9a07f4fe03bc94b4fac17fbbd07bcfbd, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -38345435, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-    - m_Name: Badge_LiberalArts
-      m_Hash: 586975757
-      m_Sprite: {fileID: 8628951121522814276, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 8628951121522814276, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_Science
-      m_Hash: 491801213
-      m_Sprite: {fileID: -1900836405344694469, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -1900836405344694469, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_Engineer
-      m_Hash: 584322041
-      m_Sprite: {fileID: 6431967906453989325, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 6431967906453989325, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_Management
-      m_Hash: 612308704
-      m_Sprite: {fileID: -5180340425193586954, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -5180340425193586954, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_EECS
-      m_Hash: 968543097
-      m_Sprite: {fileID: -8163231233905217999, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -8163231233905217999, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_Earth
-      m_Hash: 683110431
-      m_Sprite: {fileID: -5802780848240412048, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: -5802780848240412048, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_Hakka
-      m_Hash: 928422507
-      m_Sprite: {fileID: 7427752583352021762, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 7427752583352021762, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_HST
-      m_Hash: 562129109
-      m_Sprite: {fileID: 8673857883314834134, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 8673857883314834134, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-    - m_Name: Badge_TeachingCenters
-      m_Hash: 578767068
-      m_Sprite: {fileID: 31757043491747269, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
-      m_FromMain: 0
-      m_SpriteOverride: {fileID: 31757043491747269, guid: 84356da12a8249c499e709f4475f15d8, type: 3}
+      m_SpriteOverride: {fileID: -2560654606017976508, guid: 9a07f4fe03bc94b4fac17fbbd07bcfbd, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 14
+    m_EntryOverrideCount: 5
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638569237681392511
+  m_ModificationHash: 638621298527764593
   m_Version: 1

@@ -6,6 +6,7 @@ using Fusion;
 using Fusion.Addons.Physics;
 
 using Identi5.GamePlay.Player;
+using Identi5.GamePlay.Spawner;
 
 namespace Identi5.GamePlay
 {
@@ -51,7 +52,6 @@ namespace Identi5.GamePlay
         {
             zombieType = (ZombieType) ZombieID;
             spriteResolver.SetCategoryAndLabel("Zombie", zombieType.ToString());
-    
             switch (zombieType)
             {
                 case ZombieType.HighDamage:

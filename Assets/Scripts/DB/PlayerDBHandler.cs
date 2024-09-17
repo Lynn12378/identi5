@@ -13,7 +13,7 @@ namespace Identi5.DB
     public class PlayerDBHandler : DBMgr
     {
         private float timer = 0;
-        private PanelMgr panelMgr;
+        [SerializeField] private PanelMgr panelMgr;
         [SerializeField] private PlayerInfo playerInfo;
         [SerializeField] public PlayerOutputData playerOutputData;
         [SerializeField] private TMP_Text LPlayerNameTxt;
@@ -24,11 +24,6 @@ namespace Identi5.DB
         [SerializeField] private TMP_Text messageTxt;
         [SerializeField] private List<GameObject> dialog = new List<GameObject>();
         [SerializeField] private List<GameObject> CreateRolePanel = new List<GameObject>();
-
-        private void Start()
-        {
-            panelMgr = FindObjectOfType<PanelMgr>();
-        }
 
         void Update()
         {
@@ -48,20 +43,17 @@ namespace Identi5.DB
             action = "signUp";
             playerInfo.Player_name = SPlayerNameTxt.text.Trim('\u200b');
             playerInfo.Player_password = SPlayerPasswordTxt.text.Trim('\u200b');
+            SetOufits();
+            playerInfo.colorList[0] = Color.white;
+            playerInfo.colorList[1] = Color.white;
             StartCoroutine(SendData());
         }
 
         public void Create()
         {
             action = "create";
-
-            var playerOutfitsHandler = FindObjectOfType<PlayerOutfitsHandler>();
-            playerInfo.outfits = new List<string>();
-            foreach(var resolver in playerOutfitsHandler.resolverList)
-            {
-                playerInfo.outfits.Add(resolver.GetLabel().ToString());
-            }
-
+            playerOutputData.outfitTime = timer;
+            SetOufits();
             StartCoroutine(SendData());
         }
 
@@ -70,6 +62,7 @@ namespace Identi5.DB
             formData = new List<IMultipartFormSection>
             {
                 new MultipartFormDataSection("PlayerInfo", playerInfo.ToJson()),
+                new MultipartFormDataSection("PlayerOutputData", playerOutputData.ToJson()),
             };
 
             SetForm(formData, "Player", action);
@@ -92,12 +85,15 @@ namespace Identi5.DB
                             break;
                         case "login":
                             var playerInfoJS = jsonResponse["PlayerInfo"].ToString();
+                            var playerOutputDataJS = jsonResponse["PlayerOutputData"].ToString();
                             playerInfo.FromJson(playerInfoJS);
+                            playerOutputData.FromJson(playerOutputDataJS);
                             SceneManager.LoadScene("Lobby");
                             break;
                         case "create":
                             SceneManager.LoadScene("Lobby");
-                            playerOutputData.outfitTime = timer;
+                            break;
+                        case "Update":
                             break;
                     }
                     playerOutputData.playerId = playerInfo.Player_id;
@@ -114,6 +110,16 @@ namespace Identi5.DB
             {
                 messageTxt.text = "無法連線到伺服器";
                 panelMgr.OnActivePanel(dialog);
+            }
+        }
+
+        private void SetOufits()
+        {
+            var playerOutfitsHandler = FindObjectsOfType<PlayerOutfitsHandler>();
+            playerInfo.outfits = new List<string>();
+            foreach(var resolver in playerOutfitsHandler[playerOutfitsHandler.GetLength(0) - 1].resolverList)
+            {
+                playerInfo.outfits.Add(resolver.GetLabel().ToString());
             }
         }
     }

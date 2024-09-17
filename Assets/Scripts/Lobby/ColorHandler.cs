@@ -29,10 +29,5 @@ namespace Identi5.Lobby
 
             GameMgr.playerInfo.colorList[index] = img.color;
         }
-
-        void Start()
-        {
-            playerOutfitsHandler = FindObjectOfType<PlayerOutfitsHandler>();
-        }
     }
 }

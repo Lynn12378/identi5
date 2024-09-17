@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 
-namespace Identi5.GamePlay
+namespace Identi5.GamePlay.Spawner
 {
     public class ZombieSpawner : NetworkBehaviour
     {

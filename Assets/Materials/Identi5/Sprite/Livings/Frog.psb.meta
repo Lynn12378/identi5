@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cd9bf9843faec274d932d302326f94eb
+guid: 4c4d179eaf2c5d6458361289ddf204b2
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: "\u5716\u5C64 1"
+  - name: Frog
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -103,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 67
-      height: 64
-    spriteID: 01de39a95408644498cda8210c8dd44d
+      width: 69
+      height: 58
+    spriteID: 84301b23d09a5fb4396c25c0cbc59976
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -115,6 +115,27 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 2, y: 4}
+  - name: Frog
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 70
+      width: 51
+      height: 51
+    spriteID: 06339ad9487ba214cb180fb847ef3ce6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 70}
+    spritePosition: {x: 7, y: 11}
   characterData:
     bones: []
     parts: []
@@ -151,13 +172,23 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: "\u5716\u5C64 1"
-    spriteName: "\u5716\u5C64 1"
+  - name: Frog
+    spriteName: Frog
     isGroup: 0
     parentIndex: -1
-    spriteID: 01de39a95408644498cda8210c8dd44d
-    layerID: 2
+    spriteID: 84301b23d09a5fb4396c25c0cbc59976
+    layerID: 4
     mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Frog
+    spriteName: Frog
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 06339ad9487ba214cb180fb847ef3ce6
+    layerID: 2
+    mosaicPosition: {x: 4, y: 70}
     flatten: 0
     isImported: 1
     isVisible: 1

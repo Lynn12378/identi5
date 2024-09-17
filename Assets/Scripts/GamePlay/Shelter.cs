@@ -46,7 +46,8 @@ namespace Identi5.GamePlay
                 if(endGameTimer.Expired(Runner))
                 {
                     EndGame();
-                    GameMgr.playerOutputData.failGame++;
+                    GameMgr.playerOutputData.failGameNo++;
+                    //輸出結果
                 }
             }
         }
@@ -89,7 +90,6 @@ namespace Identi5.GamePlay
                         break;
                     case nameof(IsOpen):
                         doorCollider.isTrigger = IsOpen;
-                        
                         break;
                 }
             }

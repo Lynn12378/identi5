@@ -227,7 +227,7 @@ namespace Identi5.GamePlay
                         playerNameTxt.text = playerName;
                         break;
                     case nameof(HP):
-                        HPSlider.value = HP;
+                        uIManager.UpdateHPSlider(HP, MaxHP);
                         break;
                     case nameof(bulletAmount):
                         uIManager.UpdateBulletAmountTxt(bulletAmount, MaxBullet);

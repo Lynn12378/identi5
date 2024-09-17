@@ -27,8 +27,9 @@ namespace Identi5.GamePlay
         public LivingsType livingsType;
         [SerializeField] private NetworkRigidbody2D livingsNetworkRigidbody = null;
 
-        [SerializeField] private SpriteResolver spriteResolver;
-        [SerializeField] private SpriteResolver spriteResolver2;
+        [SerializeField] private SpriteResolver SRV1;
+        [SerializeField] private SpriteResolver SRV2;
+        [SerializeField] private SpriteResolver SRV3;
         [SerializeField] public Slider HpSlider;
         [SerializeField] GameObject love;
     
@@ -37,7 +38,6 @@ namespace Identi5.GamePlay
 
         private Vector3 moveDirection;
         private bool isMoving = false;
-        public bool isInteracting = false;
 
         #region - Initialize -
 
@@ -55,8 +55,9 @@ namespace Identi5.GamePlay
         public void Init()
         {
             livingsType = (LivingsType) livingsID;
-            spriteResolver.SetCategoryAndLabel("livings", livingsType.ToString());
-            spriteResolver2.SetCategoryAndLabel("livings_2", livingsType.ToString());
+            SRV1.SetCategoryAndLabel("livings1", livingsType.ToString());
+            SRV2.SetCategoryAndLabel("livings2", livingsType.ToString());
+            SRV3.SetCategoryAndLabel("livings3", livingsType.ToString());
             Debug.Log(livingsType.ToString());
         }
         #endregion

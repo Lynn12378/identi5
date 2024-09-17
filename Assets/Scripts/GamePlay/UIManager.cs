@@ -9,26 +9,6 @@ namespace Identi5.GamePlay
 {
     public class UIManager : MonoBehaviour
     {
-        private GameMgr gameMgr;
-        // [SerializeField] private GameObject micIcon;
-        // [SerializeField] private TMP_Text micTxt = null;
-
-        // [SerializeField] private GameObject shopPanel = null;
-        
-        // private ShopItemSlot[] itemSlots;
-        // [SerializeField] private GameObject rankPanel = null;
-
-        // [SerializeField] private GameObject inventoryPanel = null;
-        // [SerializeField] private Transform slotsBackground = null;
-        // private InventorySlot[] inventorySlots;
-        // private List<Item> tempItemList;
-
-        // public Transform baseTransform;
-        // public RectTransform arrowRectTransform;
-        // public float initialAngleOffset = 90f;
-
-        // private PlayerRef playerRef;
-
         # region - Outfits -
         [SerializeField] public PlayerOutfitsHandler playerImg;
         public void UpdatedOutfits(NetworkArray<string> outfits)
@@ -58,22 +38,6 @@ namespace Identi5.GamePlay
             outfitsHandler.SetHairColor(colorList[1]);
         }
         #endregion
-        
-        private void Start()
-        {
-            gameMgr = GameMgr.Instance;
-        }
-
-        // #region - Minimap -
-        // public void UpdateMinimapArrow(Transform playerTransform)
-        // {
-        //     Vector3 direction = playerTransform.position - baseTransform.position;
-        
-        //     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - initialAngleOffset;
-
-        //     arrowRectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        // }
-        // #endregion
 
         #region - PlayerNetworkData UI -
         [SerializeField] Slider HPSlider;

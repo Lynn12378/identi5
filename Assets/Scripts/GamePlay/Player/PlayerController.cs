@@ -19,13 +19,6 @@ namespace Identi5.GamePlay.Player
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         [SerializeField] private PlayerVoiceDetection voiceDetection = null;
-        // private MapInteractionManager mapInteractionManager;
-        // private Item itemInRange = null;
-        // private IInteractable interactableInRange = null;
-        // private bool isInteracting = false;
-        // [SerializeField] private bool shopInRange = false;
-
-        // [SerializeField] private PlayerOutputData POD;
         [Networked] private TickTimer HPTimer { get; set; }
         [Networked] private TickTimer foodTimer { get; set; }
         [Networked, OnChangedRender(nameof(Flip))]
@@ -43,7 +36,6 @@ namespace Identi5.GamePlay.Player
         {
             gameMgr = GameMgr.Instance;
             POD = GameMgr.playerOutputData;
-            // mapInteractionManager = FindObjectOfType<MapInteractionManager>();
             PND.uIManager = FindObjectOfType<UIManager>();
             foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
         }
@@ -125,9 +117,9 @@ namespace Identi5.GamePlay.Player
             {
                 if(item != null)
                 {
-                    if(item.itemId == (int)Item.ItemType.Coin)
+                    if(item.itemId == (int)Item.ItemType.Money)
                     {
-                        PND.SetPlayerCoin_RPC(PND.coinAmount);
+                        PND.SetPlayerCoin_RPC(PND.coinAmount + 20);
                         item.DespawnItem_RPC();
                     }
                     else if(PND.itemList.Count < 12)
@@ -155,6 +147,10 @@ namespace Identi5.GamePlay.Player
                 if(building != null)
                 {
                     gameMgr.docCell.SetInfo(building.GetDoc());
+                    if(!POD.buildingVisit.Contains(building.buildingID))
+                    {
+                        POD.buildingVisit.Add(building.buildingID);
+                    }
                 }
             }
             if (pressed.IsSet(InputButtons.TALK))
@@ -177,7 +173,7 @@ namespace Identi5.GamePlay.Player
         {
             if(collision.collider.CompareTag("MapCollision"))
             {
-                POD.collisionNo++;
+                POD.collisionMapNo++;
             }
         }
         #endregion

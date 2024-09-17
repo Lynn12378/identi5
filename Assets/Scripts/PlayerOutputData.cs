@@ -7,29 +7,32 @@ namespace Identi5
     public class PlayerOutputData : NetworkBehaviour
     {
         public int playerId;
+        public string playTime;
 
         #region - Openness -
         public float outfitTime;
         public int oufitBoughtNo;
         public int placeholderNo;
-
+        public List<int> buildingVisit = new List<int>();
         #endregion
 
         #region - Conscientiousness -
-        public int failGame;
+        public float manualTime;
+        public int failGameNo;
         public int deathNo;
-        public int fullNo;
-        public int organizeNo;
-        public int zombieInShelteNo;
         public int killNo;
+        public int organizeNo;
+        public int fullNo;
+        public int zombieInShelteNo;
         public float surviveTime;
+        public int contribution;
         #endregion
 
         #region - Extraversion -
         public int messageSent;
         public int teamCreated;
         public int quitTeamNo;
-
+        public float totalVoiceDetectionDuration;
         #endregion
 
         #region - Agreeableness -
@@ -42,18 +45,12 @@ namespace Identi5
         #endregion
 
         #region - Neuroticism -
+        public int collisionMapNo;
         public int bulletOnCollisions; 
-        public int collisionNo;
         public List<int> remainHP = new List<int>();
         public List<int> remainBullet = new List<int>();
         #endregion
-
-        public float totalVoiceDetectionDuration;           // Duration of voice detected on player's mic
-                                   // No. of placeholder items that player pick up
-        public int repairQuantity;                          // Quantity of player given to repair shelter
-        public int usePlaceholderNo;                        // No. of player use badge at right building
-        public float durationOfRound;
-
+   
         #region - JSON -
         public string ToJson()
         {

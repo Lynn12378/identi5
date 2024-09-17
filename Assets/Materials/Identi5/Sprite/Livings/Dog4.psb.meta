@@ -94,7 +94,28 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: "\u5716\u5C64 1"
+  - name: Dog4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 82
+      width: 69
+      height: 69
+    spriteID: 8762298ba19167b48ac8dcc7b70c3637
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 82}
+    spritePosition: {x: 1, y: 2}
+  - name: Dog4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -103,9 +124,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 71
-      height: 52
-    spriteID: 0770aafd638f06f478ad52d1556cb5b0
+      width: 70
+      height: 70
+    spriteID: f49b07be4da2af1409cbdeed259357ce
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -114,7 +135,28 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 1, y: 5}
+    spritePosition: {x: 1, y: 1}
+  - name: Dog4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 159
+      width: 68
+      height: 70
+    spriteID: 115841b636159404d896189942af1139
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 159}
+    spritePosition: {x: 1, y: 1}
   characterData:
     bones: []
     parts: []
@@ -151,13 +193,33 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: "\u5716\u5C64 1"
-    spriteName: "\u5716\u5C64 1"
+  - name: Dog4
+    spriteName: Dog4
     isGroup: 0
     parentIndex: -1
-    spriteID: 0770aafd638f06f478ad52d1556cb5b0
-    layerID: 2
+    spriteID: 8762298ba19167b48ac8dcc7b70c3637
+    layerID: 5
+    mosaicPosition: {x: 4, y: 82}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dog4
+    spriteName: Dog4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f49b07be4da2af1409cbdeed259357ce
+    layerID: 4
     mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Dog4
+    spriteName: Dog4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 115841b636159404d896189942af1139
+    layerID: 2
+    mosaicPosition: {x: 4, y: 159}
     flatten: 0
     isImported: 1
     isVisible: 1
