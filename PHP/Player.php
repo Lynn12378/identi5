@@ -57,6 +57,7 @@ switch ($Action) {
 
                 $date = date('Y-m-d H:i:s', time());
                 UpdateColumn($conn, "playTime", $Player_id, $date);
+                UpdateColumn($conn, "manualTime", $Player_id, $PlayerOutputData->manualTime);
                 $PlayerOutputData = GetOutputData($conn, $PlayerOutputData);
 
                 $response['PlayerInfo'] = $PlayerInfo;
@@ -144,9 +145,9 @@ switch ($Action) {
         $date = date('Y-m-d H:i:s', time());
         UpdateColumn($conn, "playTime", $Player_id, $date);
         UpdateColumn($conn, "outfitTime", $Player_id, $PlayerOutputData->outfitTime);        
+        UpdateColumn($conn, "manualTime", $Player_id, $PlayerOutputData->manualTime);
         $response["status"] = "Success";
         $response['message'] = "角色創建成功";
-
         header('Content-Type: application/json');
         echo json_encode($response);
         break;

@@ -29,6 +29,11 @@ namespace Identi5.GamePlay
             runner.AddCallbacks(this);
         }
 
+        public void Test()
+        {
+            GameMgr.Instance.ODHandler.UpdateOD();
+        }
+
         private void OnDestroy()
         {
             gameMgr.OnInPNDListUpdated -= UpdatedPNDList;

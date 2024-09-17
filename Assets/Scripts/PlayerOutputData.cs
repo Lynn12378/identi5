@@ -6,8 +6,7 @@ namespace Identi5
 {
     public class PlayerOutputData : NetworkBehaviour
     {
-        public int playerId;
-        public string playTime;
+        public int playerId = -1;
 
         #region - Openness -
         public float outfitTime;

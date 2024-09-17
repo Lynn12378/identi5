@@ -171,7 +171,7 @@ namespace Identi5.GamePlay.Player
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.collider.CompareTag("MapCollision"))
+            if(collision.collider.CompareTag("MapCollision") || collision.collider.CompareTag("Building"))
             {
                 POD.collisionMapNo++;
             }

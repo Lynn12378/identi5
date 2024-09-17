@@ -114,6 +114,7 @@ namespace Identi5
             }
         #endregion
 
+        public OutputDBHandler ODHandler;
         public Shelter shelter;
         public DialogCell dialogCell;
         public DocCell docCell;

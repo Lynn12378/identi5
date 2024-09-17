@@ -13,6 +13,8 @@ namespace Identi5.DB
     public class PlayerDBHandler : DBMgr
     {
         private float timer = 0;
+        private float timer2 = 0;
+        private bool isFirstOpen = false;
         [SerializeField] private PanelMgr panelMgr;
         [SerializeField] private PlayerInfo playerInfo;
         [SerializeField] public PlayerOutputData playerOutputData;
@@ -28,6 +30,17 @@ namespace Identi5.DB
         void Update()
         {
             timer += Time.deltaTime;
+            timer2 += Time.deltaTime;
+        }
+
+        public void OnManualOpen()
+        {
+            timer2 = 0;
+            isFirstOpen = true;
+        }
+        public void OnManualClosed()
+        {
+            playerOutputData.manualTime += timer2;
         }
 
         public void Login()
@@ -68,9 +81,7 @@ namespace Identi5.DB
             SetForm(formData, "Player", action);
             yield return StartCoroutine(base.SendData());
             var response = base.GetResponseText();
-            Debug.Log(response);
             JObject jsonResponse = JObject.Parse(response);
-
             if (!string.IsNullOrEmpty(response))
             {
                 var status = jsonResponse["status"].ToString();
@@ -92,8 +103,6 @@ namespace Identi5.DB
                             break;
                         case "create":
                             SceneManager.LoadScene("Lobby");
-                            break;
-                        case "Update":
                             break;
                     }
                     playerOutputData.playerId = playerInfo.Player_id;
