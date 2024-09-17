@@ -454,7 +454,7 @@ namespace Identi5.GamePlay
                             cell.SetInfo(PND.playerName, PND.deathNo, i);
                             break;
                         case 2:
-                            cell.SetInfo(PND.playerName, PND.surviveTime, i);
+                            cell.SetInfo(PND.playerName, (float)Math.Round(PND.surviveTime, 2), i);
                             break;
                         case 3:
                             cell.SetInfo(PND.playerName, PND.contribution, i);

@@ -51,16 +51,15 @@ namespace Identi5.GamePlay.Player
 
         public override void FixedUpdateNetwork()
         {
-            if(surviveTime > PND.surviveTime)
-            {
-                PND.SetSurviveTime_RPC(surviveTime);
-                POD.surviveTime = surviveTime;
-            }
-
             if(foodTimer.Expired(Runner))
             {
                 PND.SetPlayerFood_RPC(PND.foodAmount - 10);
                 foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
+                if(surviveTime > PND.surviveTime)
+                {
+                    PND.SetSurviveTime_RPC(surviveTime);
+                    POD.surviveTime = surviveTime;
+                }
             }
             surviveTime += Runner.DeltaTime;
             if(PND.HP <= 0 || PND.foodAmount <= 0)
