@@ -10,7 +10,7 @@ namespace Identi5
 
         #region - Openness -
         public float outfitTime;
-        public int oufitBoughtNo;
+        public int oufitChangedNo;
         public int placeholderNo;
         public List<int> buildingVisit = new List<int>();
         #endregion

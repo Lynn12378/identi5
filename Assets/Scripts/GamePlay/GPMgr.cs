@@ -38,6 +38,7 @@ namespace Identi5.GamePlay
             gameMgr.OnMessageListUpdated -= UpdatedMessageList;
             gameMgr.OnItemListUpdated -= UpdateItemList;
             gameMgr.OnRankListUpdated -= UpdateRankList;
+            gameMgr.OnOutfitsUpdated -= UpdateOutfits;
         }
 
         #region - Start Game -
@@ -63,6 +64,7 @@ namespace Identi5.GamePlay
             gameMgr.OnMessageListUpdated += UpdatedMessageList;
             gameMgr.OnItemListUpdated += UpdateItemList;
             gameMgr.OnRankListUpdated += UpdateRankList;
+            gameMgr.OnOutfitsUpdated -= UpdateOutfits;
 
             localPlayer = runner.LocalPlayer;
             var playerObject = runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, localPlayer);
@@ -74,6 +76,7 @@ namespace Identi5.GamePlay
             gameMgr.UpdatedPNDList();
             gameMgr.dialogCell = dialogCell;
             gameMgr.docCell = docCell;
+            playerOutfitsHandler.Init();
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -280,11 +283,15 @@ namespace Identi5.GamePlay
         #endregion
 
         #region - Action -
-            [SerializeField] public PlayerRef receiver;
             public Item itemAction;
+            private List<string> outfits;
+            private List<Color> colorList;
+            [SerializeField] private PlayerRef receiver;
+            [SerializeField] private PlayerOutfitsHandler playerOutfitsHandler;
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
             [SerializeField] private GameObject outfitPanel;
+            [SerializeField] private GameObject player;
             public void SetItemAction(Item itemAction)
             {
                 this.itemAction = itemAction;
@@ -319,7 +326,7 @@ namespace Identi5.GamePlay
                     case Item.ItemType.FishCan:
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
-                    case Item.ItemType.NedicalKit:
+                    case Item.ItemType.MedicalKit:
                         POD.remainHP.Add(PND.HP);
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
@@ -337,16 +344,21 @@ namespace Identi5.GamePlay
                         }
                         break;
                     case Item.ItemType.OutfitChangeCard:
+                        player.SetActive(true);
                         outfitPanel.SetActive(true);
                         break;
+                    case Item.ItemType.IDcard:
+                        gameMgr.dialogCell.SetInfo("被遺失的學生證，有明顯的凹折");
+                        break;
                     default:
+                        gameMgr.dialogCell.SetInfo("該物品無法使用");
                         break;
                 }
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
             }
-
+            #region -Outfit -
             public void DiscardItem()
             {
                 itemAction.quantity--;
@@ -356,11 +368,31 @@ namespace Identi5.GamePlay
 
             public void ChangeOutfit()
             {
+                GameMgr.playerOutputData.oufitChangedNo++;
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
-                CloseOutfitPanel();
+                UpdateOutfits();
+                player.SetActive(false);
+                outfitPanel.SetActive(false);
             }
 
+            public void UpdateOutfits()
+            {
+                SetOufits();
+                PND.SetOutfits(outfits);
+                PND.SetColorList(colorList);
+            }
+
+            private void SetOufits()
+            {
+                outfits = new List<string>();
+                colorList = GameMgr.playerInfo.colorList;
+                foreach(var resolver in playerOutfitsHandler.resolverList)
+                {
+                    outfits.Add(resolver.GetLabel().ToString());
+                }
+            }
+            #endregion
             #region - Panel - 
             public void CloseActionPanel()
             {
@@ -375,10 +407,6 @@ namespace Identi5.GamePlay
             public void CloseGivenPanel()
             {
                 givenPanel.SetActive(false);
-            }
-            public void CloseOutfitPanel()
-            {
-                outfitPanel.SetActive(false);
             }
             #endregion
             

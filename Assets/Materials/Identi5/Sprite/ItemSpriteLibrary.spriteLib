@@ -32,8 +32,8 @@ MonoBehaviour:
       m_Sprite: {fileID: -2380335422655095822, guid: 6dd4fa296f4c4cc4d93b66ff2ca78605, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -2380335422655095822, guid: 6dd4fa296f4c4cc4d93b66ff2ca78605, type: 3}
-    - m_Name: NedicalKit
-      m_Hash: 1004032161
+    - m_Name: MedicalKit
+      m_Hash: 284158882
       m_Sprite: {fileID: -7588819218424230309, guid: d2587f3064c29ce408e3c03ef8ac19e3, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -7588819218424230309, guid: d2587f3064c29ce408e3c03ef8ac19e3, type: 3}
@@ -42,8 +42,18 @@ MonoBehaviour:
       m_Sprite: {fileID: -2560654606017976508, guid: 9a07f4fe03bc94b4fac17fbbd07bcfbd, type: 3}
       m_FromMain: 0
       m_SpriteOverride: {fileID: -2560654606017976508, guid: 9a07f4fe03bc94b4fac17fbbd07bcfbd, type: 3}
+    - m_Name: OutfitChangeCard
+      m_Hash: 429840171
+      m_Sprite: {fileID: 21300000, guid: d3fd60fd25eba364bb18f327a05c7b80, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: d3fd60fd25eba364bb18f327a05c7b80, type: 3}
+    - m_Name: IDcard
+      m_Hash: 62276417
+      m_Sprite: {fileID: 21300000, guid: 6dce9b8d23d9c78439cea519d5d3d486, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 6dce9b8d23d9c78439cea519d5d3d486, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 5
+    m_EntryOverrideCount: 7
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638621298527764593
+  m_ModificationHash: 638622528170644951
   m_Version: 1

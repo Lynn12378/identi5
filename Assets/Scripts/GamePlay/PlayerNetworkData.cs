@@ -62,22 +62,28 @@ namespace Identi5.GamePlay
                 SetPlayerCoin_RPC(100);
                 if(outfits.Get(0) != ""){
                     uIManager.playerImg.Init();
-                    uIManager.UpdatedOutfits(outfits);
+                    ChangeOufitsLocal();
                 }
-                uIManager.UpdatedColor(colorList);
                 minimapIcon.GetComponent<SpriteRenderer>().color = Color.green;
                 HPSlider.fillRect.GetComponent<Image>().color = Color.green;
                 minimapIcon.SetActive(true);
             }
-            if(outfits.Get(0) != "")
-            {
+            if(outfits.Get(0) != ""){
                 playerOutfitsHandler.Init();
-                uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
+                ChangeOufits();
             }
             gameMgr.UpdatedPNDList();
+        }
+        private void ChangeOufitsLocal()
+        {
+            uIManager.UpdatedOutfits(outfits);
+            uIManager.UpdatedColor(colorList);
+        }
+        private void ChangeOufits()
+        {
+            uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
             uIManager.UpdatedColor(playerOutfitsHandler, colorList);
         }
-
         public void Init()
         {
             SetPlayerHP_RPC(MaxHP);
@@ -210,10 +216,8 @@ namespace Identi5.GamePlay
                         gameMgr.UpdatedPlayerMinimap();
                         break;
                     case nameof(outfits):
-                        uIManager.UpdatedOutfits(playerOutfitsHandler, outfits);
-                        break;
                     case nameof(colorList):
-                        uIManager.UpdatedColor(playerOutfitsHandler, colorList);
+                        ChangeOufits();
                         break;
                     case nameof(killNo):
                     case nameof(contribution):
@@ -242,10 +246,8 @@ namespace Identi5.GamePlay
                         uIManager.UpdateFoodSlider(foodAmount, MaxFood);
                         break;
                     case nameof(outfits):
-                        uIManager.UpdatedOutfits(outfits);
-                        break;
                     case nameof(colorList):
-                        uIManager.UpdatedColor(colorList);
+                        ChangeOufitsLocal();
                         break;
                     case nameof(itemID):
                         ReceiveItem();

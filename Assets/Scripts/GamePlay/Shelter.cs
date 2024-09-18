@@ -24,7 +24,7 @@ namespace Identi5.GamePlay
 
             SetDurability_RPC(maxDurability);
             durabilityTimer = TickTimer.CreateFromSeconds(Runner, 5);
-            endGameTimer = TickTimer.CreateFromSeconds(Runner, 50);
+            endGameTimer = TickTimer.CreateFromSeconds(Runner, 100);
         }
 
         public override void FixedUpdateNetwork()

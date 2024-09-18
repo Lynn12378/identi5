@@ -113,6 +113,13 @@ namespace Identi5
                 OnRankListUpdated?.Invoke();
             }
         #endregion
+        #region - outfits -
+            public event Action OnOutfitsUpdated = null;
+            public void UpdateOutfits()
+            {
+                OnOutfitsUpdated?.Invoke();
+            }
+        #endregion
 
         public OutputDBHandler ODHandler;
         public Shelter shelter;

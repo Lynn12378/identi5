@@ -12,7 +12,7 @@ namespace Identi5.GamePlay
             BulletBox,
             Cerement,
             FishCan,
-            NedicalKit,
+            MedicalKit,
             Money,
             OutfitChangeCard,
             IDcard,
