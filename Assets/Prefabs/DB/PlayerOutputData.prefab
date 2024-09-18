@@ -63,20 +63,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc5c66d322048d4bad423af51e0c72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 91
-  playTime: 0
+  playerId: 106
+  isFinished: 0
   outfitTime: 0
-  oufitBoughtNo: 0
+  oufitChangedNo: 0
   placeholderNo: 0
   buildingVisit: 
   manualTime: 0
   failGameNo: 0
-  deathNo: 0
-  killNo: 0
-  organizeNo: 0
-  fullNo: 0
+  deathNo: 1
+  killNo: 5
+  organizeNo: 3
+  fullNo: 2
   zombieInShelteNo: 0
-  surviveTime: 0
+  surviveTime: 47.3125
   contribution: 0
   messageSent: 0
   teamCreated: 0
@@ -84,10 +84,11 @@ MonoBehaviour:
   totalVoiceDetectionDuration: 0
   joinTeamNo: 0
   giftNo: 0
-  rankClikedNo: 0
+  rankClikedNo: 2
   bulletOnLiving: 0
-  interactNo: 0
+  bulletOnPlayer: 0
+  interactNo: 6
   collisionMapNo: 0
   bulletOnCollisions: 0
-  remainHP: 
+  remainHP: 50000000
   remainBullet: 

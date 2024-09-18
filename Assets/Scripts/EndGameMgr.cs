@@ -11,5 +11,9 @@ namespace Identi5
             string fullUrl = $"{baseUrl}?player_id={GameMgr.playerInfo.Player_id}";
             Application.OpenURL(fullUrl);
         }
+        public void Start()
+        {
+            GoToQuestion();
+        }
     }
 }

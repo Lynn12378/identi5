@@ -107,6 +107,7 @@ namespace Identi5.DB
             SetForm(formData, "Player", action);
             yield return StartCoroutine(base.SendData());
             var response = base.GetResponseText();
+            // Debug.Log(response);
             JObject jsonResponse = JObject.Parse(response);
             if (!string.IsNullOrEmpty(response))
             {

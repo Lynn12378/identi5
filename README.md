@@ -11,4 +11,3 @@ Shelter 時間
 麥克風圖示
 換裝卡介面
 遊戲結束
-pod isFinishGame

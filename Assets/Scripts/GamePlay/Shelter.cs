@@ -31,6 +31,7 @@ namespace Identi5.GamePlay
         {
             if (endGameTimer.Expired(Runner))
             {
+                GameMgr.playerOutputData.isFinished = true;
                 GameMgr.Instance.ODHandler.UpdateOD();
                 Runner.Shutdown();
                 SceneManager.LoadScene("EndGame");
