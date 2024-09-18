@@ -9,12 +9,11 @@ namespace Identi5.GamePlay
         private ChangeDetector changes;
         private UIManager uIManager;
         private int maxDurability = 100;
-        public int repair = 20;
-        
         [SerializeField] private BoxCollider2D doorCollider;
         [Networked] public bool IsOpen { get; set; } = false;
         [Networked] public int durability { get; private set; }
         [Networked] private TickTimer durabilityTimer { get; set; }
+        [Networked] private TickTimer failedTimer { get; set; }
         [Networked] private TickTimer endGameTimer { get; set; }
         [Networked] public PlayerRef playerRef { get; private set; }
 
@@ -25,10 +24,18 @@ namespace Identi5.GamePlay
 
             SetDurability_RPC(maxDurability);
             durabilityTimer = TickTimer.CreateFromSeconds(Runner, 5);
+            endGameTimer = TickTimer.CreateFromSeconds(Runner, 50);
         }
 
         public override void FixedUpdateNetwork()
         {
+            if (endGameTimer.Expired(Runner))
+            {
+                GameMgr.Instance.ODHandler.UpdateOD();
+                Runner.Shutdown();
+                SceneManager.LoadScene("EndGame");
+            }
+
             if (durabilityTimer.Expired(Runner) && durability > 0)
             {
                 SetDurability_RPC(durability - 1);
@@ -37,27 +44,28 @@ namespace Identi5.GamePlay
             
             if(durability == 0)
             {
-                if(!endGameTimer.IsRunning)
+                if(!failedTimer.IsRunning)
                 {
-                    endGameTimer = TickTimer.CreateFromSeconds(Runner, 60);
+                    failedTimer = TickTimer.CreateFromSeconds(Runner, 60);
                     GameMgr.Instance.dialogCell.SetInfo("基地耐久度不足! 請儘快補充物資!");
                 }
                 
-                if(endGameTimer.Expired(Runner))
+                if(failedTimer.Expired(Runner))
                 {
-                    EndGame();
                     GameMgr.playerOutputData.failGameNo++;
-                    //輸出結果
+                    GameMgr.Instance.ODHandler.UpdateOD();
+                    Runner.Shutdown();
+                    Restart();
                 }
             }
         }
 
-        public async void EndGame()
+        public async void Restart()
         {
 			if (Runner.IsSceneAuthority) {
-				await Runner.UnloadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("GamePlay")));
-  				await Runner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("EndGame")), LoadSceneMode.Additive);
-			}
+                await Runner.UnloadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("GamePlay")));
+                await Runner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Lobby")), LoadSceneMode.Additive);
+            }
         }
 
         #region - RPCs -

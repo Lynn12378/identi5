@@ -12,6 +12,7 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject item;
+        [SerializeField] private int initAmount = 10;
         [SerializeField] private int spawnAmount = 20;
         [SerializeField] private float spawnTime = 300.0f;
         [Networked] private TickTimer spawnTimer { get; set; }
@@ -20,6 +21,10 @@ namespace Identi5.GamePlay.Spawner
             var collider = gameObject.GetComponent<BoxCollider2D>();
             width = collider.bounds.extents.x;
             height = collider.bounds.extents.y;
+            for (int i = 0; i < initAmount; i++)
+            {
+                RandomSpawn();
+            }
             spawnTimer = TickTimer.CreateFromSeconds(Runner, spawnTime);
         }
         public override void FixedUpdateNetwork()

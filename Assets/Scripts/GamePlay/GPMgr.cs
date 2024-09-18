@@ -30,11 +30,6 @@ namespace Identi5.GamePlay
             panel.Add(TeamListPanel);
         }
 
-        public void Test()
-        {
-            GameMgr.Instance.ODHandler.UpdateOD();
-        }
-
         private void OnDestroy()
         {
             gameMgr.OnInPNDListUpdated -= UpdatedPNDList;
@@ -289,6 +284,7 @@ namespace Identi5.GamePlay
             public Item itemAction;
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
+            [SerializeField] private GameObject outfitPanel;
             public void SetItemAction(Item itemAction)
             {
                 this.itemAction = itemAction;
@@ -340,6 +336,9 @@ namespace Identi5.GamePlay
                             return;
                         }
                         break;
+                    case Item.ItemType.OutfitChangeCard:
+                        outfitPanel.SetActive(true);
+                        break;
                     default:
                         break;
                 }
@@ -353,6 +352,13 @@ namespace Identi5.GamePlay
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
+            }
+
+            public void ChangeOutfit()
+            {
+                itemAction.quantity--;
+                gameMgr.UpdateItemList();
+                CloseOutfitPanel();
             }
 
             #region - Panel - 
@@ -369,6 +375,10 @@ namespace Identi5.GamePlay
             public void CloseGivenPanel()
             {
                 givenPanel.SetActive(false);
+            }
+            public void CloseOutfitPanel()
+            {
+                outfitPanel.SetActive(false);
             }
             #endregion
             

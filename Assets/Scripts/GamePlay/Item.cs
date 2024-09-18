@@ -13,7 +13,9 @@ namespace Identi5.GamePlay
             Cerement,
             FishCan,
             NedicalKit,
-            Money
+            Money,
+            OutfitChangeCard,
+            IDcard,
         }
 
         [SerializeField] private SpriteResolver spriteResolver;

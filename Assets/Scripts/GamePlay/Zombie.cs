@@ -28,11 +28,11 @@ namespace Identi5.GamePlay
         private int damageOverTime = 5;
         private float damageInterval = 3f;
         private float moveSpeed = 1f;
+        [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
+        [SerializeField] private SpriteResolver spriteResolver;
         [SerializeField] private PlayerDetection playerDetection;
         [SerializeField] private ItemSpawner itemSpawner;
-        [SerializeField] private SpriteResolver spriteResolver;
         [SerializeField] public Slider HpSlider;
-        [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
         [Networked] public int ZombieID { get; set;}
         [Networked] public int Hp { get; set; }
         [Networked] private TickTimer damageTimer { get; set; }
@@ -45,7 +45,7 @@ namespace Identi5.GamePlay
             transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
             SetZombieID_RPC(ZombieID);
             Init();
-            damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
+            damageTimer = TickTimer.CreateFromSeconds(Runner, 0.5f);
         }
 
         public void Init()
@@ -90,7 +90,7 @@ namespace Identi5.GamePlay
                 if(damageTimer.Expired(Runner))
                 {
                     RandomDirection();
-                    damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
+                    damageTimer = TickTimer.CreateFromSeconds(Runner, 0.5f);
                 }
             }
             ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
@@ -105,7 +105,6 @@ namespace Identi5.GamePlay
         private void RandomDirection()
         {
             direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
-            Debug.Log(direction);
         }
         #endregion
 

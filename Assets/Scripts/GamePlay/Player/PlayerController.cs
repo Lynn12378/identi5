@@ -146,7 +146,6 @@ namespace Identi5.GamePlay.Player
                 if(livings != null)
                 {
                     livings.Interact();
-                    // gameMgr.docCell.SetInfo();
                     POD.interactNo++;
                 }
                 if(building != null)

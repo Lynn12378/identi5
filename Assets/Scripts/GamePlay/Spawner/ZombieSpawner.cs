@@ -12,14 +12,19 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject zombie;
+        [SerializeField] private int initAmount = 10;
         [SerializeField] private int spawnAmount = 5;
-        [SerializeField] private float spawnTime = 60.0f;
+        [SerializeField] private float spawnTime = 30.0f;
         [Networked] private TickTimer spawnTimer { get; set; }
         public override void Spawned()
         {
             var collider = gameObject.GetComponent<BoxCollider2D>();
             width = collider.bounds.extents.x;
             height = collider.bounds.extents.y;
+            for (int i = 0; i < initAmount; i++)
+            {
+                RandomSpawn();
+            }
             spawnTimer = TickTimer.CreateFromSeconds(Runner, spawnTime);
         }
         public override void FixedUpdateNetwork()

@@ -39,6 +39,7 @@ namespace Identi5
         public int giftNo;
         public int rankClikedNo;
         public int bulletOnLiving;
+        public int bulletOnPlayer;
         public int interactNo;
 
         #endregion

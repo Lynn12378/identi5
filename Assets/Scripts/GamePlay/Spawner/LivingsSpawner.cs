@@ -12,6 +12,7 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject livings;
+        [SerializeField] private int initAmount = 10;
         [SerializeField] private int spawnAmount = 5;
         [SerializeField] private float spawnTime = 60.0f;
         [Networked] private TickTimer spawnTimer { get; set; }
@@ -20,6 +21,10 @@ namespace Identi5.GamePlay.Spawner
             var collider = gameObject.GetComponent<BoxCollider2D>();
             width = collider.bounds.extents.x;
             height = collider.bounds.extents.y;
+            for (int i = 0; i < initAmount; i++)
+            {
+                RandomSpawn();
+            }
             spawnTimer = TickTimer.CreateFromSeconds(Runner, spawnTime);
         }
         public override void FixedUpdateNetwork()
@@ -35,7 +40,7 @@ namespace Identi5.GamePlay.Spawner
         }
         public void RandomSpawn()
         {
-            int seed = Random.Range(0, 10);
+            int seed = Random.Range(0, 8);
             Vector3 position = transform.position + new Vector3(Random.Range(-width, width),Random.Range(-height, height),0);
             Runner.Spawn(livings, position, Quaternion.identity).GetComponent<Livings>().SetLivingsID_RPC(seed);
         }

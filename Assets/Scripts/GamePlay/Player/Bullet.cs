@@ -56,6 +56,10 @@ namespace Identi5.GamePlay.Player
                 if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {
                     player.TakeDamage(10);
+                    if(playerRef == Runner.LocalPlayer)
+                    {
+                        GameMgr.playerOutputData.bulletOnPlayer++;
+                    }
                 }
                 Runner.Despawn(Object);
             }

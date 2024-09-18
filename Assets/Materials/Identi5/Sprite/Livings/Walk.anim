@@ -61,7 +61,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings3
+    path: GameObject/livings3
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -109,7 +109,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings
+    path: GameObject/livings
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -157,7 +157,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings2
+    path: GameObject/livings2
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -170,7 +170,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2561838845
+      path: 372631817
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -179,7 +179,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1875128663
+      path: 1447836874
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -188,7 +188,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4021665387
+      path: 1630722463
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -262,7 +262,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings3
+    path: GameObject/livings3
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -310,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings
+    path: GameObject/livings
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -358,7 +358,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: livings2
+    path: GameObject/livings2
     classID: 1
     script: {fileID: 0}
     flags: 0

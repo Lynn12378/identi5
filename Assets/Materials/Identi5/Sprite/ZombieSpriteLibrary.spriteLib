@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: enemy
-    m_Hash: 1000299177
+  - m_Name: Zombie
+    m_Hash: 206380807
     m_CategoryList: []
     m_OverrideEntries:
     - m_Name: HighDamage
@@ -40,5 +40,5 @@ MonoBehaviour:
     m_FromMain: 0
     m_EntryOverrideCount: 4
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638563030194441886
+  m_ModificationHash: 638622386200408886
   m_Version: 1

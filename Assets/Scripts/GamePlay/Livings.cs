@@ -4,6 +4,7 @@ using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 using Fusion;
 using Fusion.Addons.Physics;
+using TMPro;
 
 namespace Identi5.GamePlay
 {
@@ -19,28 +20,26 @@ namespace Identi5.GamePlay
             Cat2,
             Cat3,
             Cat4,
-            Goose,
             Squirrel,
             Frog,
+            Goose,
         }
         private ChangeDetector changes;
         public LivingsType livingsType;
+        private Vector2 direction;
+        private bool isMoving;
         [SerializeField] private NetworkRigidbody2D livingsNetworkRigidbody = null;
-
         [SerializeField] private SpriteResolver SRV1;
         [SerializeField] private SpriteResolver SRV2;
         [SerializeField] private SpriteResolver SRV3;
+        [SerializeField] private GameObject obj;
+        [SerializeField] private Transform trans;
+        [SerializeField] private TMP_Text Txt = null;
         [SerializeField] public Slider HpSlider;
-        [SerializeField] GameObject love;
-    
         [Networked] public int livingsID { get; set;}
         [Networked] public int Hp { get; set; }
-
-        private Vector3 moveDirection;
-        private bool isMoving = false;
-
+        
         #region - Initialize -
-
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
@@ -54,9 +53,33 @@ namespace Identi5.GamePlay
         public void Init()
         {
             livingsType = (LivingsType) livingsID;
+            Txt.text = GetTxt();
             SRV1.SetCategoryAndLabel("livings1", livingsType.ToString());
             SRV2.SetCategoryAndLabel("livings2", livingsType.ToString());
             SRV3.SetCategoryAndLabel("livings3", livingsType.ToString());
+        }
+
+        public string GetTxt()
+        {
+            switch(livingsType)
+            {
+                case LivingsType.Dog1:
+                case LivingsType.Dog2:
+                case LivingsType.Dog3:
+                case LivingsType.Dog4:
+                    return "汪!";
+                case LivingsType.Cat1:
+                case LivingsType.Cat2:
+                case LivingsType.Cat3:
+                case LivingsType.Cat4:
+                    return "喵嗚";
+                case LivingsType.Squirrel:
+                    return "唧唧";
+                case LivingsType.Goose:
+                    return "嘎嘎";
+                default:
+                    return "";
+            }
         }
         #endregion
 
@@ -65,7 +88,7 @@ namespace Identi5.GamePlay
         {
             while (true)
             {
-                moveDirection = Random.insideUnitCircle.normalized;
+                direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
                 isMoving = true;
                 yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
                 isMoving = false;
@@ -77,16 +100,8 @@ namespace Identi5.GamePlay
         {
             if (isMoving)
             {
-                Vector3 newPosition = transform.position + moveDirection * 0.2f * Time.fixedDeltaTime;
-                livingsNetworkRigidbody.Rigidbody.MovePosition(newPosition);
-            }
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.CompareTag("MapCollision"))
-            {
-                moveDirection = -moveDirection;
+                livingsNetworkRigidbody.Rigidbody.velocity = direction * 1.0f;
+                trans.rotation = (direction.x > 0) ? new Quaternion(0, 180 , 0, 1) : new Quaternion(0, 0 , 0, 1);
             }
         }
         #endregion
@@ -97,14 +112,14 @@ namespace Identi5.GamePlay
         public void Interact()
         {
             timer = 0;
-            love.SetActive(true);
+            obj.SetActive(true);
         }
         void Update()
         {
             timer += Time.deltaTime;
-            if(timer > 5 && love.activeSelf)
+            if(timer > 5)
             {
-                love.SetActive(false);
+                obj.SetActive(false);
                 timer = 0;
             }
         }
