@@ -150,6 +150,7 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void DespawnZombie_RPC()
         {
+            itemSpawner.gameObject.SetActive(true);
             if (Random.value < 0.5f)
             {
                 for (int i = 0; i < 5; i++)

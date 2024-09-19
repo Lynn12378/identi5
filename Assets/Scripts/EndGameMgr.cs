@@ -13,6 +13,7 @@ namespace Identi5
         }
         public void Start()
         {
+            Debug.Log($"Player_id:{GameMgr.playerInfo.Player_id}");
             GoToQuestion();
         }
     }

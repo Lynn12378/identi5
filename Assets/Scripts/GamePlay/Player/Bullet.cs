@@ -5,14 +5,16 @@ namespace Identi5.GamePlay.Player
 {
     public class Bullet : NetworkBehaviour
     {
-        [SerializeField] private AudioSource source;
-        [SerializeField] private AudioClip clip;
+        private GameMgr gameMgr;
+        [SerializeField] private AudioClip[] clips;
         [Networked] private TickTimer life { get; set; }
         [Networked] public PlayerRef playerRef { get; private set; }
 
         public void Init(Vector2 mousePosition)
         {
-            source.Play();
+            gameMgr = GameMgr.Instance;
+            gameMgr.source.clip = clips[0];
+            gameMgr.source.Play();
             SetPlayerRef_RPC();
             life = TickTimer.CreateFromSeconds(Runner, 1f);
             mousePosition = mousePosition.normalized;
@@ -21,7 +23,7 @@ namespace Identi5.GamePlay.Player
 
         public override void FixedUpdateNetwork()
         {
-            transform.Translate(Vector2.right * 1f);
+            transform.Translate(Vector2.right * 0.5f);
             if (life.Expired(Runner))
             {
                 Runner.Despawn(Object);
@@ -48,8 +50,8 @@ namespace Identi5.GamePlay.Player
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
-                source.clip = clip;
-                source.Play();
+                gameMgr.source.clip = clips[1];
+                gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
             if(player != null)
@@ -64,8 +66,8 @@ namespace Identi5.GamePlay.Player
                         GameMgr.playerOutputData.bulletOnPlayer++;
                     }
                 }
-                source.clip = clip;
-                source.Play();
+                gameMgr.source.clip = clips[1];
+                gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
             else if(zombie != null)
@@ -76,8 +78,8 @@ namespace Identi5.GamePlay.Player
                     GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
-                source.clip = clip;
-                source.Play();
+                gameMgr.source.clip = clips[1];
+                gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
             else if(livings != null)
@@ -91,8 +93,8 @@ namespace Identi5.GamePlay.Player
                 {
                     livings.DespawnLivings_RPC();
                 }
-                source.clip = clip;
-                source.Play();
+                gameMgr.source.clip = clips[1];
+                gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
         }

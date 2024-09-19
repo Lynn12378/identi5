@@ -252,12 +252,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133025715848262528}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4233e3d46e837df4391418dfe025e28d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 993448506561405543, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
+  minRange: 0
+  maxRange: 11
+  initAmount: 10
   spawnAmount: 0
   spawnTime: 300
 --- !u!1 &4680630544809460407
@@ -757,10 +760,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieType: 0
+  ZombieNetworkRigidbody: {fileID: 397606304458726309}
+  spriteResolver: {fileID: 3041365669026767076}
   playerDetection: {fileID: 4097055235517823161}
   itemSpawner: {fileID: 1962009297757197938}
-  spriteResolver: {fileID: 3041365669026767076}
   HpSlider: {fileID: 1422947231120268285}
-  ZombieNetworkRigidbody: {fileID: 397606304458726309}
   _ZombieID: 0
   _Hp: 0

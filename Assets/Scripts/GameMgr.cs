@@ -120,7 +120,7 @@ namespace Identi5
                 OnOutfitsUpdated?.Invoke();
             }
         #endregion
-
+        public AudioSource source;
         public OutputDBHandler ODHandler;
         public Shelter shelter;
         public DialogCell dialogCell;

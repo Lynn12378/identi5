@@ -15,7 +15,7 @@ namespace Identi5.GamePlay.Player
         private GameObject icon;
 
         [SerializeField] private PlayerNetworkData PND;
-        [SerializeField] private AudioSource sourse;
+        [SerializeField] private AudioClip clip;
         [SerializeField] private Transform trans;
         [SerializeField] private SpriteRenderer weapon;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
@@ -122,7 +122,9 @@ namespace Identi5.GamePlay.Player
             {
                 if(item != null)
                 {
-                    sourse.Play();
+                    gameMgr.source.clip = clip;
+                    gameMgr.source.Play();
+
                     if(item.itemId == (int)Item.ItemType.Money)
                     {
                         PND.SetPlayerCoin_RPC(PND.coinAmount + 20);
@@ -157,6 +159,10 @@ namespace Identi5.GamePlay.Player
                     {
                         POD.buildingVisit.Add(building.buildingID);
                     }
+                }
+                if(gameMgr.shelter != null)
+                {
+                    gameMgr.shelter.SetIsOpen_RPC();
                 }
             }
             if (pressed.IsSet(InputButtons.TALK))

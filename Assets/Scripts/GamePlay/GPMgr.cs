@@ -19,7 +19,6 @@ namespace Identi5.GamePlay
         private PlayerOutputData POD;
         public DialogCell dialogCell;
         public DocCell docCell;
-        [SerializeField] private AudioSource source;
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private PanelMgr panelMgr;
 
@@ -292,6 +291,7 @@ namespace Identi5.GamePlay
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
             [SerializeField] private GameObject outfitPanel;
+            [SerializeField] private GameObject outfitCamera;
 
             public void SetItemAction(Item itemAction)
             {
@@ -309,8 +309,8 @@ namespace Identi5.GamePlay
 
             public void GiveItem()
             {
-                source.clip = clips[3];
-                source.Play();
+                gameMgr.source.clip = clips[3];
+                gameMgr.source.Play();
                 gameMgr.PNDList[receiver].SetItem_RPC(itemAction.itemId);
                 itemAction.quantity--;
                 CloseGivenPanel();
@@ -322,7 +322,8 @@ namespace Identi5.GamePlay
             public void UseItem()
             {
                 var info = "該物品無法使用";
-                source.clip = clips[4];
+                gameMgr.source.clip = clips[4];
+
                 switch((Item.ItemType)itemAction.itemId)
                 {
                     case Item.ItemType.BulletBox:
@@ -332,12 +333,12 @@ namespace Identi5.GamePlay
                         break;
                     case Item.ItemType.FoodCan:
                         info = "食物值已增加";
-                        source.clip = clips[2];
+                        gameMgr.source.clip = clips[2];
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
                     case Item.ItemType.MedicalKit:
                         info = "血量已增加";
-                        source.clip = clips[1];
+                        gameMgr.source.clip = clips[1];
                         POD.remainHP.Add(PND.HP);
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
@@ -352,12 +353,14 @@ namespace Identi5.GamePlay
                         else
                         {
                             info = "該物品需要在基地內使用!";
+                            gameMgr.dialogCell.SetInfo(info);
                             return;
                         }
                         break;
                     case Item.ItemType.OutfitChangeCard:
                         info = "換裝卡已使用";
                         outfitPanel.SetActive(true);
+                        outfitCamera.SetActive(true);
                         break;
                     case Item.ItemType.IDcard:
                         info = "被遺失的學生證，有明顯的凹折";
@@ -378,7 +381,7 @@ namespace Identi5.GamePlay
                         info = "路邊無主的愛心傘";
                         break;
                 }
-                source.Play();
+                gameMgr.source.Play();
                 gameMgr.dialogCell.SetInfo(info);
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
@@ -387,8 +390,8 @@ namespace Identi5.GamePlay
 
             public void DiscardItem()
             {
-                source.clip = clips[7];
-                source.Play();
+                gameMgr.source.clip = clips[7];
+                gameMgr.source.Play();
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
@@ -402,6 +405,7 @@ namespace Identi5.GamePlay
                 gameMgr.UpdateItemList();
                 UpdateOutfits();
                 outfitPanel.SetActive(false);
+                outfitCamera.SetActive(false);
             }
 
             public void UpdateOutfits()

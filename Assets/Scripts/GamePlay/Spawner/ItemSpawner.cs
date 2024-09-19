@@ -12,6 +12,8 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject item;
+        [SerializeField] private int minRange = 0;
+        [SerializeField] private int maxRange = 11;
         [SerializeField] private int initAmount = 10;
         [SerializeField] private int spawnAmount = 20;
         [SerializeField] private float spawnTime = 300.0f;
@@ -40,7 +42,7 @@ namespace Identi5.GamePlay.Spawner
         }
         public void RandomSpawn()
         {
-            int seed = Random.Range(0, 5);
+            int seed = Random.Range(minRange, maxRange);
             Vector3 position = transform.position + new Vector3(Random.Range(-width, width),Random.Range(-height, height),0);
             Runner.Spawn(item, position, Quaternion.identity).GetComponent<Item>().SetItemID_RPC(seed);
         }
