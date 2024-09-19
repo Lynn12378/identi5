@@ -27,6 +27,12 @@ namespace Identi5.DB
         [SerializeField] private List<GameObject> dialog = new List<GameObject>();
         [SerializeField] private List<GameObject> CreateRolePanel = new List<GameObject>();
 
+
+        private void Start()
+        {
+            playerOutputData = new PlayerOutputData();
+        }
+
         void Update()
         {
             timer += Time.deltaTime;
