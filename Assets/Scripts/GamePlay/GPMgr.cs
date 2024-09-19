@@ -291,7 +291,7 @@ namespace Identi5.GamePlay
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
             [SerializeField] private GameObject outfitPanel;
-            [SerializeField] private GameObject player;
+
             public void SetItemAction(Item itemAction)
             {
                 this.itemAction = itemAction;
@@ -344,7 +344,6 @@ namespace Identi5.GamePlay
                         }
                         break;
                     case Item.ItemType.OutfitChangeCard:
-                        player.SetActive(true);
                         outfitPanel.SetActive(true);
                         break;
                     case Item.ItemType.IDcard:
@@ -358,7 +357,7 @@ namespace Identi5.GamePlay
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
             }
-            #region -Outfit -
+
             public void DiscardItem()
             {
                 itemAction.quantity--;
@@ -366,13 +365,13 @@ namespace Identi5.GamePlay
                 CloseActionPanel();
             }
 
+            #region -Outfit -
             public void ChangeOutfit()
             {
                 GameMgr.playerOutputData.oufitChangedNo++;
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 UpdateOutfits();
-                player.SetActive(false);
                 outfitPanel.SetActive(false);
             }
 
