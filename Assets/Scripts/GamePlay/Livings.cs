@@ -75,6 +75,8 @@ namespace Identi5.GamePlay
                     return "喵嗚";
                 case LivingsType.Squirrel:
                     return "唧唧";
+                case LivingsType.Frog:
+                    return "呱呱";
                 case LivingsType.Goose:
                     return "嘎嘎";
                 default:

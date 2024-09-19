@@ -12,6 +12,8 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject livings;
+        [SerializeField] private int minRange = 0;
+        [SerializeField] private int maxRange = 9;
         [SerializeField] private int initAmount = 10;
         [SerializeField] private int spawnAmount = 5;
         [SerializeField] private float spawnTime = 60.0f;
