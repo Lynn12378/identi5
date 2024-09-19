@@ -6,6 +6,7 @@ namespace Identi5.GamePlay.Player
     public class Bullet : NetworkBehaviour
     {
         [SerializeField] private AudioSource source;
+        [SerializeField] private AudioClip clip;
         [Networked] private TickTimer life { get; set; }
         [Networked] public PlayerRef playerRef { get; private set; }
 
@@ -47,6 +48,8 @@ namespace Identi5.GamePlay.Player
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
+                source.clip = clip;
+                source.Play();
                 Runner.Despawn(Object);
             }
             if(player != null)
@@ -61,6 +64,8 @@ namespace Identi5.GamePlay.Player
                         GameMgr.playerOutputData.bulletOnPlayer++;
                     }
                 }
+                source.clip = clip;
+                source.Play();
                 Runner.Despawn(Object);
             }
             else if(zombie != null)
@@ -71,6 +76,8 @@ namespace Identi5.GamePlay.Player
                     GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
+                source.clip = clip;
+                source.Play();
                 Runner.Despawn(Object);
             }
             else if(livings != null)
@@ -84,9 +91,10 @@ namespace Identi5.GamePlay.Player
                 {
                     livings.DespawnLivings_RPC();
                 }
+                source.clip = clip;
+                source.Play();
                 Runner.Despawn(Object);
             }
-            
         }
         #endregion
     }

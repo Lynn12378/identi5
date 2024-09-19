@@ -19,6 +19,7 @@ namespace Identi5.GamePlay
         private PlayerOutputData POD;
         public DialogCell dialogCell;
         public DocCell docCell;
+        [SerializeField] private AudioSource source;
         [SerializeField] private GameObject playerPrefab;
         [SerializeField] private PanelMgr panelMgr;
 
@@ -308,6 +309,8 @@ namespace Identi5.GamePlay
 
             public void GiveItem()
             {
+                source.clip = clips[3];
+                source.Play();
                 gameMgr.PNDList[receiver].SetItem_RPC(itemAction.itemId);
                 itemAction.quantity--;
                 CloseGivenPanel();
@@ -315,9 +318,11 @@ namespace Identi5.GamePlay
                 gameMgr.dialogCell.SetInfo("已送出該物品");
             }
             
+            [SerializeField] private AudioClip[] clips;
             public void UseItem()
             {
                 var info = "該物品無法使用";
+                source.clip = clips[4];
                 switch((Item.ItemType)itemAction.itemId)
                 {
                     case Item.ItemType.BulletBox:
@@ -327,17 +332,19 @@ namespace Identi5.GamePlay
                         break;
                     case Item.ItemType.FoodCan:
                         info = "食物值已增加";
+                        source.clip = clips[2];
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
                     case Item.ItemType.MedicalKit:
                         info = "血量已增加";
+                        source.clip = clips[1];
                         POD.remainHP.Add(PND.HP);
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
                     case Item.ItemType.Cerement:
                         if(gameMgr.shelter != null)
                         {
-                            info = "基地耐久度已增加";                            
+                            info = "基地耐久度已增加";
                             gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
                             PND.AddContribution_RPC();
                             POD.contribution = PND.contribution;
@@ -371,6 +378,7 @@ namespace Identi5.GamePlay
                         info = "路邊無主的愛心傘";
                         break;
                 }
+                source.Play();
                 gameMgr.dialogCell.SetInfo(info);
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
@@ -379,6 +387,8 @@ namespace Identi5.GamePlay
 
             public void DiscardItem()
             {
+                source.clip = clips[7];
+                source.Play();
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
