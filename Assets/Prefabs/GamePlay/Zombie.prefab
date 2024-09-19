@@ -260,7 +260,7 @@ MonoBehaviour:
   item: {fileID: 993448506561405543, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
   minRange: 0
   maxRange: 11
-  initAmount: 10
+  initAmount: 0
   spawnAmount: 0
   spawnTime: 300
 --- !u!1 &4680630544809460407

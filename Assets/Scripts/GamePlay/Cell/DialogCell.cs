@@ -11,6 +11,7 @@ namespace Identi5.GamePlay.Cell
 
         public void SetInfo(string text)
         {
+            timer = 0;
             txt.text = text;
             gameObject.SetActive(true);
         }
