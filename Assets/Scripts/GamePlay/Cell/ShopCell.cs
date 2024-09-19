@@ -11,6 +11,7 @@ namespace Identi5.GamePlay.Cell
         [SerializeField] public Image itemImage;
         [SerializeField] private int buyCost;
         [SerializeField] private Item item;
+        [SerializeField] private AudioSource source;
 
         public SpriteLibraryAsset spriteLibraryAsset;
         public TMP_InputField inputField;
@@ -77,6 +78,7 @@ namespace Identi5.GamePlay.Cell
 
         public void OnBuyButton()
         {
+            source.Play();
             if(playerNetworkData.itemList .Count > 11)
             {
                 GameMgr.Instance.dialogCell.SetInfo("購買失敗! 背包已滿");

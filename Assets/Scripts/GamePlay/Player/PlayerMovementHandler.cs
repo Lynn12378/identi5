@@ -7,19 +7,27 @@ namespace Identi5.GamePlay.Player
     {
         [SerializeField] private Transform Weapon = null;
         [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
-        [SerializeField] private Animator animator;
+        // [SerializeField] private Animator animator;
         [SerializeField] private AudioSource source;
-        
+        public static float deltaTime;
+        private float timer = 0;
+
+        void Update()
+        {
+            timer += Time.deltaTime;
+        }
+
         public void Move(NetworkInputData data)
         {
             Vector2 moveVector = data.movementInput.normalized;
             Vector2 newVelocity = moveVector * 5f;
             playerNetworkRigidbody.Rigidbody.velocity = newVelocity;
 
-            if(newVelocity != Vector2.zero)
+            if(newVelocity != Vector2.zero && timer > 0.3f)
             {
                 source.Play();
-                animator.SetBool("Walk",true);
+                timer = 0;
+                // animator.SetBool("Walk",true);
             }
             else
             {

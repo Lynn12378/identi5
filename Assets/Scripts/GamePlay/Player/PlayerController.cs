@@ -15,6 +15,7 @@ namespace Identi5.GamePlay.Player
         private GameObject icon;
 
         [SerializeField] private PlayerNetworkData PND;
+        [SerializeField] private AudioSource sourse;
         [SerializeField] private Transform trans;
         [SerializeField] private SpriteRenderer weapon;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
@@ -121,6 +122,7 @@ namespace Identi5.GamePlay.Player
             {
                 if(item != null)
                 {
+                    sourse.Play();
                     if(item.itemId == (int)Item.ItemType.Money)
                     {
                         PND.SetPlayerCoin_RPC(PND.coinAmount + 20);
