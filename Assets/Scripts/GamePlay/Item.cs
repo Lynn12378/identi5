@@ -17,6 +17,10 @@ namespace Identi5.GamePlay
             OutfitChangeCard,
             IDcard,
             Kettle,
+            Key,
+            Purse,
+            Quiz,
+            Umbrella
         }
 
         [SerializeField] private SpriteResolver spriteResolver;

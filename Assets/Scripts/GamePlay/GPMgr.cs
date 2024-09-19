@@ -317,42 +317,61 @@ namespace Identi5.GamePlay
             
             public void UseItem()
             {
+                var info = "該物品無法使用";
                 switch((Item.ItemType)itemAction.itemId)
                 {
                     case Item.ItemType.BulletBox:
+                        info = "子彈已增加";
                         POD.remainBullet.Add(PND.bulletAmount);
                         PND.SetPlayerBullet_RPC(PND.bulletAmount + 10);
                         break;
                     case Item.ItemType.FoodCan:
+                        info = "食物值已增加";
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
                     case Item.ItemType.MedicalKit:
+                        info = "血量已增加";
                         POD.remainHP.Add(PND.HP);
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
                     case Item.ItemType.Cerement:
                         if(gameMgr.shelter != null)
                         {
+                            info = "基地耐久度已增加";                            
                             gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
                             PND.AddContribution_RPC();
                             POD.contribution = PND.contribution;
                         }
                         else
                         {
-                            gameMgr.dialogCell.SetInfo("請在基地內使用");
+                            info = "該物品需要在基地內使用!";
                             return;
                         }
                         break;
                     case Item.ItemType.OutfitChangeCard:
+                        info = "換裝卡已使用";
                         outfitPanel.SetActive(true);
                         break;
                     case Item.ItemType.IDcard:
-                        gameMgr.dialogCell.SetInfo("被遺失的學生證，有明顯的凹折");
+                        info = "被遺失的學生證，有明顯的凹折";
                         break;
-                    default:
-                        gameMgr.dialogCell.SetInfo("該物品無法使用");
+                    case Item.ItemType.Kettle:
+                        info = "被遺失的學生證，有明顯的凹折";
+                        break;
+                    case Item.ItemType.Key:
+                        info = "掉落在路上的鑰匙，看起來是學生宿舍的";
+                        break;
+                    case Item.ItemType.Purse:
+                        info = "在月底撿到的的錢包，裡面空無一物";
+                        break;
+                    case Item.ItemType.Quiz:
+                        info = "一張不及格的微積分考卷";
+                        break;
+                    case Item.ItemType.Umbrella:
+                        info = "路邊無主的愛心傘";
                         break;
                 }
+                gameMgr.dialogCell.SetInfo(info);
                 itemAction.quantity--;
                 gameMgr.UpdateItemList();
                 CloseActionPanel();
