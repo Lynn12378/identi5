@@ -19,46 +19,66 @@ MonoBehaviour:
     m_OverrideEntries:
     - m_Name: BulletBox
       m_Hash: 1003966805
-      m_Sprite: {fileID: -1207689721860745178, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: -3351171555483531482, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -1207689721860745178, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: -3351171555483531482, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: Cerement
       m_Hash: 666958027
-      m_Sprite: {fileID: 9074705630517134453, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: -8164416320386270787, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 9074705630517134453, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: -8164416320386270787, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: FoodCan
       m_Hash: 134448986
-      m_Sprite: {fileID: 5124371524268638925, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: -4808666213016933709, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 5124371524268638925, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: -4808666213016933709, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: MedicalKit
       m_Hash: 284158882
-      m_Sprite: {fileID: -8699373833151694685, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: 8962282532314272963, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -8699373833151694685, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: 8962282532314272963, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: Money
       m_Hash: 907951328
-      m_Sprite: {fileID: -2625467685690937394, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: 7146017634300990586, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -2625467685690937394, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: 7146017634300990586, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: OutfitChangeCard
       m_Hash: 429840171
-      m_Sprite: {fileID: 3145763536162359601, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: 3562446968273494931, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 3145763536162359601, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: 3562446968273494931, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: IDcard
       m_Hash: 62276417
-      m_Sprite: {fileID: -1287032806847775255, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: 8019755328659176189, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -1287032806847775255, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: 8019755328659176189, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     - m_Name: Kettle
       m_Hash: 112911626
-      m_Sprite: {fileID: -5316778215260307243, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_Sprite: {fileID: -6436386881784416850, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: -5316778215260307243, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_SpriteOverride: {fileID: -6436386881784416850, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+    - m_Name: Key
+      m_Hash: 853405001
+      m_Sprite: {fileID: 8893287720033078011, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 8893287720033078011, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+    - m_Name: Purse
+      m_Hash: 208628644
+      m_Sprite: {fileID: 4719185327606582868, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 4719185327606582868, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+    - m_Name: Quiz
+      m_Hash: 69227948
+      m_Sprite: {fileID: -4756642426493961610, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -4756642426493961610, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+    - m_Name: Umbrella
+      m_Hash: 711152128
+      m_Sprite: {fileID: 3925275833165571772, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 3925275833165571772, guid: 992b2d4caa0619a4994082d184cba731, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 8
+    m_EntryOverrideCount: 12
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638624085263169897
+  m_ModificationHash: 638624086908425257
   m_Version: 1

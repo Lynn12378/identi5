@@ -105,7 +105,7 @@ ScriptedImporter:
       y: 4
       width: 69
       height: 65
-    spriteID: ed604751a418c914f8f6e0e6024ddaab
+    spriteID: b6243c90e00ea2c4ea3436589e41ca1f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 77
       width: 56
       height: 70
-    spriteID: 82f36a71222a58b4c8cc1d39db14877a
+    spriteID: 43a7f710c5db86e419528c3dd93c05ec
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
       y: 372
       width: 66
       height: 60
-    spriteID: de8f8ef145dd27348a0851eb77cb8d56
+    spriteID: c31422fe90683c743b9c4e70ab1ce8a8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,7 +168,7 @@ ScriptedImporter:
       y: 4
       width: 72
       height: 38
-    spriteID: e7a7baab43e971742817b0e4c42ddb4a
+    spriteID: 0fcb77b90ac54384cb23c7fafd8caf53
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,7 +178,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 157, y: 4}
     spritePosition: {x: 0, y: 17}
-  - name: Quit
+  - name: Quiz
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -189,7 +189,7 @@ ScriptedImporter:
       y: 155
       width: 52
       height: 67
-    spriteID: 66064bdbabb0435489d9f945db05b3e5
+    spriteID: c19cb196e47370e419a5710bff21fc01
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 440
       width: 62
       height: 58
-    spriteID: b056db61465d8874caf7f9d696baa4c3
+    spriteID: 40a1922941cd5fe41ab483c5e418e19d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -231,7 +231,7 @@ ScriptedImporter:
       y: 230
       width: 48
       height: 63
-    spriteID: 74dae89571d564848b2f82fa511b259d
+    spriteID: f967a26d6a9f53e4a8a27124682a3e23
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -252,7 +252,7 @@ ScriptedImporter:
       y: 224
       width: 64
       height: 66
-    spriteID: 72813aed771f7cd4087f4d36ac3eea93
+    spriteID: d43fa4383ccd2d040bd5b82f5c457562
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -273,7 +273,7 @@ ScriptedImporter:
       y: 298
       width: 64
       height: 66
-    spriteID: a4896c10561b93246a70da159196ad90
+    spriteID: 007d328410bcded49997b1ad292efb91
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -294,7 +294,7 @@ ScriptedImporter:
       y: 78
       width: 68
       height: 65
-    spriteID: 9889bcb92dbc91340a75f1fe47eaf100
+    spriteID: 708af66e5c768ba4cb41d1e81e8035a0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -315,7 +315,7 @@ ScriptedImporter:
       y: 4
       width: 68
       height: 66
-    spriteID: 39c31e3a1504ae14c9e3d4ad052e965d
+    spriteID: 96d9cd6efd3674f44bf1bf20e4dd32e6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -336,7 +336,7 @@ ScriptedImporter:
       y: 151
       width: 68
       height: 65
-    spriteID: 4b18598c36747684891b6e1b11610970
+    spriteID: 8375ea4bb0480d84cbf5c9f53f8168dc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -386,7 +386,7 @@ ScriptedImporter:
     spriteName: 'Umbrella '
     isGroup: 0
     parentIndex: -1
-    spriteID: ed604751a418c914f8f6e0e6024ddaab
+    spriteID: b6243c90e00ea2c4ea3436589e41ca1f
     layerID: 13
     mosaicPosition: {x: 80, y: 4}
     flatten: 0
@@ -396,7 +396,7 @@ ScriptedImporter:
     spriteName: kettle
     isGroup: 0
     parentIndex: -1
-    spriteID: 82f36a71222a58b4c8cc1d39db14877a
+    spriteID: 43a7f710c5db86e419528c3dd93c05ec
     layerID: 12
     mosaicPosition: {x: 80, y: 77}
     flatten: 0
@@ -406,7 +406,7 @@ ScriptedImporter:
     spriteName: purse
     isGroup: 0
     parentIndex: -1
-    spriteID: de8f8ef145dd27348a0851eb77cb8d56
+    spriteID: c31422fe90683c743b9c4e70ab1ce8a8
     layerID: 11
     mosaicPosition: {x: 4, y: 372}
     flatten: 0
@@ -416,17 +416,17 @@ ScriptedImporter:
     spriteName: Key
     isGroup: 0
     parentIndex: -1
-    spriteID: e7a7baab43e971742817b0e4c42ddb4a
+    spriteID: 0fcb77b90ac54384cb23c7fafd8caf53
     layerID: 10
     mosaicPosition: {x: 157, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Quit
-    spriteName: Quit
+  - name: Quiz
+    spriteName: Quiz
     isGroup: 0
     parentIndex: -1
-    spriteID: 66064bdbabb0435489d9f945db05b3e5
+    spriteID: c19cb196e47370e419a5710bff21fc01
     layerID: 9
     mosaicPosition: {x: 80, y: 155}
     flatten: 0
@@ -436,7 +436,7 @@ ScriptedImporter:
     spriteName: IDCard
     isGroup: 0
     parentIndex: -1
-    spriteID: b056db61465d8874caf7f9d696baa4c3
+    spriteID: 40a1922941cd5fe41ab483c5e418e19d
     layerID: 8
     mosaicPosition: {x: 4, y: 440}
     flatten: 0
@@ -446,7 +446,7 @@ ScriptedImporter:
     spriteName: OutfitChangeCard
     isGroup: 0
     parentIndex: -1
-    spriteID: 74dae89571d564848b2f82fa511b259d
+    spriteID: f967a26d6a9f53e4a8a27124682a3e23
     layerID: 7
     mosaicPosition: {x: 80, y: 230}
     flatten: 0
@@ -456,7 +456,7 @@ ScriptedImporter:
     spriteName: Money
     isGroup: 0
     parentIndex: -1
-    spriteID: 72813aed771f7cd4087f4d36ac3eea93
+    spriteID: d43fa4383ccd2d040bd5b82f5c457562
     layerID: 6
     mosaicPosition: {x: 4, y: 224}
     flatten: 0
@@ -466,7 +466,7 @@ ScriptedImporter:
     spriteName: FoodCan
     isGroup: 0
     parentIndex: -1
-    spriteID: a4896c10561b93246a70da159196ad90
+    spriteID: 007d328410bcded49997b1ad292efb91
     layerID: 5
     mosaicPosition: {x: 4, y: 298}
     flatten: 0
@@ -476,7 +476,7 @@ ScriptedImporter:
     spriteName: Cement
     isGroup: 0
     parentIndex: -1
-    spriteID: 9889bcb92dbc91340a75f1fe47eaf100
+    spriteID: 708af66e5c768ba4cb41d1e81e8035a0
     layerID: 4
     mosaicPosition: {x: 4, y: 78}
     flatten: 0
@@ -486,7 +486,7 @@ ScriptedImporter:
     spriteName: MedicalKit
     isGroup: 0
     parentIndex: -1
-    spriteID: 39c31e3a1504ae14c9e3d4ad052e965d
+    spriteID: 96d9cd6efd3674f44bf1bf20e4dd32e6
     layerID: 3
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
@@ -496,7 +496,7 @@ ScriptedImporter:
     spriteName: BulletBox
     isGroup: 0
     parentIndex: -1
-    spriteID: 4b18598c36747684891b6e1b11610970
+    spriteID: 8375ea4bb0480d84cbf5c9f53f8168dc
     layerID: 2
     mosaicPosition: {x: 4, y: 151}
     flatten: 0
