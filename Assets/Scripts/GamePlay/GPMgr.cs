@@ -323,7 +323,7 @@ namespace Identi5.GamePlay
                         POD.remainBullet.Add(PND.bulletAmount);
                         PND.SetPlayerBullet_RPC(PND.bulletAmount + 10);
                         break;
-                    case Item.ItemType.FishCan:
+                    case Item.ItemType.FoodCan:
                         PND.SetPlayerFood_RPC(PND.foodAmount + 20);
                         break;
                     case Item.ItemType.MedicalKit:

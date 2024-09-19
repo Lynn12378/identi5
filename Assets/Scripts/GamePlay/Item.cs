@@ -11,11 +11,12 @@ namespace Identi5.GamePlay
         {
             BulletBox,
             Cerement,
-            FishCan,
+            FoodCan,
             MedicalKit,
             Money,
             OutfitChangeCard,
             IDcard,
+            Kettle,
         }
 
         [SerializeField] private SpriteResolver spriteResolver;
