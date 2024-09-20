@@ -26,7 +26,7 @@ namespace Identi5.GamePlay.Player
             transform.Translate(Vector2.right * 0.5f);
             if (life.Expired(Runner))
             {
-                Runner.Despawn(Object);
+                DespawnBullet_RPC();
             }
         }
         
@@ -97,6 +97,12 @@ namespace Identi5.GamePlay.Player
                 gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void DespawnBullet_RPC()
+        {
+            Runner.Despawn(Object);
         }
         #endregion
     }

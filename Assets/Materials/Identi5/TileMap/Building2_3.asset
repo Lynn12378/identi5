@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Building2_3
+  m_Name: building2_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1727136806594891326, guid: 2255f43a2c2f38644813b53cd36599bb, type: 3}
+  m_Sprite: {fileID: 1607454171075465330, guid: 2255f43a2c2f38644813b53cd36599bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

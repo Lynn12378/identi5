@@ -6,7 +6,7 @@ namespace Identi5
 {
     public class PlayerOutputData : NetworkBehaviour
     {
-        public int playerId = -1;
+        public int playerId;
         public bool isFinished;
 
         #region - Openness -
@@ -63,5 +63,38 @@ namespace Identi5
             JsonUtility.FromJsonOverwrite(json, this);
         }
         #endregion
+        
+        public void Init()
+        {
+            playerId = -1;
+            isFinished = false;
+            outfitTime = 0;
+            oufitChangedNo = 0;
+            placeholderNo = 0;
+            buildingVisit = new List<int>();
+            manualTime = 0;
+            failGameNo = 0;
+            deathNo = 0;
+            killNo = 0;
+            organizeNo = 0;
+            fullNo = 0;
+            zombieInShelteNo = 0;
+            surviveTime = 0;
+            contribution = 0;
+            messageSent = 0;
+            teamCreated = 0;
+            quitTeamNo = 0;
+            totalVoiceDetectionDuration = 0;
+            joinTeamNo = 0;
+            giftNo = 0;
+            rankClikedNo = 0;
+            bulletOnLiving = 0;
+            bulletOnPlayer = 0;
+            interactNo = 0;
+            collisionMapNo = 0;
+            bulletOnCollisions = 0; 
+            remainHP = new List<int>();
+            remainBullet = new List<int>();
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace Identi5.DB
 
         private void Start()
         {
-            playerOutputData = new PlayerOutputData();
+            playerOutputData.Init();
         }
 
         void Update()

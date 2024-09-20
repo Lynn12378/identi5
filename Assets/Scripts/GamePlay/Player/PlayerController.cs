@@ -87,7 +87,7 @@ namespace Identi5.GamePlay.Player
                 if (HPTimer.Expired(Runner))
                 {
                     PND.SetPlayerHP_RPC(PND.HP + 10);
-                    HPTimer = TickTimer.CreateFromSeconds(Runner, 5);
+                    HPTimer = TickTimer.CreateFromSeconds(Runner, 1);
                 }
             }
             voiceDetection.AudioCheck();
@@ -175,17 +175,43 @@ namespace Identi5.GamePlay.Player
         #region - On Trigger -
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            gameMgr.shelter = collider.GetComponent<Shelter>();
-            item = collider.GetComponent<Item>();
-            livings = collider.GetComponent<Livings>();
-            building = collider.GetComponent<Building>();
+            if(collider.GetComponent<Shelter>() != null)
+            {
+                HPTimer = TickTimer.CreateFromSeconds(Runner, 0);
+                gameMgr.shelter = collider.GetComponent<Shelter>();
+            }
+            if(collider.GetComponent<Building>() != null)
+            {
+                building = collider.GetComponent<Building>();
+            }
+            if(collider.GetComponent<Item>() != null)
+            {
+                item = collider.GetComponent<Item>();
+            }
+            if(collider.GetComponent<Livings>() != null)
+            {
+                livings = collider.GetComponent<Livings>();
+            }
         }
         private void OnTriggerExit2D(Collider2D collider)
         {
-            gameMgr.shelter = collider.GetComponent<Shelter>();
-            item = collider.GetComponent<Item>();
-            livings = collider.GetComponent<Livings>();
-            building = collider.GetComponent<Building>();
+            if(gameMgr.shelter != null && collider.GetComponent<Shelter>() == gameMgr.shelter)
+            {
+                gameMgr.shelter = null;
+            }
+            if(building != null && collider.GetComponent<Building>() == building)
+            {
+                building = null;
+            }
+            if(item != null && collider.GetComponent<Item>() == item)
+            {
+                item = null;
+            }
+            if(livings != null && collider.GetComponent<Livings>() == livings)
+            {
+                livings = null;
+            }
+            
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

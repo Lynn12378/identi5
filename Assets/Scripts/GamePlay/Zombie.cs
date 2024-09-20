@@ -111,12 +111,11 @@ namespace Identi5.GamePlay
         #region - Collision - 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if(collider.CompareTag("Shelter"))
+            if(collider.GetComponent<Shelter>() != null)
             {
-                var shelter = collider.GetComponent<Shelter>();
-                if(shelter.playerRef == Runner.LocalPlayer)
+                if(collider.GetComponent<Shelter>().playerRef == Runner.LocalPlayer)
                 {
-                    FindObjectOfType<PlayerOutputData>().zombieInShelteNo++;
+                    GameMgr.playerOutputData.zombieInShelteNo++;
                 }
             }
         }
