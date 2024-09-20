@@ -40,26 +40,34 @@ switch ($Action) {
         {
             while($row = $result->fetch_assoc())
             {
+                $Player_id = $row['Player_id'];
+                $PlayerInfo->Player_id = $Player_id; 
+                $PlayerOutputData->Player_id = $Player_id;
+
                 if ($row['Player_password'] == $Player_password)
                 {
-                    $response["status"] = "Success"; 
-                    $response['message'] = "登入成功";
+                    $temp = GetOutputData($conn, $PlayerOutputData);
+                    if($temp->isFinished)
+                    {
+                        $response["status"] = "Failure"; 
+                        $response['message'] = "該名稱已完成遊戲";
+                    }else
+                    {
+                        $response["status"] = "Success"; 
+                        $response['message'] = "登入成功";
+                        $date = date('Y-m-d H:i:s', time());
+                        UpdateColumn($conn, "playTime", $Player_id, $date);
+                        UpdateColumn($conn, "manualTime", $Player_id, ($PlayerOutputData->manualTime + $temp->manualTime));
+                        $PlayerInfo = GetOutfits($conn, $PlayerInfo);
+                        $PlayerOutputData->outfitTime = $temp->outfitTime;
+                        $PlayerOutputData->failGameNo = $temp->failGameNo;
+                    }
                 }
                 else
                 {
                     $response['status'] = "Failure";
                     $response['message'] = "密碼錯誤，請再試一次";
                 }
-                $Player_id = $row['Player_id'];
-                $PlayerInfo->Player_id = $Player_id; 
-                $PlayerOutputData->Player_id = $Player_id;
-                $PlayerInfo = GetOutfits($conn, $PlayerInfo);
-
-                $date = date('Y-m-d H:i:s', time());
-                UpdateColumn($conn, "playTime", $Player_id, $date);
-                UpdateColumn($conn, "manualTime", $Player_id, $PlayerOutputData->manualTime);
-                $PlayerOutputData = GetOutputData($conn, $PlayerOutputData);
-
                 $response['PlayerInfo'] = $PlayerInfo;
                 $response['PlayerOutputData'] = $PlayerOutputData;
             }

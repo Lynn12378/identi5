@@ -16,7 +16,7 @@ namespace Identi5.GamePlay.Player
 
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private AudioClip clip;
-        [SerializeField] private Animator animator;
+        // [SerializeField] private Animator animator;
         [SerializeField] private Transform trans;
         [SerializeField] private SpriteRenderer weapon;
         [SerializeField] private PlayerMovementHandler movementHandler = null;
@@ -28,8 +28,8 @@ namespace Identi5.GamePlay.Player
         private bool isFlip { get; set; }
         [Networked, OnChangedRender(nameof(MicOpen))]
         private bool micOpen { get; set; }
-        [Networked, OnChangedRender(nameof(Animation))]
-        private int animationID { get; set; }
+        // [Networked, OnChangedRender(nameof(Animation))]
+        // private int animationID { get; set; }
         
         public PlayerNetworkData GetPND()
         {
@@ -72,7 +72,7 @@ namespace Identi5.GamePlay.Player
             surviveTime += Runner.DeltaTime;
             if(PND.HP <= 0 || PND.foodAmount <= 0)
             {
-                SetAnimationID_RPC(2);
+                // SetAnimationID_RPC(2);
                 Respawn();
             }
 
@@ -107,8 +107,8 @@ namespace Identi5.GamePlay.Player
 
             movementHandler.Move(data);
             movementHandler.SetRotation(data.mousePosition);
-            animationID = (data.movementInput != Vector2.zero) ? 1 : 0;
-            SetAnimationID_RPC(animationID);
+            // animationID = (data.movementInput != Vector2.zero) ? 1 : 0;
+            // SetAnimationID_RPC(animationID);
             SetIsFlip_RPC((data.mousePosition.x - trans.position.x) < 0);
 
             if (pressed.IsSet(InputButtons.FIRE))
@@ -264,15 +264,15 @@ namespace Identi5.GamePlay.Player
             icon.SetActive(micOpen);
         }
 
-        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetAnimationID_RPC(int animationID)
-        {
-            this.animationID = animationID;
-		}
+        // [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		// public void SetAnimationID_RPC(int animationID)
+        // {
+        //     this.animationID = animationID;
+		// }
 
         private void Animation()
         {
-            animator.SetInteger("animationID", animationID);
+            // animator.SetInteger("animationID", animationID);
         }
     }
 }

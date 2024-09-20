@@ -14,7 +14,8 @@ if($Action == "Update")
     $sql = sprintf(
         "UPDATE output_data
         SET
-        oufitBoughtNo = '%s',
+        isFinished = '%s',
+        oufitChangedNo = '%s',
         placeholderNo = '%s',
         buildingVisit = '%s',
         failGameNo = '%s',
@@ -33,6 +34,7 @@ if($Action == "Update")
         giftNo = '%s',
         rankClikedNo = '%s',
         bulletOnLiving = '%s',
+        bulletOnPlayer = '%s',
         interactNo = '%s',
         collisionMapNo = '%s',
         bulletOnCollisions = '%s',
@@ -40,7 +42,8 @@ if($Action == "Update")
         remainBullet = '%s'
         WHERE player_id = %s",
 
-        $PlayerOutputData->oufitBoughtNo,
+        $PlayerOutputData->isFinished,
+        $PlayerOutputData->oufitChangedNo,
         $PlayerOutputData->placeholderNo,
         json_encode($PlayerOutputData->buildingVisit),
         $PlayerOutputData->failGameNo,
@@ -59,6 +62,7 @@ if($Action == "Update")
         $PlayerOutputData->giftNo,
         $PlayerOutputData->rankClikedNo,
         $PlayerOutputData->bulletOnLiving,
+        $PlayerOutputData->bulletOnPlayer,
         $PlayerOutputData->interactNo,
         $PlayerOutputData->collisionMapNo,
         $PlayerOutputData->bulletOnCollisions,

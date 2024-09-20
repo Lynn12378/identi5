@@ -936,7 +936,6 @@ GameObject:
   - component: {fileID: 5785385715082628049}
   - component: {fileID: 19571854971564635}
   - component: {fileID: 143370079782337399}
-  - component: {fileID: 8746731551792367019}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1100,7 +1099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PND: {fileID: 2923801483297506475}
   clip: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
-  animator: {fileID: 8746731551792367019}
   trans: {fileID: 5455433520194582033}
   weapon: {fileID: 6427025675592956978}
   movementHandler: {fileID: 5785385715082628049}
@@ -1152,27 +1150,6 @@ MonoBehaviour:
   voiceObject: {fileID: 7112820652194229743}
   PND: {fileID: 2923801483297506475}
   playersInRange: []
---- !u!95 &8746731551792367019
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8630666624398672265}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0de6f46d64a92534286fe9b71186ddf8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6648925212193882319
 PrefabInstance:
   m_ObjectHideFlags: 0
