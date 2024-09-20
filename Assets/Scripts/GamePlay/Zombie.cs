@@ -48,7 +48,7 @@ namespace Identi5.GamePlay
             SetZombieID_RPC(ZombieID);
             Init();
             damageTimer = 0;
-            StartCoroutine(RandomMovement());
+            direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
         }
 
         public void Init()
@@ -85,35 +85,23 @@ namespace Identi5.GamePlay
         public override void FixedUpdateNetwork()
         {
             damageTimer += Time.deltaTime;
-            if(isMoving)
+            if(playerDetection.playerInCollider.Count > 0)
             {
-                ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
-            } 
+                FollowDirection();
+            }
+            else if(damageTimer > 2)
+            {
+                direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+            }
+
+            ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
+ 
         }
         private void FollowDirection()
         {
             if(playerDetection.playerInCollider[0]!=null)
             {
                 direction = playerDetection.playerInCollider[0].transform.position - transform.position;
-            }
-        }
-
-        private IEnumerator RandomMovement()
-        {
-            while (true)
-            {
-                if(playerDetection.playerInCollider.Count > 0)
-                {
-                    FollowDirection();
-                    isMoving = true;
-                }
-                else
-                {
-                    direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
-                    isMoving = true;
-                    yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
-                    isMoving = false;
-                }
             }
         }
         #endregion
