@@ -375,7 +375,7 @@ namespace Identi5.GamePlay
                         info = "掉落在路上的鑰匙，看起來是學生宿舍的";
                         break;
                     case Item.ItemType.Purse:
-                        info = "在月底撿到的的錢包，裡面空無一物";
+                        info = "在月底撿到的錢包，裡面空無一物";
                         break;
                     case Item.ItemType.Quiz:
                         info = "一張不及格的微積分考卷";
