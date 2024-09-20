@@ -61,8 +61,8 @@ namespace Identi5.GamePlay.Player
         {
             if(foodTimer.Expired(Runner))
             {
-                PND.SetPlayerFood_RPC(PND.foodAmount - 10);
-                foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
+                PND.SetPlayerFood_RPC(PND.foodAmount - 1);
+                foodTimer = TickTimer.CreateFromSeconds(Runner, 5);
                 if(surviveTime > PND.surviveTime)
                 {
                     PND.SetSurviveTime_RPC(surviveTime);
