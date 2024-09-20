@@ -1,4 +1,10 @@
-換裝卡只能在基地內使用
+排名+1
+密碼
+重生綁定Shelter
+PC54
+隊伍
+
+ZomebieCollsionStaysa
 zombieInShelter
 shelter 開門紀錄殭屍進入
 timeInShelter
@@ -13,6 +19,7 @@ spawn上限
 建築文件
 關閉房間()
 
+遊戲失敗重啟
 
 
 
