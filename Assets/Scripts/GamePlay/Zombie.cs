@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
@@ -23,11 +23,12 @@ namespace Identi5.GamePlay
         private ChangeDetector changes;
         public ZombieType zombieType;
         private Vector2 direction;
-        private int maxHp = 50;
+        private int maxHp = 100;
         private int directDamage = 10;
-        private int damageOverTime = 5;
+        private int damageOverTime = 1;
         private float damageInterval = 3f;
         private float moveSpeed = 1f;
+        private bool isMoving;
         public static float deltaTime;
         private float damageTimer = 0;
         [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
@@ -47,6 +48,7 @@ namespace Identi5.GamePlay
             SetZombieID_RPC(ZombieID);
             Init();
             damageTimer = 0;
+            StartCoroutine(RandomMovement());
         }
 
         public void Init()
@@ -56,17 +58,17 @@ namespace Identi5.GamePlay
             switch (zombieType)
             {
                 case ZombieType.HighDamage:
-                    maxHp = 40;
+                    maxHp = 50;
                     directDamage = 20;
-                    damageOverTime = 10;
+                    damageOverTime = 3;
                     Hp = maxHp;
                     break;
                 case ZombieType.HighHP:
-                    maxHp = 80;
+                    maxHp = 150;
                     Hp = maxHp;
                     break;
                 case ZombieType.HighSpeed:
-                    maxHp = 30;
+                    maxHp = 80;
                     Hp = maxHp;
                     moveSpeed = 1.5f;
                     damageOverTime = 0;
@@ -83,15 +85,10 @@ namespace Identi5.GamePlay
         public override void FixedUpdateNetwork()
         {
             damageTimer += Time.deltaTime;
-            if(Random.value > 0.2 && playerDetection.playerInCollider.Count > 0)
+            if(isMoving)
             {
-                FollowDirection();
-            }
-            else
-            {
-                RandomDirection();
-            }
-            ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
+                ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
+            } 
         }
         private void FollowDirection()
         {
@@ -100,9 +97,24 @@ namespace Identi5.GamePlay
                 direction = playerDetection.playerInCollider[0].transform.position - transform.position;
             }
         }
-        private void RandomDirection()
+
+        private IEnumerator RandomMovement()
         {
-            direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+            while (true)
+            {
+                if(playerDetection.playerInCollider.Count > 0)
+                {
+                    FollowDirection();
+                    isMoving = true;
+                }
+                else
+                {
+                    direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+                    isMoving = true;
+                    yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
+                    isMoving = false;
+                }
+            }
         }
         #endregion
 
