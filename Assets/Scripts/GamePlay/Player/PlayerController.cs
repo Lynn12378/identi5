@@ -107,7 +107,7 @@ namespace Identi5.GamePlay.Player
 
             movementHandler.Move(data);
             movementHandler.SetRotation(data.mousePosition);
-            animationID = (data.movementInput != Vector2.zero) ? 0 : 1;
+            animationID = (data.movementInput != Vector2.zero) ? 1 : 0;
             SetAnimationID_RPC(animationID);
             SetIsFlip_RPC((data.mousePosition.x - trans.position.x) < 0);
 
