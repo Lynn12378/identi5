@@ -343,21 +343,24 @@ namespace Identi5.GamePlay
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
                     case Item.ItemType.Cerement:
-                        if(gameMgr.shelter != null)
-                        {
-                            info = "基地耐久度已增加";
-                            gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
-                            PND.AddContribution_RPC();
-                            POD.contribution = PND.contribution;
-                        }
-                        else
+                        if(gameMgr.shelter == null)
                         {
                             info = "該物品需要在基地內使用!";
                             gameMgr.dialogCell.SetInfo(info);
                             return;
                         }
+                        info = "基地耐久度已增加";
+                        gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
+                        PND.AddContribution_RPC();
+                        POD.contribution = PND.contribution;
                         break;
                     case Item.ItemType.OutfitChangeCard:
+                        if(gameMgr.shelter == null)
+                        {
+                            info = "該物品需要在基地內使用";
+                            gameMgr.dialogCell.SetInfo(info);
+                            return;
+                        }
                         info = "換裝卡已使用";
                         outfitPanel.SetActive(true);
                         outfitCamera.SetActive(true);

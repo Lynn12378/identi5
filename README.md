@@ -1,4 +1,3 @@
-子彈回復
 換裝卡只能在基地內使用
 zombieInShelter
 shelter 開門紀錄殭屍進入
