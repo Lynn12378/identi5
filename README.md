@@ -5,3 +5,8 @@
 關閉房間
 
 bullet action playerRef
+
+shelter 開門
+zombie in shelter
+time in shelter
+遊戲進行時長UI
