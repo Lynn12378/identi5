@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 4.77, y: 5.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6890762918048515533
@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81f68c4260dc26459bd3befae204064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingID: 4
+  buildingID: 0
   doc: '[doc]'
