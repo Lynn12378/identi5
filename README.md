@@ -10,3 +10,5 @@ shelter 開門
 zombie in shelter
 time in shelter
 遊戲進行時長UI
+換裝卡只能在基地內使用
+spawn上限
