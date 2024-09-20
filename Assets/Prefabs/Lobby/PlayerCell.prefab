@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5DF2\u6E96\u5099!"
+  m_text: "\u6E96\u5099\u5B8C\u6210"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6aef2a040585c8a42947a2767b54fcd5, type: 2}
   m_sharedMaterial: {fileID: -433225221499695473, guid: 6aef2a040585c8a42947a2767b54fcd5, type: 2}
@@ -226,13 +226,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
