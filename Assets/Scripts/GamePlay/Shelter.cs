@@ -9,7 +9,7 @@ namespace Identi5.GamePlay
         private ChangeDetector changes;
         private UIManager uIManager;
         private int maxDurability = 100;
-        [SerializeField] private BoxCollider2D doorCollider;
+        [SerializeField] private GameObject door;
         [Networked] public bool IsOpen { get; set; } = false;
         [Networked] public int durability { get; private set; }
         [Networked] private TickTimer durabilityTimer { get; set; }
@@ -94,7 +94,7 @@ namespace Identi5.GamePlay
                         uIManager.UpdateDurabilitySlider(durability, maxDurability);
                         break;
                     case nameof(IsOpen):
-                        doorCollider.isTrigger = IsOpen;
+                        door.SetActive(!IsOpen);
                         break;
                 }
             }
