@@ -48,10 +48,13 @@ namespace Identi5.GamePlay.Player
             {
                 if(enable == false)
                 {
+                    if(rec.TransmitEnabled)
+                    {
+                        gameMgr.dialogCell.SetInfo("範圍內沒有其餘玩家，麥克風已關閉");
+                    }
                     rec.TransmitEnabled = enable;
                     rec.VoiceDetection = enable;
                     speaker.enabled = enable;
-                    gameMgr.dialogCell.SetInfo("範圍內沒有其餘玩家，麥克風已關閉，按下tab鍵重新開啟麥克風");
                 }
                 else
                 {

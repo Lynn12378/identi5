@@ -37,7 +37,6 @@ namespace Identi5.GamePlay.Player
 		}
 
         #region - OnTrigger -
-        [SerializeField] private PlayerController playert;
         private void OnTriggerEnter2D(Collider2D collider)
         {
             var player = collider.GetComponent<PlayerController>();
@@ -56,7 +55,6 @@ namespace Identi5.GamePlay.Player
             }
             if(player != null)
             {
-                playert= player;
                 if(player.GetPND().playerRef == playerRef){return;}
                 if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {

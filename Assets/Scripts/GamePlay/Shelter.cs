@@ -53,19 +53,12 @@ namespace Identi5.GamePlay
                 
                 if(failedTimer.Expired(Runner))
                 {
+                    GameMgr.Instance.dialogCell.SetInfo("遊戲失敗!請重新開始!");
                     GameMgr.playerOutputData.failGameNo++;
                     GameMgr.Instance.ODHandler.UpdateOD();
                     Runner.Shutdown();
-                    Restart();
+                    SceneManager.LoadScene("Lobby");
                 }
-            }
-        }
-
-        public async void Restart()
-        {
-			if (Runner.IsSceneAuthority) {
-                await Runner.UnloadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("GamePlay")));
-                await Runner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Lobby")), LoadSceneMode.Additive);
             }
         }
 
@@ -80,10 +73,13 @@ namespace Identi5.GamePlay
         public void SetIsOpen_RPC()
         {
             this.IsOpen = !IsOpen;
-            if(IsOpen)
-            {
-                playerRef = Runner.LocalPlayer;
-            }
+            
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void SetPlayerRef_RPC(PlayerRef playerRef)
+        {
+            this.playerRef = playerRef;
         }
         #endregion
 

@@ -366,7 +366,7 @@ namespace Identi5.GamePlay
                         info = "被遺失的學生證，有明顯的凹折";
                         break;
                     case Item.ItemType.Kettle:
-                        info = "被遺失的學生證，有明顯的凹折";
+                        info = "便宜好用的運動水壺";
                         break;
                     case Item.ItemType.Key:
                         info = "掉落在路上的鑰匙，看起來是學生宿舍的";

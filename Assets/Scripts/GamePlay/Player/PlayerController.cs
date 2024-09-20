@@ -163,6 +163,10 @@ namespace Identi5.GamePlay.Player
                 if(gameMgr.shelter != null)
                 {
                     gameMgr.shelter.SetIsOpen_RPC();
+                    if(gameMgr.shelter.IsOpen)
+                    {
+                        gameMgr.shelter.SetPlayerRef_RPC(Runner.LocalPlayer);
+                    }
                 }
             }
             if (pressed.IsSet(InputButtons.TALK))
