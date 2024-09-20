@@ -28,6 +28,8 @@ namespace Identi5.GamePlay
         private int damageOverTime = 5;
         private float damageInterval = 3f;
         private float moveSpeed = 1f;
+        public static float deltaTime;
+        private float damageTimer = 0;
         [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
         [SerializeField] private SpriteResolver spriteResolver;
         [SerializeField] private PlayerDetection playerDetection;
@@ -35,7 +37,6 @@ namespace Identi5.GamePlay
         [SerializeField] public Slider HpSlider;
         [Networked] public int ZombieID { get; set;}
         [Networked] public int Hp { get; set; }
-        [Networked] private TickTimer damageTimer { get; set; }
         #endregion
 
         #region - Initialize -
@@ -45,7 +46,7 @@ namespace Identi5.GamePlay
             transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
             SetZombieID_RPC(ZombieID);
             Init();
-            damageTimer = TickTimer.CreateFromSeconds(Runner, 0.5f);
+            damageTimer = 0;
         }
 
         public void Init()
@@ -81,17 +82,14 @@ namespace Identi5.GamePlay
         #region - Patrol & Player Detect -
         public override void FixedUpdateNetwork()
         {
+            damageTimer += Time.deltaTime;
             if(Random.value > 0.2 && playerDetection.playerInCollider.Count > 0)
             {
                 FollowDirection();
             }
             else
             {
-                if(damageTimer.Expired(Runner))
-                {
-                    RandomDirection();
-                    damageTimer = TickTimer.CreateFromSeconds(Runner, 0.5f);
-                }
+                RandomDirection();
             }
             ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
         }
@@ -124,10 +122,10 @@ namespace Identi5.GamePlay
             if(collision.collider.CompareTag("Player"))
             {
                 var player = collision.collider.GetComponent<PlayerController>();
-                if(player != null && damageTimer.Expired(Runner))
+                if(player != null && damageTimer < 2)
                 {
                     player.TakeDamage(damageOverTime);
-                    damageTimer = TickTimer.CreateFromSeconds(Runner, 2f);
+                    damageTimer = 0;
                 }
             }
         }

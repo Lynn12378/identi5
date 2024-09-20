@@ -18,7 +18,7 @@ namespace Identi5.GamePlay.Cell
         void Update()
         {
             timer += Time.deltaTime;
-            if(timer > 5 && gameObject.activeSelf)
+            if(timer > 3 && gameObject.activeSelf)
             {
                 gameObject.SetActive(false);
                 timer = 0;

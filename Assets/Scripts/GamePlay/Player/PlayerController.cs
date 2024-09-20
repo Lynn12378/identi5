@@ -147,25 +147,28 @@ namespace Identi5.GamePlay.Player
                         POD.fullNo++;
                     }
                 }
-                if(livings != null)
-                {
-                    livings.Interact();
-                    POD.interactNo++;
-                }
-                if(building != null)
-                {
-                    gameMgr.docCell.SetInfo(building.GetDoc());
-                    if(!POD.buildingVisit.Contains(building.buildingID))
-                    {
-                        POD.buildingVisit.Add(building.buildingID);
-                    }
-                }
-                if(gameMgr.shelter != null)
+                
+                else if(gameMgr.shelter != null)
                 {
                     gameMgr.shelter.SetIsOpen_RPC();
                     if(gameMgr.shelter.IsOpen)
                     {
                         gameMgr.shelter.SetPlayerRef_RPC(Runner.LocalPlayer);
+                    }
+                }
+
+                else if(livings != null)
+                {
+                    livings.Interact();
+                    POD.interactNo++;
+                }
+                
+                else if(building != null)
+                {
+                    gameMgr.docCell.SetInfo(building.GetDoc());
+                    if(!POD.buildingVisit.Contains(building.buildingID))
+                    {
+                        POD.buildingVisit.Add(building.buildingID);
                     }
                 }
             }
