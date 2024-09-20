@@ -3,3 +3,5 @@
 遊戲手冊
 殭屍圖案
 關閉房間
+
+bullet action playerRef
