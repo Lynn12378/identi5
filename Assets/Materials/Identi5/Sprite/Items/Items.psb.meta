@@ -103,8 +103,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 80
       y: 4
-      width: 69
-      height: 65
+      width: 72
+      height: 72
     spriteID: b6243c90e00ea2c4ea3436589e41ca1f
     spriteBone: []
     spriteOutline: []
@@ -159,15 +159,15 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 2}
   - name: Key
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 1}
+    alignment: 2
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 157
-      y: 4
+      x: 156
+      y: 0
       width: 72
-      height: 38
+      height: 72
     spriteID: 0fcb77b90ac54384cb23c7fafd8caf53
     spriteBone: []
     spriteOutline: []
@@ -291,7 +291,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 78
+      y: 79
       width: 68
       height: 65
     spriteID: 708af66e5c768ba4cb41d1e81e8035a0
