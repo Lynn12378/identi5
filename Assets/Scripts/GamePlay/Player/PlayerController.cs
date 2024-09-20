@@ -91,7 +91,7 @@ namespace Identi5.GamePlay.Player
                 if (RefillTimer.Expired(Runner))
                 {
                     PND.SetPlayerHP_RPC(PND.HP + 10);
-                    PND.SetPlayerHP_RPC(PND.bulletAmount + 5);
+                    PND.SetPlayerBullet_RPC(PND.bulletAmount + 5);
                     RefillTimer = TickTimer.CreateFromSeconds(Runner, 1);
                 }
             }
