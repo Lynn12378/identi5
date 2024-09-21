@@ -7,7 +7,7 @@ namespace Identi5.GamePlay.Player
     {
         [SerializeField] private Transform Weapon = null;
         [SerializeField] private NetworkRigidbody2D playerNetworkRigidbody = null;
-        [SerializeField] private AudioClip clip;
+        public AudioSource source;
         public static float deltaTime;
         private float timer = 0;
 
@@ -22,10 +22,9 @@ namespace Identi5.GamePlay.Player
             Vector2 newVelocity = moveVector * 5f;
             playerNetworkRigidbody.Rigidbody.velocity = newVelocity;
 
-            if(newVelocity != Vector2.zero && timer > 0.1f)
+            if(newVelocity != Vector2.zero && timer > 0.25f)
             {
-                GameMgr.Instance.source.clip = clip;
-                GameMgr.Instance.source.Play();
+                source.Play();
                 timer = 0;
             }
         }
