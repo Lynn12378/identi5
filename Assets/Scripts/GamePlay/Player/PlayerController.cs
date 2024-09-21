@@ -15,6 +15,7 @@ namespace Identi5.GamePlay.Player
         private GameObject icon;
 
         [SerializeField] private PlayerNetworkData PND;
+        [SerializeField] private GameObject obj;
         [SerializeField] private AudioClip clip;
         [SerializeField] private Animator animator;
         [SerializeField] private Transform trans;
@@ -208,6 +209,11 @@ namespace Identi5.GamePlay.Player
             {
                 livings = collider.GetComponent<Livings>();
             }
+            else
+            {
+                obj.SetActive(false);
+            }
+            obj.SetActive(true);
         }
         private void OnTriggerExit2D(Collider2D collider)
         {
