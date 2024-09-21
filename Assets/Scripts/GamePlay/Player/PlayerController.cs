@@ -50,8 +50,8 @@ namespace Identi5.GamePlay.Player
 
         private void Respawn() 
         {
+            gameMgr.shelter = FindObjectOfType<Shelter>();
             PND.AddDeathNo_RPC();
-            POD.deathNo++;
             PND.Init();
             surviveTime = 0f;
             transform.position = Vector3.zero;
