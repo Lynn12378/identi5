@@ -75,6 +75,12 @@ namespace Identi5.GamePlay
         {
             playerCoinAmount.SetText(coinAmount.ToString());
         }
+
+        [SerializeField] private TMP_Text gameTimeTXT;
+        public void UpdateGameTimeTxt(int time)
+        {
+            gameTimeTXT.SetText($"剩餘時間: {time/60}分 : {time%60}秒");
+        }
         #endregion
 
         #region - Minimap -

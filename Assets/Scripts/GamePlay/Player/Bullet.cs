@@ -6,9 +6,15 @@ namespace Identi5.GamePlay.Player
     public class Bullet : NetworkBehaviour
     {
         private GameMgr gameMgr;
+        private bool isSpawned;
         [SerializeField] private AudioClip[] clips;
         [Networked] private TickTimer life { get; set; }
         [Networked] public PlayerRef playerRef { get; private set; }
+
+        public override void Spawned()
+        {
+            isSpawned = true;  
+        }
 
         public void Init(Vector2 mousePosition)
         {
@@ -39,6 +45,7 @@ namespace Identi5.GamePlay.Player
         #region - OnTrigger -
         private void OnTriggerEnter2D(Collider2D collider)
         {
+            if(!isSpawned){return;}
             var player = collider.GetComponent<PlayerController>();
             var zombie = collider.GetComponent<Zombie>();
             var livings = collider.GetComponent<Livings>();
@@ -53,7 +60,7 @@ namespace Identi5.GamePlay.Player
                 gameMgr.source.Play();
                 Runner.Despawn(Object);
             }
-            if(player != null)
+            else if(player != null)
             {
                 if(player.GetPND().playerRef == playerRef){return;}
                 if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
@@ -70,8 +77,8 @@ namespace Identi5.GamePlay.Player
             }
             else if(zombie != null)
             {
-                zombie.SetZombieHP_RPC(zombie.Hp - 10);
-                if(zombie.Hp <= 0)
+                zombie.SetZombieHP_RPC(zombie.HP - 10);
+                if(zombie.HP <= 0)
                 {
                     GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
@@ -82,12 +89,12 @@ namespace Identi5.GamePlay.Player
             }
             else if(livings != null)
             {
-                livings.SetLivingsHP_RPC(livings.Hp - 10);
+                livings.SetLivingsHP_RPC(livings.HP - 10);
                 if(playerRef == Runner.LocalPlayer)
                 {
                     GameMgr.playerOutputData.bulletOnLiving++;
                 }
-                if(livings.Hp <= 0)
+                if(livings.HP <= 0)
                 {
                     livings.DespawnLivings_RPC();
                 }

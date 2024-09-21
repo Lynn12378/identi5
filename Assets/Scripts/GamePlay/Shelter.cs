@@ -11,6 +11,7 @@ namespace Identi5.GamePlay
         private int maxDurability = 100;
         [SerializeField] private GameObject door;
         [Networked] public bool IsOpen { get; set; } = false;
+        [Networked] public bool isZombieInShelter { get; set; } = false;
         [Networked] public int durability { get; private set; }
         [Networked] private TickTimer durabilityTimer { get; set; }
         [Networked] private TickTimer failedTimer { get; set; }
@@ -29,6 +30,8 @@ namespace Identi5.GamePlay
 
         public override void FixedUpdateNetwork()
         {
+            var time = (int)endGameTimer.RemainingTime(Runner);
+            uIManager.UpdateGameTimeTxt(time);
             if (endGameTimer.Expired(Runner))
             {
                 GameMgr.playerOutputData.isFinished = true;
@@ -73,7 +76,12 @@ namespace Identi5.GamePlay
         public void SetIsOpen_RPC()
         {
             this.IsOpen = !IsOpen;
-            
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void SetIsZombieInShelter_RPC(bool isZombieInShelter)
+        {
+            this.isZombieInShelter = isZombieInShelter;
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -95,6 +103,11 @@ namespace Identi5.GamePlay
                         break;
                     case nameof(IsOpen):
                         door.SetActive(!IsOpen);
+                        if(!IsOpen && isZombieInShelter && playerRef == Runner.LocalPlayer)
+                        {
+                            GameMgr.playerOutputData.zombieInShelterNo++;
+                        }
+                        SetIsZombieInShelter_RPC(false);
                         break;
                 }
             }

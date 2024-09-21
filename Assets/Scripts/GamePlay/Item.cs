@@ -33,7 +33,7 @@ namespace Identi5.GamePlay
 
         public override void Spawned()
         {
-            var itemWorld = GameObject.Find("GPManager/itemWorld");
+            var itemWorld = GameObject.Find("SpawnSpace/Items");
             transform.SetParent(itemWorld.transform, false);
             SetItemID_RPC(itemID);
             OnItemIDChange();

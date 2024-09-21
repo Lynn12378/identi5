@@ -12,7 +12,7 @@ namespace Identi5.GamePlay
 {
     public class Zombie : NetworkBehaviour
     {
-        #region - statics -
+        #region -Properties -
         public enum ZombieType
         {
             HighDamage,
@@ -20,82 +20,104 @@ namespace Identi5.GamePlay
             HighSpeed,
             Normal,
         }
-        private ChangeDetector changes;
         public ZombieType zombieType;
-        private Vector2 direction;
-        private int maxHp = 100;
-        private int directDamage = 10;
+        private ChangeDetector changes;
+        private int maxHP = 105;
+        private int directDamage = 3;
         private int damageOverTime = 1;
-        private float damageInterval = 3f;
+        private float damageInterval = 0.5f;
         private float moveSpeed = 1f;
+        private Vector2 direction;
         private bool isMoving;
         public static float deltaTime;
         private float damageTimer = 0;
+        private float moveTimer = 0;
+        [SerializeField] private PlayerController target;
         [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
-        [SerializeField] private SpriteResolver spriteResolver;
+        [SerializeField] private SpriteResolver SRV1;
+        [SerializeField] private SpriteResolver SRV2;
+        [SerializeField] private SpriteResolver SRV3;
+        [SerializeField] private Transform trans;
         [SerializeField] private PlayerDetection playerDetection;
         [SerializeField] private ItemSpawner itemSpawner;
-        [SerializeField] public Slider HpSlider;
+        [SerializeField] public Slider HPSlider;
         [Networked] public int ZombieID { get; set;}
-        [Networked] public int Hp { get; set; }
+        [Networked] public int HP { get; set; }
         #endregion
 
         #region - Initialize -
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
+            transform.SetParent(GameObject.Find("SpawnSpace/Zombies").transform, false);
             SetZombieID_RPC(ZombieID);
             Init();
-            damageTimer = 0;
             direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
         }
 
         public void Init()
         {
             zombieType = (ZombieType) ZombieID;
-            spriteResolver.SetCategoryAndLabel("Zombie", zombieType.ToString());
             switch (zombieType)
             {
                 case ZombieType.HighDamage:
-                    maxHp = 50;
-                    directDamage = 20;
+                    maxHP = 55;
+                    directDamage = 5;
                     damageOverTime = 3;
-                    Hp = maxHp;
+                    SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
+                    SRV2.SetCategoryAndLabel("Zombie2", zombieType.ToString());
+                    SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
                 case ZombieType.HighHP:
-                    maxHp = 150;
-                    Hp = maxHp;
+                    maxHP = 155;
+                    SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
+                    SRV2.SetCategoryAndLabel("Zombie2", zombieType.ToString());
+                    SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
                 case ZombieType.HighSpeed:
-                    maxHp = 80;
-                    Hp = maxHp;
+                    maxHP = 85;
                     moveSpeed = 1.5f;
-                    damageOverTime = 0;
+                    damageOverTime = 1;
+                    SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
+                    SRV2.SetCategoryAndLabel("Zombie2", zombieType.ToString());
+                    SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
                 case ZombieType.Normal:
+                    SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
+                    SRV2.SetCategoryAndLabel("Zombie2", zombieType.ToString());
+                    SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
             }
-            HpSlider.maxValue = maxHp;
-            SetZombieHP_RPC(maxHp);
+            HPSlider.maxValue = maxHP;
+            SetZombieHP_RPC(maxHP);
         }
         #endregion
 
-        #region - Patrol & Player Detect -
+        #region - Movement -
         public override void FixedUpdateNetwork()
         {
-            damageTimer += Time.deltaTime;
+            moveTimer += Time.deltaTime;
             if(playerDetection.playerInCollider.Count > 0)
             {
                 FollowDirection();
             }
-            else if(damageTimer > 2)
+            else if(moveTimer > 3)
             {
                 direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+                moveTimer = 0;
             }
-
+            trans.rotation = (direction.x > 0) ? new Quaternion(0, 0 , 0, 1) : new Quaternion(0, 180 , 0, 1);
             ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
- 
+
+            if(target != null)
+            {
+                damageTimer += Time.deltaTime;
+                if(damageTimer > damageInterval)
+                {
+                    target.TakeDamage(damageOverTime);
+                    damageTimer = 0;
+                }
+            }
         }
         private void FollowDirection()
         {
@@ -106,26 +128,38 @@ namespace Identi5.GamePlay
         }
         #endregion
 
-        #region - Collision - 
-        private void OnTriggerEnter2D(Collider2D collider)
+        #region - Collision -
+        private void OnTriggerStay2D(Collider2D collider)
         {
-            if(collider.GetComponent<Shelter>() != null)
+            var shelter = collider.GetComponent<Shelter>();
+            if(shelter != null)
             {
-                if(collider.GetComponent<Shelter>().playerRef == Runner.LocalPlayer)
-                {
-                    GameMgr.playerOutputData.zombieInShelteNo++;
-                }
+                shelter.SetIsZombieInShelter_RPC(true);
             }
-        }
-        public void OnCollisionStay2D(Collision2D collision)
+        } 
+
+        public void OnCollisionEnter2D(Collision2D collision)
         {
             if(collision.collider.CompareTag("Player"))
             {
                 var player = collision.collider.GetComponent<PlayerController>();
-                if(player != null && damageTimer < 2)
+                if (player != null)
                 {
-                    player.TakeDamage(damageOverTime);
+                    target = player;
+                    target.TakeDamage(directDamage);
                     damageTimer = 0;
+                }
+            }
+        }
+
+        public void OnCollisionExit2D(Collision2D collision)
+        {
+            if(collision.collider.CompareTag("Player"))
+            {
+                var player = collision.collider.GetComponent<PlayerController>();
+                if (target != null && target == player)
+                {
+                    target = null;
                 }
             }
         }
@@ -141,7 +175,7 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void SetZombieHP_RPC(int hp)
         {
-            Hp = hp;
+            HP = hp;
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -169,8 +203,8 @@ namespace Identi5.GamePlay
                     case nameof(ZombieID):
                         Init();
                         break;
-                    case nameof(Hp):
-                        HpSlider.value = Hp;
+                    case nameof(HP):
+                        HPSlider.value = HP;
                         break;
                 }
             }

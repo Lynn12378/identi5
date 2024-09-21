@@ -24,29 +24,29 @@ namespace Identi5.GamePlay
             Frog,
             Goose,
         }
-        private ChangeDetector changes;
         public LivingsType livingsType;
+        private ChangeDetector changes;
         private Vector2 direction;
         private bool isMoving;
         [SerializeField] private NetworkRigidbody2D livingsNetworkRigidbody = null;
         [SerializeField] private SpriteResolver SRV1;
         [SerializeField] private SpriteResolver SRV2;
         [SerializeField] private SpriteResolver SRV3;
-        [SerializeField] private GameObject obj;
+        [SerializeField] private GameObject interactImg;
         [SerializeField] private Transform trans;
         [SerializeField] private TMP_Text Txt = null;
-        [SerializeField] public Slider HpSlider;
+        [SerializeField] public Slider HPSlider;
         [Networked] public int livingsID { get; set;}
-        [Networked] public int Hp { get; set; }
+        [Networked] public int HP { get; set; }
         
         #region - Initialize -
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            transform.SetParent(GameObject.Find("GPManager/Livings").transform, false);
+            transform.SetParent(GameObject.Find("SpawnSpace/Livings").transform, false);
             SetLivingsID_RPC(livingsID);
+            SetLivingsHP_RPC(45);
             Init();
-            SetLivingsHP_RPC(30);
             StartCoroutine(RandomMovement());
         }
 
@@ -114,14 +114,14 @@ namespace Identi5.GamePlay
         public void Interact()
         {
             timer = 0;
-            obj.SetActive(true);
+            interactImg.SetActive(true);
         }
         void Update()
         {
             timer += Time.deltaTime;
             if(timer > 5)
             {
-                obj.SetActive(false);
+                interactImg.SetActive(false);
                 timer = 0;
             }
         }
@@ -137,7 +137,7 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void SetLivingsHP_RPC(int hp)
         {
-            Hp = hp;
+            HP = hp;
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -157,8 +157,8 @@ namespace Identi5.GamePlay
                     case nameof(livingsID):
                         Init();
                         break;
-                    case nameof(Hp):
-                        HpSlider.value = Hp;
+                    case nameof(HP):
+                        HPSlider.value = HP;
                         break;
                 }
             }

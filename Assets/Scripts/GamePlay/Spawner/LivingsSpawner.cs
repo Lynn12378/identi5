@@ -14,9 +14,9 @@ namespace Identi5.GamePlay.Spawner
         [SerializeField] private NetworkObject livings;
         [SerializeField] private int minRange = 0;
         [SerializeField] private int maxRange = 9;
-        [SerializeField] private int initAmount = 10;
-        [SerializeField] private int spawnAmount = 5;
-        [SerializeField] private float spawnTime = 60.0f;
+        [SerializeField] private int initAmount = 0;
+        [SerializeField] private int spawnAmount = 0;
+        [SerializeField] private float spawnTime = 0.0f;
         [Networked] private TickTimer spawnTimer { get; set; }
         public override void Spawned()
         {
@@ -42,7 +42,8 @@ namespace Identi5.GamePlay.Spawner
         }
         public void RandomSpawn()
         {
-            int seed = Random.Range(0, 8);
+            if(FindObjectsOfType<Livings>().Length > 30){return;}
+            int seed = Random.Range(minRange, maxRange);
             Vector3 position = transform.position + new Vector3(Random.Range(-width, width),Random.Range(-height, height),0);
             Runner.Spawn(livings, position, Quaternion.identity).GetComponent<Livings>().SetLivingsID_RPC(seed);
         }

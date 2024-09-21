@@ -161,7 +161,7 @@ namespace Identi5.GamePlay
                     team.SetCount_RPC(--team.count);
                 }
             }
-            PND.SetPlayerTeamID_RPC(0);
+            PND.SetPlayerTeamID_RPC(-1);
             POD.quitTeamNo++;
             OnActivePanel();
         }
@@ -190,7 +190,6 @@ namespace Identi5.GamePlay
             foreach(var team in gameMgr.teamList)
             {
                 team.transform.SetParent(teamContentTrans, false);
-                team.SetInfo(team.teamID);
             }
             if(PND.teamID > 0)
             {
@@ -212,8 +211,8 @@ namespace Identi5.GamePlay
         {
             foreach (var player in gameMgr.PNDList.Values)
             {
-                if(player == PND || PND.teamID == -1) continue;
-                if (player.teamID == PND.teamID)
+                if(player == PND) continue;
+                if (player.teamID == PND.teamID && player.teamID != -1)
                 {
                     player.minimapIcon.SetActive(true);
                 }
@@ -521,16 +520,16 @@ namespace Identi5.GamePlay
                     switch(sortID)
                     {
                         case 0:
-                            cell.SetInfo(PND.playerName, PND.killNo, i);
+                            cell.SetInfo(PND.playerName, PND.killNo, i+1);
                             break;
                         case 1:
-                            cell.SetInfo(PND.playerName, PND.deathNo, i);
+                            cell.SetInfo(PND.playerName, PND.deathNo, i+1);
                             break;
                         case 2:
-                            cell.SetInfo(PND.playerName, (float)Math.Round(PND.surviveTime, 2), i);
+                            cell.SetInfo(PND.playerName, (float)Math.Round(PND.surviveTime, 2), i+1);
                             break;
                         case 3:
-                            cell.SetInfo(PND.playerName, PND.contribution, i);
+                            cell.SetInfo(PND.playerName, PND.contribution, i+1);
                             break;
                     }
                     i++;
