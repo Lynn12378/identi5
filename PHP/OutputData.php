@@ -23,7 +23,7 @@ if($Action == "Update")
         killNo = '%s',
         organizeNo = '%s',
         fullNo = '%s',
-        zombieInShelteNo = '%s',
+        zombieInShelterNo = '%s',
         surviveTime = '%s',
         contribution = '%s',
         messageSent = '%s',
@@ -36,6 +36,7 @@ if($Action == "Update")
         bulletOnLiving = '%s',
         bulletOnPlayer = '%s',
         interactNo = '%s',
+        timeInShelter = '%s'
         collisionMapNo = '%s',
         bulletOnCollisions = '%s',
         remainHP = '%s',
@@ -51,7 +52,7 @@ if($Action == "Update")
         $PlayerOutputData->killNo,
         $PlayerOutputData->organizeNo,
         $PlayerOutputData->fullNo,
-        $PlayerOutputData->zombieInShelteNo,
+        $PlayerOutputData->zombieInShelterNo,
         $PlayerOutputData->surviveTime,
         $PlayerOutputData->contribution,
         $PlayerOutputData->messageSent,
@@ -64,6 +65,7 @@ if($Action == "Update")
         $PlayerOutputData->bulletOnLiving,
         $PlayerOutputData->bulletOnPlayer,
         $PlayerOutputData->interactNo,
+        $PlayerOutputData->timeInShelter,
         $PlayerOutputData->collisionMapNo,
         $PlayerOutputData->bulletOnCollisions,
         json_encode($PlayerOutputData->remainHP),
@@ -97,9 +99,9 @@ function GetOutputData($conn, $PlayerOutputData)
     if ($result)
     {
         $row = $result->fetch_assoc();
-        $PlayerOutputData->buildingVisit = json_decode($row['buildingVisit']);
-        $PlayerOutputData->remainHP = json_decode($row['remainHP']);
-        $PlayerOutputData->remainBullet = json_decode($row['remainBullet']);
+        $PlayerOutputData->outfitTime = $row['outfitTime'];
+        $PlayerOutputData->manualTime = $row['manualTime'];
+        $PlayerOutputData->failGameNo = $row['failGameNo'];
     }
     return $PlayerOutputData;
 }
