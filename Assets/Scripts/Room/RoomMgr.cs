@@ -60,6 +60,7 @@ namespace Identi5.Room
 
             if(allReady)
             {
+                runner.SessionInfo.IsOpen = false;
                 StartGamePlay();
             }
         }
