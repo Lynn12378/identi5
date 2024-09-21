@@ -22,7 +22,7 @@ namespace Identi5.GamePlay.Player
         [SerializeField] private PlayerMovementHandler movementHandler = null;
         [SerializeField] private PlayerAttackHandler attackHandler = null;
         [SerializeField] private PlayerVoiceDetection voiceDetection = null;
-        [Networked] private TickTimer HPTimer { get; set; }
+        [Networked] private TickTimer RefillTimer { get; set; }
         [Networked] private TickTimer foodTimer { get; set; }
         [Networked, OnChangedRender(nameof(Flip))]
         private bool isFlip { get; set; }
@@ -61,8 +61,8 @@ namespace Identi5.GamePlay.Player
         {
             if(foodTimer.Expired(Runner))
             {
-                PND.SetPlayerFood_RPC(PND.foodAmount - 5);
-                foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
+                PND.SetPlayerFood_RPC(PND.foodAmount - 1);
+                foodTimer = TickTimer.CreateFromSeconds(Runner, 5);
                 if(surviveTime > PND.surviveTime)
                 {
                     PND.SetSurviveTime_RPC(surviveTime);
@@ -88,10 +88,11 @@ namespace Identi5.GamePlay.Player
 
             if (gameMgr.shelter != null)
             {
-                if (HPTimer.Expired(Runner))
+                if (RefillTimer.Expired(Runner))
                 {
                     PND.SetPlayerHP_RPC(PND.HP + 10);
-                    HPTimer = TickTimer.CreateFromSeconds(Runner, 1);
+                    PND.SetPlayerBullet_RPC(PND.bulletAmount + 5);
+                    RefillTimer = TickTimer.CreateFromSeconds(Runner, 1);
                 }
             }
             voiceDetection.AudioCheck();
@@ -190,7 +191,7 @@ namespace Identi5.GamePlay.Player
         {
             if(collider.GetComponent<Shelter>() != null)
             {
-                HPTimer = TickTimer.CreateFromSeconds(Runner, 0);
+                RefillTimer = TickTimer.CreateFromSeconds(Runner, 0);
                 gameMgr.shelter = collider.GetComponent<Shelter>();
             }
             if(collider.GetComponent<Building>() != null)

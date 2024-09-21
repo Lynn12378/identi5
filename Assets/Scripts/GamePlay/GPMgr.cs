@@ -343,21 +343,24 @@ namespace Identi5.GamePlay
                         PND.SetPlayerHP_RPC(PND.HP + 20);                    
                         break;
                     case Item.ItemType.Cerement:
-                        if(gameMgr.shelter != null)
-                        {
-                            info = "基地耐久度已增加";
-                            gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
-                            PND.AddContribution_RPC();
-                            POD.contribution = PND.contribution;
-                        }
-                        else
+                        if(gameMgr.shelter == null)
                         {
                             info = "該物品需要在基地內使用!";
                             gameMgr.dialogCell.SetInfo(info);
                             return;
                         }
+                        info = "基地耐久度已增加";
+                        gameMgr.shelter.SetDurability_RPC(gameMgr.shelter.durability + 10);
+                        PND.AddContribution_RPC();
+                        POD.contribution = PND.contribution;
                         break;
                     case Item.ItemType.OutfitChangeCard:
+                        if(gameMgr.shelter == null)
+                        {
+                            info = "該物品需要在基地內使用";
+                            gameMgr.dialogCell.SetInfo(info);
+                            return;
+                        }
                         info = "換裝卡已使用";
                         outfitPanel.SetActive(true);
                         outfitCamera.SetActive(true);
@@ -372,7 +375,7 @@ namespace Identi5.GamePlay
                         info = "掉落在路上的鑰匙，看起來是學生宿舍的";
                         break;
                     case Item.ItemType.Purse:
-                        info = "在月底撿到的的錢包，裡面空無一物";
+                        info = "在月底撿到的錢包，裡面空無一物";
                         break;
                     case Item.ItemType.Quiz:
                         info = "一張不及格的微積分考卷";
@@ -518,16 +521,16 @@ namespace Identi5.GamePlay
                     switch(sortID)
                     {
                         case 0:
-                            cell.SetInfo(PND.playerName, PND.killNo, i);
+                            cell.SetInfo(PND.playerName, PND.killNo, i+1);
                             break;
                         case 1:
-                            cell.SetInfo(PND.playerName, PND.deathNo, i);
+                            cell.SetInfo(PND.playerName, PND.deathNo, i+1);
                             break;
                         case 2:
-                            cell.SetInfo(PND.playerName, (float)Math.Round(PND.surviveTime, 2), i);
+                            cell.SetInfo(PND.playerName, (float)Math.Round(PND.surviveTime, 2), i+1);
                             break;
                         case 3:
-                            cell.SetInfo(PND.playerName, PND.contribution, i);
+                            cell.SetInfo(PND.playerName, PND.contribution, i+1);
                             break;
                     }
                     i++;

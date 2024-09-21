@@ -70,8 +70,8 @@ namespace Identi5.GamePlay.Player
             }
             else if(zombie != null)
             {
-                zombie.SetZombieHP_RPC(zombie.Hp - 10);
-                if(zombie.Hp <= 0)
+                zombie.SetZombieHP_RPC(zombie.HP - 10);
+                if(zombie.HP <= 0)
                 {
                     GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
@@ -82,12 +82,12 @@ namespace Identi5.GamePlay.Player
             }
             else if(livings != null)
             {
-                livings.SetLivingsHP_RPC(livings.Hp - 10);
+                livings.SetLivingsHP_RPC(livings.HP - 10);
                 if(playerRef == Runner.LocalPlayer)
                 {
                     GameMgr.playerOutputData.bulletOnLiving++;
                 }
-                if(livings.Hp <= 0)
+                if(livings.HP <= 0)
                 {
                     livings.DespawnLivings_RPC();
                 }

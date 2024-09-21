@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Fusion;
 
 namespace Identi5
 {
-    public class PlayerOutputData : NetworkBehaviour
+    public class PlayerOutputData : MonoBehaviour
     {
         public int playerId;
         public bool isFinished;

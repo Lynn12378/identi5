@@ -1085,12 +1085,12 @@ MonoBehaviour:
   SRV1: {fileID: 420299055457738161}
   SRV2: {fileID: 3582665640925820130}
   SRV3: {fileID: 1689745532068606648}
-  obj: {fileID: 4703688039164814758}
+  interactImg: {fileID: 4703688039164814758}
   trans: {fileID: 8901462598750736861}
   Txt: {fileID: 7778111700534785461}
-  HpSlider: {fileID: 6212696950128215213}
+  HPSlider: {fileID: 6212696950128215213}
   _livingsID: 0
-  _Hp: 0
+  _HP: 0
 --- !u!95 &7179160870748625512
 Animator:
   serializedVersion: 5

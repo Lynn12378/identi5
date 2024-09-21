@@ -14993,9 +14993,9 @@ MonoBehaviour:
   playerInfo: {fileID: 7972090613091430154, guid: 8890e4e268a42b24bb0583f6e3a5052d, type: 3}
   playerOutputData: {fileID: 6047792432197699593, guid: 14fa86d1cb8a6c24fa83f16ce9e12818, type: 3}
   LPlayerNameTxt: {fileID: 654694214}
-  LPlayerPasswordTxt: {fileID: 124728542}
+  LPlayerPasswordTxt: {fileID: 1504887164}
   SPlayerNameTxt: {fileID: 408987335}
-  SPlayerPasswordTxt: {fileID: 1746319610}
+  SPlayerPasswordTxt: {fileID: 1164711914}
   messageTxt: {fileID: 356903932}
   dialog:
   - {fileID: 885742871}

@@ -12,7 +12,7 @@ namespace Identi5.GamePlay
 {
     public class Zombie : NetworkBehaviour
     {
-        #region - statics -
+        #region -Properties -
         public enum ZombieType
         {
             HighDamage,
@@ -20,34 +20,37 @@ namespace Identi5.GamePlay
             HighSpeed,
             Normal,
         }
-        private ChangeDetector changes;
         public ZombieType zombieType;
-        private Vector2 direction;
-        private int maxHp = 100;
+        private ChangeDetector changes;
+        private int maxHP = 100;
         private int directDamage = 10;
         private int damageOverTime = 1;
-        private float damageInterval = 3f;
+        private float damageInterval = 1.5f;
         private float moveSpeed = 1f;
+        private Vector2 direction;
         private bool isMoving;
         public static float deltaTime;
         private float damageTimer = 0;
+        private float moveTimer = 0;
+        [SerializeField] private PlayerController player;
         [SerializeField] private NetworkRigidbody2D ZombieNetworkRigidbody = null;
         [SerializeField] private SpriteResolver spriteResolver;
         [SerializeField] private PlayerDetection playerDetection;
         [SerializeField] private ItemSpawner itemSpawner;
-        [SerializeField] public Slider HpSlider;
+        [SerializeField] public Slider HPSlider;
         [Networked] public int ZombieID { get; set;}
-        [Networked] public int Hp { get; set; }
+        [Networked] public int HP { get; set; }
         #endregion
 
         #region - Initialize -
         public override void Spawned() 
         {
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
-            transform.SetParent(GameObject.Find("GPManager/Zombies").transform, false);
+            transform.SetParent(GameObject.Find("SpawnSpace/Zombies").transform, false);
             SetZombieID_RPC(ZombieID);
             Init();
             damageTimer = 0;
+            moveTimer = 0;
             direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
         }
 
@@ -58,40 +61,39 @@ namespace Identi5.GamePlay
             switch (zombieType)
             {
                 case ZombieType.HighDamage:
-                    maxHp = 50;
+                    maxHP = 50;
                     directDamage = 20;
                     damageOverTime = 3;
-                    Hp = maxHp;
                     break;
                 case ZombieType.HighHP:
-                    maxHp = 150;
-                    Hp = maxHp;
+                    maxHP = 150;
                     break;
                 case ZombieType.HighSpeed:
-                    maxHp = 80;
-                    Hp = maxHp;
+                    maxHP = 80;
                     moveSpeed = 1.5f;
                     damageOverTime = 0;
                     break;
                 case ZombieType.Normal:
                     break;
             }
-            HpSlider.maxValue = maxHp;
-            SetZombieHP_RPC(maxHp);
+            HPSlider.maxValue = maxHP;
+            SetZombieHP_RPC(maxHP);
         }
         #endregion
 
-        #region - Patrol & Player Detect -
+        #region - Movement -
         public override void FixedUpdateNetwork()
         {
             damageTimer += Time.deltaTime;
+            moveTimer += Time.deltaTime;
             if(playerDetection.playerInCollider.Count > 0)
             {
                 FollowDirection();
             }
-            else if(damageTimer > 2)
+            else if(moveTimer > 3)
             {
                 direction = new Vector2(Random.insideUnitCircle.x, Random.insideUnitCircle.y);
+                moveTimer = 0;
             }
 
             ZombieNetworkRigidbody.Rigidbody.velocity = direction * moveSpeed;
@@ -121,7 +123,7 @@ namespace Identi5.GamePlay
         {
             if(collision.collider.CompareTag("Player"))
             {
-                var player = collision.collider.GetComponent<PlayerController>();
+                player = collision.collider.GetComponent<PlayerController>();
                 if(player != null && damageTimer < 2)
                 {
                     player.TakeDamage(damageOverTime);
@@ -141,7 +143,7 @@ namespace Identi5.GamePlay
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void SetZombieHP_RPC(int hp)
         {
-            Hp = hp;
+            HP = hp;
         }
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
@@ -169,8 +171,8 @@ namespace Identi5.GamePlay
                     case nameof(ZombieID):
                         Init();
                         break;
-                    case nameof(Hp):
-                        HpSlider.value = Hp;
+                    case nameof(HP):
+                        HPSlider.value = HP;
                         break;
                 }
             }

@@ -760,10 +760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombieType: 0
+  player: {fileID: 0}
   ZombieNetworkRigidbody: {fileID: 397606304458726309}
   spriteResolver: {fileID: 3041365669026767076}
   playerDetection: {fileID: 4097055235517823161}
   itemSpawner: {fileID: 1962009297757197938}
-  HpSlider: {fileID: 1422947231120268285}
+  HPSlider: {fileID: 1422947231120268285}
   _ZombieID: 0
-  _Hp: 0
+  _HP: 0

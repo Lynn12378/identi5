@@ -19,9 +19,9 @@ namespace Identi5.DB
         [SerializeField] private PlayerInfo playerInfo;
         [SerializeField] public PlayerOutputData playerOutputData;
         [SerializeField] private TMP_Text LPlayerNameTxt;
-        [SerializeField] private TMP_Text LPlayerPasswordTxt;
+        [SerializeField] private TMP_InputField  LPlayerPasswordTxt;
         [SerializeField] private TMP_Text SPlayerNameTxt;
-        [SerializeField] private TMP_Text SPlayerPasswordTxt;
+        [SerializeField] private TMP_InputField  SPlayerPasswordTxt;
 
         [SerializeField] private TMP_Text messageTxt;
         [SerializeField] private List<GameObject> dialog = new List<GameObject>();
