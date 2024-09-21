@@ -121,6 +121,7 @@ MonoBehaviour:
   messageList: []
   newTeamID: 0
   teamList: []
+  BGM: {fileID: 4115365703552954889}
   source: {fileID: 3186116374235266433}
   ODHandler: {fileID: 793656530047066282}
   shelter: {fileID: 0}
@@ -385,7 +386,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
