@@ -15,6 +15,7 @@ namespace Identi5.Lobby
         private GameMgr gameMgr;
         private NetworkRunner runner;
         [SerializeField] private GameObject obj;
+        [SerializeField] private GameObject dialog;
         [SerializeField] private NetworkRunner gameMgrInt;
         [SerializeField] private TMP_InputField roomName = null;
 
@@ -48,7 +49,23 @@ namespace Identi5.Lobby
                 MatchmakingMode = isRandom ? 0 : null,
             };
 
-            await runner.StartGame(startGameArgs);
+            var result = await runner.StartGame(startGameArgs);
+            if (result.Ok){}
+            else{
+                dialog.SetActive(true);
+                Invoke("Redirect", 5);
+            }
+        }
+
+        private void Redirect()
+        {
+            runner.Shutdown();
+            SceneManager.LoadScene("Lobby");
+        }
+
+        public void CloseDialog()
+        {
+            dialog.SetActive(false);
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
