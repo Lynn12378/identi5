@@ -58,6 +58,7 @@ namespace Identi5.GamePlay
             if (Object.HasStateAuthority)
             {
                 Init();
+                SetPlayerTeamID_RPC(-1);
                 SetPlayerRef_RPC();
                 SetPlayerCoin_RPC(100);
                 if(outfits.Get(0) != ""){
@@ -89,7 +90,7 @@ namespace Identi5.GamePlay
             SetPlayerHP_RPC(MaxHP);
             SetPlayerBullet_RPC(MaxBullet);
             SetPlayerFood_RPC(MaxFood);
-            SetPlayerTeamID_RPC(0);
+            
         }
 
         private void ReceiveItem()
@@ -211,7 +212,6 @@ namespace Identi5.GamePlay
                         HPSlider.value = HP;
                         break;
                     case nameof(teamID):
-                        gameMgr.UpdatedPNDList();
                         gameMgr.UpdatedTeamList();
                         gameMgr.UpdatedPlayerMinimap();
                         break;

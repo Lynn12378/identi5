@@ -45,7 +45,7 @@ namespace Identi5.GamePlay
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             transform.SetParent(GameObject.Find("SpawnSpace/Livings").transform, false);
             SetLivingsID_RPC(livingsID);
-            SetLivingsHP_RPC(50);
+            SetLivingsHP_RPC(45);
             Init();
             StartCoroutine(RandomMovement());
         }

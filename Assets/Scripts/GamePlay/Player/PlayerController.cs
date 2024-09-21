@@ -44,6 +44,7 @@ namespace Identi5.GamePlay.Player
             gameMgr = GameMgr.Instance;
             POD = GameMgr.playerOutputData;
             PND.uIManager = FindObjectOfType<UIManager>();
+            gameMgr.shelter = FindObjectOfType<Shelter>();
             foodTimer = TickTimer.CreateFromSeconds(Runner, 20);
             icon = voiceDetection.icon;
         }
@@ -88,6 +89,7 @@ namespace Identi5.GamePlay.Player
 
             if (gameMgr.shelter != null)
             {
+                POD.timeInShelter += Runner.DeltaTime;
                 if (RefillTimer.Expired(Runner))
                 {
                     PND.SetPlayerHP_RPC(PND.HP + 10);

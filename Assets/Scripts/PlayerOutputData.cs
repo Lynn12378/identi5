@@ -22,7 +22,7 @@ namespace Identi5
         public int killNo;
         public int organizeNo;
         public int fullNo;
-        public int zombieInShelteNo;
+        public int zombieInShelterNo;
         public float surviveTime;
         public int contribution;
         #endregion
@@ -45,6 +45,7 @@ namespace Identi5
         #endregion
 
         #region - Neuroticism -
+        public float timeInShelter;
         public int collisionMapNo;
         public int bulletOnCollisions; 
         public List<int> remainHP = new List<int>();
@@ -77,7 +78,7 @@ namespace Identi5
             killNo = 0;
             organizeNo = 0;
             fullNo = 0;
-            zombieInShelteNo = 0;
+            zombieInShelterNo = 0;
             surviveTime = 0;
             contribution = 0;
             messageSent = 0;
@@ -90,6 +91,7 @@ namespace Identi5
             bulletOnLiving = 0;
             bulletOnPlayer = 0;
             interactNo = 0;
+            timeInShelter = 0;
             collisionMapNo = 0;
             bulletOnCollisions = 0; 
             remainHP = new List<int>();

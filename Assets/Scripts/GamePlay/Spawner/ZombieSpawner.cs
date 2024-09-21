@@ -12,9 +12,9 @@ namespace Identi5.GamePlay.Spawner
 
         #region - item -
         [SerializeField] private NetworkObject zombie;
-        [SerializeField] private int initAmount = 10;
-        [SerializeField] private int spawnAmount = 5;
-        [SerializeField] private float spawnTime = 30.0f;
+        [SerializeField] private int initAmount = 0;
+        [SerializeField] private int spawnAmount = 0;
+        [SerializeField] private float spawnTime = 0.0f;
         [Networked] private TickTimer spawnTimer { get; set; }
         public override void Spawned()
         {
@@ -40,6 +40,7 @@ namespace Identi5.GamePlay.Spawner
         }
         public void RandomSpawn()
         {
+            if(FindObjectsOfType<Zombie>().Length > 30){return;}
             int seed = Random.Range(0, 4);
             Vector3 position = transform.position + new Vector3(Random.Range(-width, width),Random.Range(-height, height),0);
             Runner.Spawn(zombie, position, Quaternion.identity).GetComponent<Zombie>().SetZombieID_RPC(seed);
