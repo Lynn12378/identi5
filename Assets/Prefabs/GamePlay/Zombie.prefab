@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 3041365669026767076}
   - component: {fileID: 6780989921185005495}
   - component: {fileID: 8519315611264526572}
-  - component: {fileID: 1962009297757197938}
   m_Layer: 0
   m_Name: Run 0
   m_TagString: Untagged
@@ -244,24 +243,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
---- !u!114 &1962009297757197938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133025715848262528}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4233e3d46e837df4391418dfe025e28d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 993448506561405543, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
-  minRange: 0
-  maxRange: 5
-  initAmount: 0
-  spawnAmount: 0
-  spawnTime: 300
 --- !u!1 &2172476244276098019
 GameObject:
   m_ObjectHideFlags: 0
@@ -735,6 +716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 285280910250053797}
+  - component: {fileID: 1966359119142846453}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -760,6 +742,24 @@ Transform:
   - {fileID: 9163889594938586128}
   m_Father: {fileID: 5105427102533241871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1966359119142846453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6053175235261004054}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4233e3d46e837df4391418dfe025e28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 993448506561405543, guid: defdc104014ecad4081e5dd685ddd93d, type: 3}
+  minRange: 0
+  maxRange: 5
+  initAmount: 0
+  spawnAmount: 0
+  spawnTime: 0
 --- !u!1 &7293667451755350575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   - {fileID: 397606304458726309}
   - {fileID: 7637637205018366213}
   - {fileID: 4097055235517823161}
-  - {fileID: 1962009297757197938}
+  - {fileID: 1966359119142846453}
   - {fileID: 3798971392405825707}
   - {fileID: 8882293636083661217}
 --- !u!114 &397606304458726309
@@ -1166,7 +1166,7 @@ MonoBehaviour:
   SRV3: {fileID: 7807895563415668938}
   trans: {fileID: 285280910250053797}
   playerDetection: {fileID: 4097055235517823161}
-  itemSpawner: {fileID: 1962009297757197938}
+  itemSpawner: {fileID: 0}
   HPSlider: {fileID: 1422947231120268285}
   _ZombieID: 0
   _HP: 0
