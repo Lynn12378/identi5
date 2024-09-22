@@ -4,4 +4,4 @@
 殭屍圖案
 關閉房間
 
-bullet action playerRef
+bullet action playerRef 
