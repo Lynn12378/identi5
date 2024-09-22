@@ -101,11 +101,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 402
+      x: 4
+      y: 232
       width: 100
       height: 100
-    spriteID: f33941cb97d95a643853be0ad51e65c6
+    spriteID: f7a0d6130724abe449ce5595a39045cf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,7 +113,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 402}
+    uvTransform: {x: 4, y: 232}
     spritePosition: {x: 0, y: 0}
   - name: building9_1
     originalName: 
@@ -122,11 +122,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 402
+      x: 104
+      y: 232
       width: 100
       height: 100
-    spriteID: 3227ee3a692700f498e1b5477affa435
+    spriteID: c37e393208a2a1b4fa0d6157e4c3120f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,7 +134,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 402}
+    uvTransform: {x: 104, y: 232}
     spritePosition: {x: 0, y: 0}
   - name: building9_2
     originalName: 
@@ -143,11 +143,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 302
+      x: 204
+      y: 232
       width: 100
       height: 100
-    spriteID: f045d60c27544e142895a159b11cdd77
+    spriteID: 7456ca81177096642b3d427cbe23be4f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 302}
+    uvTransform: {x: 204, y: 232}
     spritePosition: {x: 0, y: 0}
   - name: building9_3
     originalName: 
@@ -164,11 +164,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 302
+      x: 4
+      y: 132
       width: 100
       height: 100
-    spriteID: 78e837e326739a1498bac5ee43e69194
+    spriteID: 1e8fb5cb33b5b6d49a97426bdb4e33a2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,7 +176,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 302}
+    uvTransform: {x: 4, y: 132}
     spritePosition: {x: 0, y: 0}
   - name: building9_4
     originalName: 
@@ -185,11 +185,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 202
+      x: 104
+      y: 132
       width: 100
       height: 100
-    spriteID: f1fe870a774c0254f84689c1b3d76096
+    spriteID: 3abf8d89e14712142a834fadd415a06d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,7 +197,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 202}
+    uvTransform: {x: 104, y: 132}
     spritePosition: {x: 0, y: 0}
   - name: building9_5
     originalName: 
@@ -206,11 +206,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 202
+      x: 204
+      y: 132
       width: 100
       height: 100
-    spriteID: fbf6d0fa840a8f843af1f964c00b9226
+    spriteID: c7237e6338c50a8459a67c9253afcfff
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 202}
+    uvTransform: {x: 204, y: 132}
     spritePosition: {x: 0, y: 0}
   - name: building9_6
     originalName: 
@@ -227,11 +227,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 102
+      x: 4
+      y: 32
       width: 100
       height: 100
-    spriteID: 2507e20b6e91ea64fbc8ff8b41b1998c
+    spriteID: ec6f53e6d6475264c8f14d030f65d19b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -239,7 +239,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 102}
+    uvTransform: {x: 4, y: 32}
     spritePosition: {x: 0, y: 0}
   - name: building9_7
     originalName: 
@@ -248,11 +248,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 102
+      x: 104
+      y: 32
       width: 100
       height: 100
-    spriteID: 8d5c18a2608ce5449a9cfa1b20fecd1e
+    spriteID: 1412676c912e86447a3d9356f147abf6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -260,7 +260,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 102}
+    uvTransform: {x: 104, y: 32}
     spritePosition: {x: 0, y: 0}
   - name: building9_8
     originalName: 
@@ -269,11 +269,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 2
+      x: 204
+      y: 32
       width: 100
       height: 100
-    spriteID: eb706a2123f5830459ea8943f17b301a
+    spriteID: 2dd59735feb4e0f4cb2c052c04773762
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,28 +281,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 2}
-    spritePosition: {x: 0, y: 0}
-  - name: building9_9
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 100
-      y: 2
-      width: 100
-      height: 100
-    spriteID: 7b732501c77e09e409b250ce64dcc3fb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 100, y: 2}
+    uvTransform: {x: 204, y: 32}
     spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
@@ -344,7 +323,7 @@ ScriptedImporter:
     spriteName: "\u5716\u5C64 1"
     isGroup: 0
     parentIndex: -1
-    spriteID: aa158e22ad1e1e94abd0e78359cf7823
+    spriteID: 1ccfc693dc7ec9744abe89d8bd82f8d5
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0

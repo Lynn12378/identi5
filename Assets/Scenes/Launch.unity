@@ -10943,7 +10943,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u97F3\u91CF"
+  m_text: "\u624B\u518A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6aef2a040585c8a42947a2767b54fcd5, type: 2}
   m_sharedMaterial: {fileID: -433225221499695473, guid: 6aef2a040585c8a42947a2767b54fcd5, type: 2}
@@ -22510,9 +22510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelList:
-  - {fileID: 885742871}
   - {fileID: 1038791074}
-  panelMgr: {fileID: 974068745}
+  panelMgr: {fileID: 885742875}
 --- !u!114 &1474500128
 MonoBehaviour:
   m_ObjectHideFlags: 0

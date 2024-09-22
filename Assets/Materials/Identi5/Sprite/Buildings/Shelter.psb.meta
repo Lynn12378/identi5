@@ -101,11 +101,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 302
+      x: 4
+      y: 304
       width: 100
       height: 100
-    spriteID: 21c682906b07d234f8ce47d0ac48fdec
+    spriteID: 79bf2c7fb9a450b46999b50fd3631cf7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,7 +113,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 302}
+    uvTransform: {x: 4, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_1
     originalName: 
@@ -122,11 +122,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 302
+      x: 104
+      y: 304
       width: 100
       height: 100
-    spriteID: e56fd01083392b145a29dd1cdbd609b5
+    spriteID: 3756a7d29253da64b904a4c92f852b98
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,7 +134,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 302}
+    uvTransform: {x: 104, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_2
     originalName: 
@@ -143,11 +143,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 302
+      x: 204
+      y: 304
       width: 100
       height: 100
-    spriteID: 9bce9a64d09bfbe4cba726934f6aabe4
+    spriteID: e3e2ff63344f8bf4eafcf278b4bd2793
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 302}
+    uvTransform: {x: 204, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_3
     originalName: 
@@ -164,11 +164,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 300
-      y: 302
+      x: 304
+      y: 304
       width: 100
       height: 100
-    spriteID: e04c3821e22e6ff4f91e3cbb713ff8e0
+    spriteID: d4edaad8b9b1b1e42a0e80493d19c832
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,7 +176,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 300, y: 302}
+    uvTransform: {x: 304, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_4
     originalName: 
@@ -185,11 +185,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 400
-      y: 302
+      x: 404
+      y: 304
       width: 100
       height: 100
-    spriteID: e51faf918f19abb4fa55a14f46d939bb
+    spriteID: c2b4eab2ada86044bb3784321ad42c7d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,7 +197,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 400, y: 302}
+    uvTransform: {x: 404, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_5
     originalName: 
@@ -206,11 +206,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 500
-      y: 302
+      x: 504
+      y: 304
       width: 100
       height: 100
-    spriteID: f99ad86ba5e24c249bea58334e653ad5
+    spriteID: cb3eaa509c508824fa0d75be6512a2d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 500, y: 302}
+    uvTransform: {x: 504, y: 304}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_6
     originalName: 
@@ -227,11 +227,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 202
+      x: 4
+      y: 204
       width: 100
       height: 100
-    spriteID: 02ef76ec148eb5e4fab16c5870bdcc90
+    spriteID: ee00d7cb36c96f54d94057be7926912e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -239,7 +239,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 202}
+    uvTransform: {x: 4, y: 204}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_7
     originalName: 
@@ -248,11 +248,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 102
+      x: 504
+      y: 204
       width: 100
       height: 100
-    spriteID: 197aba5119af247499da59805cfafcd5
+    spriteID: 660b4defa8c9eed4cbe533d2cf0bcd0e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -260,7 +260,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 102}
+    uvTransform: {x: 504, y: 204}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_8
     originalName: 
@@ -269,11 +269,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 102
+      x: 4
+      y: 104
       width: 100
       height: 100
-    spriteID: c248d0a3f7a33aa48b1acc4ec8b8714e
+    spriteID: f42d1e4a22fda094daf5cf3efb58943c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,7 +281,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 102}
+    uvTransform: {x: 4, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_9
     originalName: 
@@ -290,11 +290,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 102
+      x: 104
+      y: 104
       width: 100
       height: 100
-    spriteID: b6ae0223ed4fe614dae7c63510477764
+    spriteID: 096e58668de80154681d20ea5f095f1e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -302,7 +302,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 102}
+    uvTransform: {x: 104, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_10
     originalName: 
@@ -311,11 +311,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 300
-      y: 102
+      x: 204
+      y: 104
       width: 100
       height: 100
-    spriteID: 151fa99403a8c8046b6994e27c87a9e7
+    spriteID: d281ccdb8abc0934d9e12aa186855052
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -323,7 +323,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 300, y: 102}
+    uvTransform: {x: 204, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_11
     originalName: 
@@ -332,11 +332,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 400
-      y: 102
+      x: 304
+      y: 104
       width: 100
       height: 100
-    spriteID: abea1d4a48f37e648848f389323869d8
+    spriteID: f42a1485cf2130940b22e78df2ef1ce0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -344,7 +344,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 400, y: 102}
+    uvTransform: {x: 304, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_12
     originalName: 
@@ -353,11 +353,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 500
-      y: 102
+      x: 404
+      y: 104
       width: 100
       height: 100
-    spriteID: 06c2c0d58e212d64dadb4087e0043dba
+    spriteID: 4c53074285feb5742b19146ccbdac6eb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -365,7 +365,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 500, y: 102}
+    uvTransform: {x: 404, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_13
     originalName: 
@@ -374,11 +374,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 2
+      x: 504
+      y: 104
       width: 100
       height: 100
-    spriteID: 70b6e6cbf321e4641810f19200039210
+    spriteID: 2a2791afdfc4b4940a420fb7bfc4e9d1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -386,7 +386,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 2}
+    uvTransform: {x: 504, y: 104}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_14
     originalName: 
@@ -395,11 +395,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 2
+      x: 4
+      y: 4
       width: 100
       height: 100
-    spriteID: c083af263edb18742a74f7d2548bd1ba
+    spriteID: 0b7aa4bb5272db4419344d07fb419d48
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -407,7 +407,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 2}
+    uvTransform: {x: 4, y: 4}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_15
     originalName: 
@@ -416,11 +416,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 2
+      x: 104
+      y: 4
       width: 100
       height: 100
-    spriteID: 3afbe14410b04054c867ea1429e1b210
+    spriteID: 7f46b12b70d7b204f992fd3d4cbdeb97
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -428,7 +428,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 2}
+    uvTransform: {x: 104, y: 4}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_16
     originalName: 
@@ -437,11 +437,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 300
-      y: 2
+      x: 204
+      y: 4
       width: 100
       height: 100
-    spriteID: 5a34394c837bab84e90548d499f17ced
+    spriteID: a79309c1d3097e442acec49e733c39ea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -449,7 +449,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 300, y: 2}
+    uvTransform: {x: 204, y: 4}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_17
     originalName: 
@@ -458,11 +458,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 400
-      y: 2
+      x: 304
+      y: 4
       width: 100
       height: 100
-    spriteID: 155caba4723e1c04fad7c4ffd75eb8d7
+    spriteID: 2b05c7e6a08613d45804da742109799a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -470,7 +470,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 400, y: 2}
+    uvTransform: {x: 304, y: 4}
     spritePosition: {x: 0, y: 0}
   - name: Shelter_18
     originalName: 
@@ -479,11 +479,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 500
-      y: 2
+      x: 404
+      y: 4
       width: 100
       height: 100
-    spriteID: 1c3cc72d6f1a31b4cb2f072c038d73d3
+    spriteID: ee4e168aaa3ac17428215ce20d15d9e7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -491,7 +491,28 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 500, y: 2}
+    uvTransform: {x: 404, y: 4}
+    spritePosition: {x: 0, y: 0}
+  - name: Shelter_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 504
+      y: 4
+      width: 100
+      height: 100
+    spriteID: e3b7085964ee2f340ae4020e37f8565d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 504, y: 4}
     spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
@@ -533,7 +554,7 @@ ScriptedImporter:
     spriteName: "\u5716\u5C64 1"
     isGroup: 0
     parentIndex: -1
-    spriteID: 60a879b29758c034f8d658813e30d7ca
+    spriteID: 3b5a78ee313fac74eb5dce12dbe4b0ab
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
