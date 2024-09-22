@@ -40,7 +40,7 @@ namespace Identi5.GamePlay.Spawner
         }
         public void RandomSpawn()
         {
-            if(FindObjectsOfType<Zombie>().Length > 30){return;}
+            if(FindObjectsOfType<Zombie>().Length > 35){return;}
             int seed = Random.Range(0, 4);
             Vector3 position = transform.position + new Vector3(Random.Range(-width, width),Random.Range(-height, height),0);
             Runner.Spawn(zombie, position, Quaternion.identity).GetComponent<Zombie>().SetZombieID_RPC(seed);
