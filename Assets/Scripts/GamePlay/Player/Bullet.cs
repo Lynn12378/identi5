@@ -51,8 +51,8 @@ namespace Identi5.GamePlay.Player
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
-                gameMgr.source.clip = clips[1];
-                gameMgr.source.Play();
+                // gameMgr.source.clip = clips[1];
+                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(player != null)
@@ -66,8 +66,8 @@ namespace Identi5.GamePlay.Player
                         GameMgr.playerOutputData.bulletOnPlayer++;
                     }
                 }
-                gameMgr.source.clip = clips[1];
-                gameMgr.source.Play();
+                // gameMgr.source.clip = clips[1];
+                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(zombie != null)
@@ -78,8 +78,8 @@ namespace Identi5.GamePlay.Player
                     GameMgr.Instance.PNDList[shooterPlayerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
-                gameMgr.source.clip = clips[1];
-                gameMgr.source.Play();
+                // gameMgr.source.clip = clips[1];
+                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(livings != null)
@@ -93,8 +93,8 @@ namespace Identi5.GamePlay.Player
                 {
                     livings.DespawnLivings_RPC();
                 }
-                gameMgr.source.clip = clips[1];
-                gameMgr.source.Play();
+                // gameMgr.source.clip = clips[1];
+                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
         }
