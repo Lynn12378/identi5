@@ -5,7 +5,7 @@ namespace Identi5
 {
     public class EndGameMgr : NetworkBehaviour
     {
-        private string baseUrl = "http://localhost/DEMO/BFI-15.php";
+        private string baseUrl = "https://catfish-golden-man.ngrok-free.app/DEMO/BFI-15.php";
         public void GoToQuestion()
         {
             string fullUrl = $"{baseUrl}?player_id={GameMgr.playerInfo.Player_id}";
@@ -13,7 +13,6 @@ namespace Identi5
         }
         public void Start()
         {
-            Debug.Log($"Player_id:{GameMgr.playerInfo.Player_id}");
             GoToQuestion();
         }
     }

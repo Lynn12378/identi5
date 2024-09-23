@@ -88,6 +88,7 @@ namespace Identi5.GamePlay
                     SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
             }
+            HPSlider.maxValue = maxHP;
             SetZombieHP_RPC(maxHP);
         }
         #endregion
@@ -203,8 +204,8 @@ namespace Identi5.GamePlay
                         Init();
                         break;
                     case nameof(HP):
+                        HPSlider.maxValue = HP > HPSlider.maxValue ? HP : HPSlider.maxValue;
                         HPSlider.value = HP;
-                        HPSlider.maxValue = maxHP;
                         break;
                 }
             }

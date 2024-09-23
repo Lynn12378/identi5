@@ -120,6 +120,19 @@ namespace Identi5
                 OnOutfitsUpdated?.Invoke();
             }
         #endregion
+
+        #region - OD -
+            public event Action OnEndGame = null;
+            public event Action OnFailGame = null;
+            public void EndGame()
+            {
+                OnEndGame?.Invoke();
+            }
+            public void FailGame()
+            {
+                OnEndGame?.Invoke();
+            }
+        #endregion
         public AudioSource BGM;
         public AudioSource source;
         public OutputDBHandler ODHandler;

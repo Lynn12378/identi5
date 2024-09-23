@@ -6,6 +6,8 @@ namespace Identi5.GamePlay
 {
     public class Shelter : NetworkBehaviour
     {
+        private string sceneName;
+        private GameMgr gameMgr;
         private ChangeDetector changes;
         private UIManager uIManager;
         private int maxDurability = 100;
@@ -20,24 +22,23 @@ namespace Identi5.GamePlay
 
         public override void Spawned()
         {
+            gameMgr = GameMgr.Instance;
             changes = GetChangeDetector(ChangeDetector.Source.SimulationState);
             uIManager = FindObjectOfType<UIManager>();
 
             SetDurability_RPC(maxDurability);
             durabilityTimer = TickTimer.CreateFromSeconds(Runner, 5);
-            endGameTimer = TickTimer.CreateFromSeconds(Runner, 1800);
+            endGameTimer = TickTimer.CreateFromSeconds(Runner, 10);
+
+            gameMgr.OnEndGame += EndGame;
+            gameMgr.OnFailGame += FailGame;
         }
 
         public override void FixedUpdateNetwork()
         {
-            var time = (int)endGameTimer.RemainingTime(Runner);
-            uIManager.UpdateGameTimeTxt(time);
             if (endGameTimer.Expired(Runner))
             {
-                GameMgr.playerOutputData.isFinished = true;
-                GameMgr.Instance.ODHandler.UpdateOD();
-                Runner.Shutdown();
-                SceneManager.LoadScene("EndGame");
+                EndGame();
             }
 
             if (durabilityTimer.Expired(Runner) && durability > 0)
@@ -51,18 +52,42 @@ namespace Identi5.GamePlay
                 if(!failedTimer.IsRunning)
                 {
                     failedTimer = TickTimer.CreateFromSeconds(Runner, 60);
-                    GameMgr.Instance.dialogCell.SetInfo("基地耐久度不足! 請儘快補充物資!");
+                    gameMgr.dialogCell.SetInfo("基地耐久度不足! 請儘快補充物資!");
                 }
                 
                 if(failedTimer.Expired(Runner))
                 {
-                    GameMgr.Instance.dialogCell.SetInfo("遊戲失敗!請重新開始!");
-                    GameMgr.playerOutputData.failGameNo++;
-                    GameMgr.Instance.ODHandler.UpdateOD();
-                    Runner.Shutdown();
-                    SceneManager.LoadScene("Lobby");
+                    FailGame();
                 }
             }
+        }
+
+        private void EndGame()
+        {
+            gameMgr.dialogCell.SetInfo("遊戲結束，即將導向問卷");
+            GameMgr.playerOutputData.isFinished = true;
+            gameMgr.ODHandler.UpdateOD();
+            sceneName = "EndGame";
+            Invoke("ChangeScene", 5);
+            ChangeScene();
+            gameMgr.OnEndGame -= EndGame;
+        }
+
+        public void FailGame()
+        {
+            gameMgr.dialogCell.SetInfo("遊戲失敗!請重新開始!");
+            GameMgr.playerOutputData.failGameNo++;
+            gameMgr.ODHandler.UpdateOD();
+            sceneName = "Lobby";
+            Invoke("ChangeScene", 3);
+            ChangeScene();
+            gameMgr.OnEndGame -= FailGame;
+        }
+
+        private void ChangeScene()
+        {
+            Runner.Shutdown();
+            SceneManager.LoadScene(sceneName);
         }
 
         #region - RPCs -
@@ -100,6 +125,8 @@ namespace Identi5.GamePlay
                 {
                     case nameof(durability):
                         uIManager.UpdateDurabilitySlider(durability, maxDurability);
+                        var time = (int)endGameTimer.RemainingTime(Runner);
+                        uIManager.UpdateGameTimeTxt(time);
                         break;
                     case nameof(IsOpen):
                         door.SetActive(!IsOpen);

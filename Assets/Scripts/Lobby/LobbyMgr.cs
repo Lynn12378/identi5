@@ -53,7 +53,7 @@ namespace Identi5.Lobby
             if (result.Ok){}
             else{
                 dialog.SetActive(true);
-                Invoke("Redirect", 5);
+                Invoke("Redirect", 3);
             }
         }
 
