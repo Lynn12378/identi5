@@ -29,7 +29,7 @@ namespace Identi5.GamePlay.Cell
             if (timer.Expired(Runner))
             {
                 GameMgr.Instance.messageList.Remove(this);
-                Runner.Despawn(Object);
+                Despawn_RPC();
             }
         }
 
@@ -47,7 +47,12 @@ namespace Identi5.GamePlay.Cell
             this.playerName = playerName;
             this.message = message;
 		}
-
+        
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void Despawn_RPC()
+        {
+            Runner.Despawn(Object);
+        }
         #endregion
     }
 }

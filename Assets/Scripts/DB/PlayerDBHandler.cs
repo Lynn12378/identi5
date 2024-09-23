@@ -15,6 +15,7 @@ namespace Identi5.DB
         private float timer = 0;
         private float timer2 = 0;
         private bool isFirstOpen = false;
+        [SerializeField] private PlayerOutfitsHandler playerOutfitsHandler;
         [SerializeField] private PanelMgr panelMgr;
         [SerializeField] private PlayerInfo playerInfo;
         [SerializeField] public PlayerOutputData playerOutputData;
@@ -157,9 +158,8 @@ namespace Identi5.DB
 
         private void SetOufits()
         {
-            var playerOutfitsHandler = FindObjectsOfType<PlayerOutfitsHandler>();
             playerInfo.outfits = new List<string>();
-            foreach(var resolver in playerOutfitsHandler[playerOutfitsHandler.GetLength(0) - 1].resolverList)
+            foreach(var resolver in playerOutfitsHandler.resolverList)
             {
                 playerInfo.outfits.Add(resolver.GetLabel().ToString());
             }

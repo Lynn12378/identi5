@@ -45,6 +45,7 @@ namespace Identi5.GamePlay.Player
             var zombie = collider.GetComponent<Zombie>();
             var livings = collider.GetComponent<Livings>();
 
+            if(shooterPlayerRef == null){return;}
             if(collider.CompareTag("MapCollision"))
             {
                 if(shooterPlayerRef == Runner.LocalPlayer)
@@ -58,7 +59,7 @@ namespace Identi5.GamePlay.Player
             else if(player != null)
             {
                 if(player.GetPND().playerRef == shooterPlayerRef){return;}
-                if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
+                if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[shooterPlayerRef].teamID)
                 {
                     player.TakeDamage(10);
                     if(shooterPlayerRef == Runner.LocalPlayer)
