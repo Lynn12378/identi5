@@ -7,17 +7,18 @@ namespace Identi5.GamePlay.Player
     {
         private GameMgr gameMgr;
         private PlayerRef shooterPlayerRef;
-        [SerializeField] private AudioClip[] clips;
+        [SerializeField] private AudioClip clip;
         [Networked] private TickTimer life { get; set; }
-        [Networked] public PlayerRef playerRef { get; private set; }
+        [Networked, OnChangedRender(nameof(OnPlayerChange))]
+        public PlayerRef playerRef { get; private set; }
 
         public void Init(Vector2 mousePosition)
         {
             gameMgr = GameMgr.Instance;
-            gameMgr.source.clip = clips[0];
+            gameMgr.source.clip = clip;
             gameMgr.source.Play();
             SetPlayerRef_RPC();
-            shooterPlayerRef = playerRef;
+            
             life = TickTimer.CreateFromSeconds(Runner, 1f);
             mousePosition = mousePosition.normalized;
             transform.Translate(Vector2.zero);
@@ -31,12 +32,11 @@ namespace Identi5.GamePlay.Player
                 DespawnBullet_RPC();
             }
         }
-        
-        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-		public void SetPlayerRef_RPC()
+
+        private void OnPlayerChange()
         {
-            playerRef = Runner.LocalPlayer;
-		}
+            shooterPlayerRef = playerRef;
+        }
 
         #region - OnTrigger -
         private void OnTriggerEnter2D(Collider2D collider)
@@ -52,8 +52,6 @@ namespace Identi5.GamePlay.Player
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
-                // gameMgr.source.clip = clips[1];
-                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(player != null)
@@ -67,8 +65,6 @@ namespace Identi5.GamePlay.Player
                         GameMgr.playerOutputData.bulletOnPlayer++;
                     }
                 }
-                // gameMgr.source.clip = clips[1];
-                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(zombie != null)
@@ -79,8 +75,6 @@ namespace Identi5.GamePlay.Player
                     GameMgr.Instance.PNDList[shooterPlayerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
-                // gameMgr.source.clip = clips[1];
-                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
             else if(livings != null)
@@ -94,11 +88,15 @@ namespace Identi5.GamePlay.Player
                 {
                     livings.DespawnLivings_RPC();
                 }
-                // gameMgr.source.clip = clips[1];
-                // gameMgr.source.Play();
                 DespawnBullet_RPC();
             }
         }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+		public void SetPlayerRef_RPC()
+        {
+            playerRef = Runner.LocalPlayer;
+		}
 
         [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
         public void DespawnBullet_RPC()
