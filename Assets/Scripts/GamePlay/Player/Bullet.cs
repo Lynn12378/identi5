@@ -6,15 +6,10 @@ namespace Identi5.GamePlay.Player
     public class Bullet : NetworkBehaviour
     {
         private GameMgr gameMgr;
-        private bool isSpawned;
+        private PlayerRef shooterPlayerRef;
         [SerializeField] private AudioClip[] clips;
         [Networked] private TickTimer life { get; set; }
         [Networked] public PlayerRef playerRef { get; private set; }
-
-        public override void Spawned()
-        {
-            isSpawned = true;  
-        }
 
         public void Init(Vector2 mousePosition)
         {
@@ -22,6 +17,7 @@ namespace Identi5.GamePlay.Player
             gameMgr.source.clip = clips[0];
             gameMgr.source.Play();
             SetPlayerRef_RPC();
+            shooterPlayerRef = playerRef;
             life = TickTimer.CreateFromSeconds(Runner, 1f);
             mousePosition = mousePosition.normalized;
             transform.Translate(Vector2.zero);
@@ -45,52 +41,51 @@ namespace Identi5.GamePlay.Player
         #region - OnTrigger -
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if(!isSpawned){return;}
             var player = collider.GetComponent<PlayerController>();
             var zombie = collider.GetComponent<Zombie>();
             var livings = collider.GetComponent<Livings>();
 
             if(collider.CompareTag("MapCollision"))
             {
-                if(playerRef == Runner.LocalPlayer)
+                if(shooterPlayerRef == Runner.LocalPlayer)
                 {
                     GameMgr.playerOutputData.bulletOnCollisions++;
                 }
                 gameMgr.source.clip = clips[1];
                 gameMgr.source.Play();
-                Runner.Despawn(Object);
+                DespawnBullet_RPC();
             }
             else if(player != null)
             {
-                if(player.GetPND().playerRef == playerRef){return;}
+                if(player.GetPND().playerRef == shooterPlayerRef){return;}
                 if(player.GetPND().teamID < 1 || player.GetPND().teamID != GameMgr.Instance.PNDList[playerRef].teamID)
                 {
                     player.TakeDamage(10);
-                    if(playerRef == Runner.LocalPlayer)
+                    if(shooterPlayerRef == Runner.LocalPlayer)
                     {
                         GameMgr.playerOutputData.bulletOnPlayer++;
                     }
                 }
                 gameMgr.source.clip = clips[1];
                 gameMgr.source.Play();
-                Runner.Despawn(Object);
+                DespawnBullet_RPC();
             }
             else if(zombie != null)
             {
                 zombie.SetZombieHP_RPC(zombie.HP - 10);
                 if(zombie.HP <= 0)
                 {
-                    GameMgr.Instance.PNDList[playerRef].AddKillNo_RPC();
+                    GameMgr.Instance.PNDList[shooterPlayerRef].AddKillNo_RPC();
                     zombie.DespawnZombie_RPC();
                 }
                 gameMgr.source.clip = clips[1];
                 gameMgr.source.Play();
-                Runner.Despawn(Object);
+                DespawnBullet_RPC();
             }
             else if(livings != null)
             {
                 livings.SetLivingsHP_RPC(livings.HP - 10);
-                if(playerRef == Runner.LocalPlayer)
+                if(shooterPlayerRef == Runner.LocalPlayer)
                 {
                     GameMgr.playerOutputData.bulletOnLiving++;
                 }
@@ -100,7 +95,7 @@ namespace Identi5.GamePlay.Player
                 }
                 gameMgr.source.clip = clips[1];
                 gameMgr.source.Play();
-                Runner.Despawn(Object);
+                DespawnBullet_RPC();
             }
         }
 

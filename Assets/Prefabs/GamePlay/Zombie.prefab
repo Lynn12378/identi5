@@ -1166,7 +1166,7 @@ MonoBehaviour:
   SRV3: {fileID: 7807895563415668938}
   trans: {fileID: 285280910250053797}
   playerDetection: {fileID: 4097055235517823161}
-  itemSpawner: {fileID: 0}
+  itemSpawner: {fileID: 1966359119142846453}
   HPSlider: {fileID: 1422947231120268285}
   _ZombieID: 0
   _HP: 0
