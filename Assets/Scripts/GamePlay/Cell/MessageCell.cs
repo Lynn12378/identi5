@@ -28,9 +28,13 @@ namespace Identi5.GamePlay.Cell
         {
             if (timer.Expired(Runner))
             {
-                GameMgr.Instance.messageList.Remove(this);
                 Despawn_RPC();
             }
+        }
+
+        void OnDestroy()
+        {
+            GameMgr.Instance.messageList.Remove(this);
         }
 
         public void OnMessageChange()
