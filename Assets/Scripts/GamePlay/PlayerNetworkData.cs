@@ -256,6 +256,9 @@ namespace Identi5.GamePlay
                     case nameof(killNo):
                         POD.killNo = killNo;
                         break;
+                    case nameof(deathNo):
+                        POD.deathNo = deathNo;
+                        break;
                 }
             }
         }
