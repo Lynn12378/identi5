@@ -104,8 +104,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 16
-      height: 162
-    spriteID: 73d97f983cea47142a394fcb203e6919
+      height: 166
+    spriteID: df09ef12348543b45bb3db454cfa60eb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -114,7 +114,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 4, y: 4}
+    spritePosition: {x: 9, y: 3}
   characterData:
     bones: []
     parts: []
@@ -155,7 +155,7 @@ ScriptedImporter:
     spriteName: "\u5716\u5C64 1"
     isGroup: 0
     parentIndex: -1
-    spriteID: 73d97f983cea47142a394fcb203e6919
+    spriteID: df09ef12348543b45bb3db454cfa60eb
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0

@@ -184,7 +184,7 @@ namespace Identi5.GamePlay
             if (Random.value < 0.5f)
             {
                 itemSpawner.gameObject.SetActive(true);
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     itemSpawner.RandomSpawn();
                 }
@@ -204,6 +204,7 @@ namespace Identi5.GamePlay
                         Init();
                         break;
                     case nameof(HP):
+                        HPSlider.maxValue = HP > HPSlider.maxValue ? HP : HPSlider.maxValue;
                         HPSlider.value = HP;
                         break;
                 }

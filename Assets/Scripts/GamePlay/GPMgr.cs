@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Fusion;
 using Fusion.Sockets;
 using TMPro;
@@ -82,6 +83,17 @@ namespace Identi5.GamePlay
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
             gameMgr.UpdatedPNDList();
+        }
+
+        public void Leave(string name)
+        {
+            if (gameMgr.PNDList.TryGetValue(runner.LocalPlayer, out PlayerNetworkData playerNetworkData))
+            {
+                runner.Despawn(playerNetworkData.Object);
+            }
+
+            runner.Shutdown();
+            SceneManager.LoadScene(name);
         }
 
         #endregion

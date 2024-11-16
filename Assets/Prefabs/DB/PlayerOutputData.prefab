@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7092441033208180538}
-  - component: {fileID: 8763974716377074827}
   - component: {fileID: 6047792432197699593}
   m_Layer: 0
   m_Name: PlayerOutputData
@@ -33,23 +32,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8763974716377074827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8784313577853381870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortKey: 1254358122
-  ObjectInterest: 1
-  Flags: 786433
-  NestedObjects: []
-  NetworkedBehaviours: []
 --- !u!114 &6047792432197699593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,20 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc5c66d322048d4bad423af51e0c72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerId: 106
-  isFinished: 0
-  outfitTime: 0
+  playerId: 136
+  isFinished: 1
+  outfitTime: 45.3486
   oufitChangedNo: 0
   placeholderNo: 0
   buildingVisit: 
-  manualTime: 0
-  failGameNo: 0
-  deathNo: 1
-  killNo: 5
-  organizeNo: 3
-  fullNo: 2
+  manualTime: 24.099
+  failGameNo: -1
+  deathNo: 0
+  killNo: 2
+  organizeNo: 1
+  fullNo: 0
   zombieInShelterNo: 0
-  surviveTime: 47.3125
+  surviveTime: 29.96875
   contribution: 0
   messageSent: 0
   teamCreated: 0
@@ -83,12 +65,12 @@ MonoBehaviour:
   totalVoiceDetectionDuration: 0
   joinTeamNo: 0
   giftNo: 0
-  rankClikedNo: 2
-  bulletOnLiving: 0
+  rankClikedNo: 0
+  bulletOnLiving: 5
   bulletOnPlayer: 0
-  interactNo: 6
-  timeInShelter: 0
+  interactNo: 0
+  timeInShelter: 2.28125
   collisionMapNo: 0
   bulletOnCollisions: 0
-  remainHP: 50000000
+  remainHP: 
   remainBullet: 

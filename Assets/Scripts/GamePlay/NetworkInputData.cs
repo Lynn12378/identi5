@@ -8,8 +8,6 @@ namespace Identi5.GamePlay
         FIRE,
         SPACE,
         TALK,
-        RELOAD,
-        PET
     }
 
     public struct NetworkInputData : INetworkInput

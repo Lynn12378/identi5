@@ -14,13 +14,13 @@ namespace Identi5.GamePlay
             FoodCan,
             MedicalKit,
             Money,
-            OutfitChangeCard,
             IDcard,
             Kettle,
             Key,
             Purse,
             Quiz,
-            Umbrella
+            Umbrella,
+            OutfitChangeCard,
         }
 
         [SerializeField] private SpriteResolver spriteResolver;

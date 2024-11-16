@@ -101,11 +101,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 202
+      x: 4
+      y: 272
       width: 100
       height: 100
-    spriteID: d7b56a8f7ae9071448182b10acc8f8da
+    spriteID: 12551bac7badd1142a1e1248c5e27387
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,7 +113,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 202}
+    uvTransform: {x: 4, y: 272}
     spritePosition: {x: 0, y: 0}
   - name: building13_1
     originalName: 
@@ -122,11 +122,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 202
+      x: 104
+      y: 272
       width: 100
       height: 100
-    spriteID: e773a983c48f58540a75ddfcfb5e11f4
+    spriteID: 168ea406d7db1114994151d22004cdfd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -134,7 +134,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 202}
+    uvTransform: {x: 104, y: 272}
     spritePosition: {x: 0, y: 0}
   - name: building13_2
     originalName: 
@@ -143,11 +143,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 202
+      x: 204
+      y: 272
       width: 100
       height: 100
-    spriteID: 524820c7d732d3d47944c65b4b01abe6
+    spriteID: cada2891b5b7d3e4abbb332a4a8d3c26
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -155,7 +155,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 202}
+    uvTransform: {x: 204, y: 272}
     spritePosition: {x: 0, y: 0}
   - name: building13_3
     originalName: 
@@ -164,11 +164,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 300
-      y: 202
+      x: 304
+      y: 272
       width: 100
       height: 100
-    spriteID: ccd487b16d69c564ea64fe1204bcfbb1
+    spriteID: c6db4ba97064ccb448c91da445df0c91
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -176,7 +176,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 300, y: 202}
+    uvTransform: {x: 304, y: 272}
     spritePosition: {x: 0, y: 0}
   - name: building13_4
     originalName: 
@@ -185,11 +185,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 400
-      y: 202
+      x: 404
+      y: 272
       width: 100
       height: 100
-    spriteID: a2d2ea0786bff5f49a5f5c042af2cdbb
+    spriteID: ad02209d096a00b4e80d04d73ddab84e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -197,7 +197,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 400, y: 202}
+    uvTransform: {x: 404, y: 272}
     spritePosition: {x: 0, y: 0}
   - name: building13_5
     originalName: 
@@ -206,11 +206,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 500
-      y: 202
+      x: 4
+      y: 172
       width: 100
       height: 100
-    spriteID: 3b7a5f13b7f57c646ad8d5f045a12958
+    spriteID: 70347ef1cdd49424093c84520329ec9f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -218,7 +218,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 500, y: 202}
+    uvTransform: {x: 4, y: 172}
     spritePosition: {x: 0, y: 0}
   - name: building13_6
     originalName: 
@@ -227,11 +227,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 102
+      x: 104
+      y: 172
       width: 100
       height: 100
-    spriteID: 56af5d45335523e4c98434213fcf5b36
+    spriteID: d8197b1a32468854ca2c7bf4b386a34a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -239,7 +239,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 102}
+    uvTransform: {x: 104, y: 172}
     spritePosition: {x: 0, y: 0}
   - name: building13_7
     originalName: 
@@ -248,11 +248,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 102
+      x: 204
+      y: 172
       width: 100
       height: 100
-    spriteID: a5bc1d6c1e8a35642aeb385daf578d1a
+    spriteID: 87c310ebcb61ec145a80c65fba5e910a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -260,7 +260,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 102}
+    uvTransform: {x: 204, y: 172}
     spritePosition: {x: 0, y: 0}
   - name: building13_8
     originalName: 
@@ -269,11 +269,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 102
+      x: 304
+      y: 172
       width: 100
       height: 100
-    spriteID: 3a0c9161c99220048bbe205df1586cfb
+    spriteID: e074467def983fd4aa0ae43e3c5a916b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -281,7 +281,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 102}
+    uvTransform: {x: 304, y: 172}
     spritePosition: {x: 0, y: 0}
   - name: building13_9
     originalName: 
@@ -290,11 +290,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 300
-      y: 102
+      x: 404
+      y: 172
       width: 100
       height: 100
-    spriteID: 430a8d9351c0f144dbb811cc43b51f87
+    spriteID: 37c49c343552a7242b047ae8c111d48f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -302,7 +302,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 300, y: 102}
+    uvTransform: {x: 404, y: 172}
     spritePosition: {x: 0, y: 0}
   - name: building13_10
     originalName: 
@@ -311,11 +311,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 400
-      y: 102
+      x: 4
+      y: 72
       width: 100
       height: 100
-    spriteID: 7e63c1548204b00429d282d647283f8d
+    spriteID: b5f7b70a504e80c4f9f8ca78ca909396
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -323,7 +323,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 400, y: 102}
+    uvTransform: {x: 4, y: 72}
     spritePosition: {x: 0, y: 0}
   - name: building13_11
     originalName: 
@@ -332,11 +332,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 500
-      y: 102
+      x: 104
+      y: 72
       width: 100
       height: 100
-    spriteID: 2dbbcf7c4fbf22848b844092b78120b0
+    spriteID: 5ae9663a0554ebe408c88ab447fbe946
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -344,7 +344,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 500, y: 102}
+    uvTransform: {x: 104, y: 72}
     spritePosition: {x: 0, y: 0}
   - name: building13_12
     originalName: 
@@ -353,11 +353,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
-      y: 2
+      x: 204
+      y: 72
       width: 100
       height: 100
-    spriteID: fe2337b700d046d40a89dcffc3f7c9ed
+    spriteID: be7075dc6bbdfac4fa9079c8254244e1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -365,7 +365,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 2}
+    uvTransform: {x: 204, y: 72}
     spritePosition: {x: 0, y: 0}
   - name: building13_13
     originalName: 
@@ -374,11 +374,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 100
-      y: 2
+      x: 304
+      y: 72
       width: 100
       height: 100
-    spriteID: 95baca5a909657549be9718ccc1a30a7
+    spriteID: b9207286b5f7bf8488625e62ad2aa2ee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -386,7 +386,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 100, y: 2}
+    uvTransform: {x: 304, y: 72}
     spritePosition: {x: 0, y: 0}
   - name: building13_14
     originalName: 
@@ -395,11 +395,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 200
-      y: 2
+      x: 404
+      y: 72
       width: 100
       height: 100
-    spriteID: c14652d527c1efe4cb1a4832ab728a23
+    spriteID: 30f97c450b2efac45b1f082ee5f7d5ad
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -407,70 +407,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 200, y: 2}
-    spritePosition: {x: 0, y: 0}
-  - name: building13_15
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 300
-      y: 2
-      width: 100
-      height: 100
-    spriteID: 95550e35a1587ed40b44fac8a4e645be
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 300, y: 2}
-    spritePosition: {x: 0, y: 0}
-  - name: building13_16
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 400
-      y: 2
-      width: 100
-      height: 100
-    spriteID: b9bbd932247764e46a0da22f8775682d
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 400, y: 2}
-    spritePosition: {x: 0, y: 0}
-  - name: building13_17
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 500
-      y: 2
-      width: 100
-      height: 100
-    spriteID: 95a2e1b5ed1e28444bbbd81c24794332
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 500, y: 2}
+    uvTransform: {x: 404, y: 72}
     spritePosition: {x: 0, y: 0}
   characterData:
     bones: []
@@ -512,7 +449,7 @@ ScriptedImporter:
     spriteName: "\u5716\u5C64 1"
     isGroup: 0
     parentIndex: -1
-    spriteID: 208cfc17c935576488aa1981930b98a2
+    spriteID: 1ba916369f1e4c54d9c00dd1fee9cd4a
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0

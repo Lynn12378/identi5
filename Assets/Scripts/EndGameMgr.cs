@@ -3,9 +3,9 @@ using Fusion;
 
 namespace Identi5
 {
-    public class EndGameMgr : NetworkBehaviour
+    public class EndGameMgr : MonoBehaviour
     {
-        private string baseUrl = "http://localhost/DEMO/BFI-15.php";
+        private string baseUrl = "https://directly-precious-egret.ngrok-free.app/DEMO/BFI-15.php";
         public void GoToQuestion()
         {
             string fullUrl = $"{baseUrl}?player_id={GameMgr.playerInfo.Player_id}";
@@ -13,7 +13,6 @@ namespace Identi5
         }
         public void Start()
         {
-            Debug.Log($"Player_id:{GameMgr.playerInfo.Player_id}");
             GoToQuestion();
         }
     }

@@ -44,6 +44,7 @@ namespace Identi5.GamePlay
         [Networked] public int killNo { get; private set; }
         [Networked] public int deathNo { get; private set; }
         [Networked] public float surviveTime { get; private set; }
+
         #endregion
 
         public override void Spawned()

@@ -16,7 +16,7 @@ namespace Identi5.GamePlay.Player
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private List<PlayerController> playersInRange = new List<PlayerController>();
 
-        private void Start()
+        public override void Spawned()
         {
             gameMgr = GameMgr.Instance;
             gameMgr.playerVoiceList.Add(Object.InputAuthority, this);   

@@ -34,6 +34,7 @@ switch ($Action) {
         $PlayerOutputData = json_decode($_POST['PlayerOutputData']);
         $Player_name = $PlayerInfo->Player_name;
         $Player_password = $PlayerInfo->Player_password;
+        $manualTime = $PlayerOutputData->manualTime;
         $response = array();
         $result = Check($conn, $Player_name);
         if ($result->num_rows > 0)
@@ -56,11 +57,12 @@ switch ($Action) {
                         $response["status"] = "Success"; 
                         $response['message'] = "登入成功";
                         $date = date('Y-m-d H:i:s', time());
+                        $manualTime = $manualTime + $temp->manualTime;
                         UpdateColumn($conn, "playTime", $Player_id, $date);
-                        UpdateColumn($conn, "manualTime", $Player_id, ($PlayerOutputData->manualTime + $temp->manualTime));
+                        UpdateColumn($conn, "manualTime", $Player_id, $manualTime);
                         $PlayerInfo = GetOutfits($conn, $PlayerInfo);
-                        $PlayerOutputData->outfitTime = $temp->outfitTime;
-                        $PlayerOutputData->failGameNo = $temp->failGameNo;
+                        $PlayerOutputData = $temp;
+                        $PlayerOutputData->manualTime = $manualTime;
                     }
                 }
                 else

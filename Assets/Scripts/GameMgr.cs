@@ -120,6 +120,7 @@ namespace Identi5
                 OnOutfitsUpdated?.Invoke();
             }
         #endregion
+
         public AudioSource BGM;
         public AudioSource source;
         public OutputDBHandler ODHandler;
