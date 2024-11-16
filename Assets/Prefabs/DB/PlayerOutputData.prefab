@@ -49,8 +49,7 @@ MonoBehaviour:
   ObjectInterest: 1
   Flags: 786433
   NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 6047792432197699593}
+  NetworkedBehaviours: []
 --- !u!114 &6047792432197699593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +74,7 @@ MonoBehaviour:
   killNo: 5
   organizeNo: 3
   fullNo: 2
-  zombieInShelteNo: 0
+  zombieInShelterNo: 0
   surviveTime: 47.3125
   contribution: 0
   messageSent: 0
@@ -88,6 +87,7 @@ MonoBehaviour:
   bulletOnLiving: 0
   bulletOnPlayer: 0
   interactNo: 6
+  timeInShelter: 0
   collisionMapNo: 0
   bulletOnCollisions: 0
   remainHP: 50000000
