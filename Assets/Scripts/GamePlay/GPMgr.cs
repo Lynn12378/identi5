@@ -302,7 +302,6 @@ namespace Identi5.GamePlay
             [SerializeField] private GameObject actionListPanel;
             [SerializeField] private GameObject givenPanel;
             [SerializeField] private GameObject outfitPanel;
-            [SerializeField] private GameObject outfitCamera;
 
             public void SetItemAction(Item itemAction)
             {
@@ -374,7 +373,6 @@ namespace Identi5.GamePlay
                         }
                         info = "換裝卡已使用";
                         outfitPanel.SetActive(true);
-                        outfitCamera.SetActive(true);
                         break;
                     case Item.ItemType.IDcard:
                         info = "被遺失的學生證，有明顯的凹折";
@@ -419,7 +417,6 @@ namespace Identi5.GamePlay
                 gameMgr.UpdateItemList();
                 UpdateOutfits();
                 outfitPanel.SetActive(false);
-                outfitCamera.SetActive(false);
             }
 
             public void UpdateOutfits()
