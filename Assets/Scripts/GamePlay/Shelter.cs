@@ -47,27 +47,30 @@ namespace Identi5.GamePlay
         }
         public override void FixedUpdateNetwork()
         {
-            if (Object.HasStateAuthority)
+            if (durabilityTimer.Expired(Runner) && durability > 0)
             {
-                if (endGameTimer.Expired(Runner))
+                SetDurability_RPC(durability - 1);
+                durabilityTimer = TickTimer.CreateFromSeconds(Runner, 5);
+            }
+            
+            if (endGameTimer.Expired(Runner))
+            {
+                gameEnded = true;
+                SetSceneName_RPC("EndGame");
+            }
+
+            if (durability == 0)
+            {
+                if (!failedTimer.IsRunning)
                 {
-                    gameEnded = true;
-                    SetSceneName_RPC("EndGame");
+                    failedTimer = TickTimer.CreateFromSeconds(Runner, 60);
+                    gameMgr.dialogCell.SetInfo("基地耐久度不足! 請儘快補充物資!");
                 }
 
-                if (durability == 0)
+                if (failedTimer.Expired(Runner))
                 {
-                    if (!failedTimer.IsRunning)
-                    {
-                        failedTimer = TickTimer.CreateFromSeconds(Runner, 60);
-                        gameMgr.dialogCell.SetInfo("基地耐久度不足! 請儘快補充物資!");
-                    }
-
-                    if (failedTimer.Expired(Runner))
-                    {
-                        gameFailed = true;
-                        SetSceneName_RPC("Lobby");
-                    }
+                    gameFailed = true;
+                    SetSceneName_RPC("Lobby");
                 }
             }
         }
