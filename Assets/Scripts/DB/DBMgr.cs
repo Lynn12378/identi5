@@ -27,7 +27,7 @@ namespace Identi5.DB
 
         protected IEnumerator SendData()
         {
-            var url = $"https://catfish-golden-man.ngrok-free.app/DEMO/{table}.php"+ (action != null ? $"?Action={action}" : "");
+            var url = $"https://directly-precious-egret.ngrok-free.app/DEMO/{table}.php"+ (action != null ? $"?Action={action}" : "");
             UnityWebRequest www = UnityWebRequest.Post(url, formData);
             yield return www.SendWebRequest();
 
