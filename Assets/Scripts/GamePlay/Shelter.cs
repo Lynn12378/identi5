@@ -28,7 +28,7 @@ namespace Identi5.GamePlay
 
             SetDurability_RPC(maxDurability);
             durabilityTimer = TickTimer.CreateFromSeconds(Runner, 5);
-            endGameTimer = TickTimer.CreateFromSeconds(Runner, 10);
+            endGameTimer = TickTimer.CreateFromSeconds(Runner, 600);
 
             gameMgr.OnEndGame += EndGame;
             gameMgr.OnFailGame += FailGame;
