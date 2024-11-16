@@ -16,12 +16,12 @@ namespace Identi5.GamePlay.Player
         [SerializeField] private PlayerNetworkData PND;
         [SerializeField] private List<PlayerController> playersInRange = new List<PlayerController>();
 
-        public override void Spawned()
+        private void Start()
         {
             gameMgr = GameMgr.Instance;
             gameMgr.playerVoiceList.Add(Object.InputAuthority, this);   
 
-            if (PND.playerRef == Runner.LocalPlayer)
+            if (Object.StateAuthority == Runner.LocalPlayer)
             {
                 rec = voiceObject.RecorderInUse;
                 rec.TransmitEnabled = false;
