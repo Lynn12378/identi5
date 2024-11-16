@@ -22,7 +22,7 @@ namespace Identi5.GamePlay
         }
         public ZombieType zombieType;
         private ChangeDetector changes;
-        private int maxHP = 105;
+        private int maxHP = 55;
         private int directDamage = 3;
         private int damageOverTime = 1;
         private float damageInterval = 0.5f;
@@ -61,7 +61,6 @@ namespace Identi5.GamePlay
             switch (zombieType)
             {
                 case ZombieType.HighDamage:
-                    maxHP = 55;
                     directDamage = 5;
                     damageOverTime = 3;
                     SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
@@ -83,6 +82,7 @@ namespace Identi5.GamePlay
                     SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
                     break;
                 case ZombieType.Normal:
+                    maxHP = 105;
                     SRV1.SetCategoryAndLabel("Zombie1", zombieType.ToString());
                     SRV2.SetCategoryAndLabel("Zombie2", zombieType.ToString());
                     SRV3.SetCategoryAndLabel("Zombie3", zombieType.ToString());
