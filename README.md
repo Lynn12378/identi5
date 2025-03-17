@@ -1,4 +1,4 @@
-# Identi5-遊戲面試
+# Identi5-遊戲徵才
 ### 國立中央大學 資訊管理學系 2024 畢業專題
 [成果海報](https://www.canva.com/design/DAGXH-0jy5A/LMbDsq_gSBeJfCdZXdHmSA/view?utm_content=DAGXH-0jy5A&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf53ff00bc9)
 * 前端:
