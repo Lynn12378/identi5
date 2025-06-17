@@ -81,7 +81,7 @@ $sql = "SELECT  player.Player_id,
                 bfi_result.id AS bfi_result_id,
                 output_data.*, bfi_result.*
         FROM player
-        JOIN output_data ON player.Player_id = output_data.playerId
+        JOIN output_data ON player.Player_id = output_data.player_id
         JOIN bfi_result ON player.Player_id = bfi_result.player_id
         WHERE player.Player_name LIKE '%$search_query%'";
 
