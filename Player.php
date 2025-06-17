@@ -86,7 +86,6 @@ switch ($Action) {
         $Player_password = $PlayerInfo->Player_password;
         $Player_colors = $PlayerInfo->colorList;
         $Player_outfits = $PlayerInfo->outfits;
-        $outfitTime = 13;
         $response = array();
         $result = Check($conn, $Player_name);
         if ($result->num_rows > 0)
@@ -128,7 +127,7 @@ switch ($Action) {
                 $Player_id,
                 $date,
                 $date, // 為 playTime 欄位提供值，這裡設為與 signUptime 相同
-                $outfitTime
+                13
             );
             $result = $conn->query($sql);
             #endregion
