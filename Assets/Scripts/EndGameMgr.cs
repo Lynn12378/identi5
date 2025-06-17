@@ -5,7 +5,7 @@ namespace Identi5
 {
     public class EndGameMgr : NetworkBehaviour
     {
-        private string baseUrl = "http://localhost/DEMO/BFI-15.php";
+        private string baseUrl = "https://identi5-1073915238949.asia-east1.run.app/BFI-15.php";
         public void GoToQuestion()
         {
             string fullUrl = $"{baseUrl}?player_id={GameMgr.playerInfo.Player_id}";
