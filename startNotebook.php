@@ -2,11 +2,11 @@
 if (isset($_GET['player_id'])) {
     $player_id = intval($_GET['player_id']); // 取得 player_id
 
-    $notebookPath = 'C:/Users/hohyi/Desktop/畢業專題/Identi5.ipynb';
-    $paramFilePath = 'C:/xampp/htdocs/DEMO/temp/player_id.txt';
+    $notebookPath = './Identi5.ipynb';
+    $paramFilePath = './player_id.txt';
     file_put_contents($paramFilePath, $player_id);
 
-    $outputDir = 'C:/xampp/htdocs/DEMO/reports/';
+    $outputDir = './reports/';
     $outputPdfPath = $outputDir . "analysis_report_$player_id.pdf";
 
     $command = "jupyter nbconvert --execute $notebookPath --to notebook --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout=-1";

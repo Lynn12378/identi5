@@ -7,7 +7,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 function connectDatabase()
 {
     // 連接mysql
-    $conn = new mysqli("localhost", "Admin", "/yWV1AIhVHWSKn7l", "identi5db");
+    $conn = new mysqli("34.80.196.123", "identi5", "12345", "identi5");
 
     // 檢查連線
     if ($conn->connect_error)
