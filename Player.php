@@ -123,11 +123,10 @@ switch ($Action) {
             #region output_data
             $date = date('Y-m-d H:i:s', time());
             $sql = sprintf(
-                "INSERT INTO output_data (player_id, signUptime, playTime, outfitTime) VALUES ('%s', '%s', '%s')",
+                "INSERT INTO output_data (player_id, signUptime, playTime) VALUES ('%s', '%s', '%s')",
                 $Player_id,
                 $date,
-                $date, // 為 playTime 欄位提供值，這裡設為與 signUptime 相同
-                13.0
+                $date
             );
             $result = $conn->query($sql);
             #endregion
