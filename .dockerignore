@@ -1,8 +1,6 @@
 .git
 .gitignore
 .dockerignore
-Dockerfile
-ports.conf
 README.md
 vendor/
 node_modules/
