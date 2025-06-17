@@ -86,7 +86,7 @@ switch ($Action) {
         $Player_password = $PlayerInfo->Player_password;
         $Player_colors = $PlayerInfo->colorList;
         $Player_outfits = $PlayerInfo->outfits;
-        $outfitTime = $PlayerInfo->outfitTime;
+        $outfitTime = 13;
         $response = array();
         $result = Check($conn, $Player_name);
         if ($result->num_rows > 0)
