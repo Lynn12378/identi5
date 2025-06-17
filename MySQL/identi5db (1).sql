@@ -14,25 +14,51 @@ SET time_zone = "+00:00";
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */; -- **此行已修正**
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `identi5db`
+-- 資料庫： `identi5`
 --
+-- 您原始的SQL傾印是 `identi5db`，但我根據您的PHP檔案使用了 `identi5`。請確認您的資料庫名稱。
+
+USE `identi5`;
 
 -- --------------------------------------------------------
 
 --
 -- 資料表結構 `bfi_responses`
 --
-USE `identi5`;
+
 CREATE TABLE `bfi_responses` (
   `id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
   `responses` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `feedback` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- **新增的資料表結構 `bfi_result`**
+--
+-- 這個資料表用於儲存計算後的大五人格分數
+--
+
+CREATE TABLE `bfi_result` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `player_id` INT(11) NOT NULL, -- 關聯到 player 表的 Player_id
+  `openness` DECIMAL(5,2) DEFAULT NULL, -- 開放性分數
+  `conscientiousness` DECIMAL(5,2) DEFAULT NULL, -- 盡責性分數
+  `extraversion` DECIMAL(5,2) DEFAULT NULL, -- 外向性分數
+  `agreeableness` DECIMAL(5,2) DEFAULT NULL, -- 親和性分數
+  `neuroticism` DECIMAL(5,2) DEFAULT NULL, -- 情緒不穩定性分數
+  `calculated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 記錄分數計算的時間
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_player_id` (`player_id`), -- 確保每個玩家只有一組BFI結果
+  FOREIGN KEY (`player_id`) REFERENCES `player` (`Player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- --------------------------------------------------------
 
@@ -162,6 +188,12 @@ ALTER TABLE `bfi_responses`
   ADD KEY `fk_player_id` (`player_id`);
 
 --
+-- 資料表索引 `bfi_result`
+--
+ALTER TABLE `bfi_result`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_player_id` (`player_id`); -- 添加唯一索引確保每個玩家只有一條BFI結果
+--
 -- 資料表索引 `outfits`
 --
 ALTER TABLE `outfits`
@@ -191,6 +223,12 @@ ALTER TABLE `bfi_responses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `bfi_result`
+--
+ALTER TABLE `bfi_result`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `outfits`
 --
 ALTER TABLE `outfits`
@@ -217,8 +255,15 @@ ALTER TABLE `player`
 --
 ALTER TABLE `bfi_responses`
   ADD CONSTRAINT `fk_player_id` FOREIGN KEY (`player_id`) REFERENCES `player` (`Player_id`);
+
+--
+-- 資料表的限制式 `bfi_result`
+--
+ALTER TABLE `bfi_result`
+  ADD CONSTRAINT `fk_bfi_result_player_id` FOREIGN KEY (`player_id`) REFERENCES `player` (`Player_id`);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; -- **此行已修正**
