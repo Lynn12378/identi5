@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- 資料表結構 `bfi_responses`
 --
-
+USE `identi5`;
 CREATE TABLE `bfi_responses` (
   `id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
